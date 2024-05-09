@@ -1,0 +1,18 @@
+node_modules
+
+#Exclude Logs
+**/*.log
+
+#Exclude .env files
+**.env
+
+#Exclude git and github stuff
+.git
+.github
+.gitignore
+
+#Exclude tests from images
+tests
+
+#Exclude all markdown
+**.md
