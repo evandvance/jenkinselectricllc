@@ -6,4 +6,7 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
   },
+  define: {
+    'import.meta.vitest': 'undefined',
+  },
 });
