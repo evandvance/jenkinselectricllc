@@ -8,6 +8,8 @@ services:
     ports:
       - 5432:${DATABASE_PORT}
   nextjs:
+    depends_on:
+      - db
     container_name: next_c
     build:
       context: .
