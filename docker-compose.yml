@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  db:
+    container_name: db_c
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - 5432:${DATABASE_PORT}
+  nextjs:
+    container_name: next_c
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    ports:
+      - ${NEXT_PORT:${NEXT_PORT}
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+    develop:
+      watch:
+        - path: ./src
+          action: sync
+        - path: ./package.json
+          action: rebuild
+        - path: ./package-lock.json
+          action: rebuild
+        - path: ./public
+          action: sync
