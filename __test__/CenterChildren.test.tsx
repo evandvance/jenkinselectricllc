@@ -1,6 +1,6 @@
 import { test, expect, suite } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import CenterChildren from '../src/components/Utilities/CenterChildren';
+import CenterChildren from '../src/components/utilities/CenterChildren';
 
 suite('CenterChildren Tests', () => {
   render(
