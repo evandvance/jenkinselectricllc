@@ -21,4 +21,15 @@ suite('Navbar Tests', () => {
     expect.soft(screen.getByText('Contact Us')).toBeDefined();
     expect.soft(screen.getByText('Appliances')).toBeDefined();
   });
+
+  test('Navbar formats correctly on desktop', () => {
+    expect.soft(navbar.classList).toContain('flex');
+    expect.soft(navbar.classList).toContain('justify-around');
+    expect.soft(navbar.classList).toContain('items-center');
+    expect.soft(navbar.className).toContain('flex-col');
+  });
+
+  test('Navbar Has correct background color', () => {
+    expect(navbar.classList).toContain('bg-slate-950');
+  });
 });
