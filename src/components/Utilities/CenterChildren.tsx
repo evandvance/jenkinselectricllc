@@ -8,7 +8,12 @@ interface CenterChildrenProps {
 
 const CenterChildren = ({ children, className, key }: CenterChildrenProps) => {
   return (
-    <div key={key} className={`flex justify-center items-center ${className}`}>
+    <div
+      key={key}
+      className={`flex justify-center items-center ${
+        className ? className : ''
+      }`}
+    >
       {children}
     </div>
   );
