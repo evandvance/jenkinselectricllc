@@ -12,7 +12,7 @@ const Navbar = () => {
       <Link href="/" className="h-[8vh] w-24 object-contain mx-5">
         <img
           src="/assets/logo.svg"
-          alt="Jenkins Electric LLC logo"
+          alt="JenkinsElectricLLC logo"
           className="w-auto h-[8vh]"
         />
       </Link>

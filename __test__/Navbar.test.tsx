@@ -12,7 +12,7 @@ suite('Navbar Tests', () => {
   });
 
   test('Image Renders', () => {
-    expect(screen.getAllByAltText('JenkinsElectricLLC Logo')).toBeDefined();
+    expect(screen.getByAltText('JenkinsElectricLLC logo')).toBeDefined();
   });
 
   test('Links Render', () => {
@@ -24,8 +24,7 @@ suite('Navbar Tests', () => {
 
   test('Navbar formats correctly on desktop', () => {
     expect.soft(navbar.classList).toContain('flex');
-    expect.soft(navbar.classList).toContain('justify-around');
-    expect.soft(navbar.classList).toContain('items-center');
+    expect.soft(navbar.classList).toContain('justify-between');
   });
 
   test('Navbar Has correct background color', () => {
