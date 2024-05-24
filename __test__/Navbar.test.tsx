@@ -27,6 +27,10 @@ suite('Navbar Tests', () => {
     expect.soft(navbar.classList).toContain('justify-between');
   });
 
+  test('Navbar Handles mobile format somehow', () => {
+    expect.soft(navbar.classList).toContain('sm');
+  });
+
   test('Navbar Has correct background color', () => {
     expect(navbar.classList).toContain('bg-black');
   });
