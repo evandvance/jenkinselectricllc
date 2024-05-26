@@ -8,8 +8,8 @@ interface DropDownLinkInterface {
 
 const DropDownLinks = ({ dropdownItems, className }: DropDownLinkInterface) => {
   return (
-    <div className="group hidden absolute group-hover:inline-block">
-      <div className="my-2 min-w-fit border rounded z-auto">
+    <div className="group hidden z-50 absolute group-hover:inline-block">
+      <div className="my-2 min-w-fit border border-jellcblue rounded z-auto bg-white">
         {dropdownItems.map((item: DropdownItemsInterface) => (
           <Link
             key={item.title}

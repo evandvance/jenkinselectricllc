@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <nav
       data-testid="nav-1"
-      className="bg-black min-h-[8vh] w-screen flex justify-between"
+      className="bg-black min-h-[8vh] w-screen flex justify-between z-50"
     >
       <Link href="/" className="h-[8vh] w-24 object-contain ml-16">
         <img
