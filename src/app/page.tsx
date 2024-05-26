@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { FaChevronDown } from 'react-icons/fa';
-import CenterChildren from '@/components/utilities/CenterChildren';
+import CenterChildren from '../components/utilities/CenterChildren';
 
 const HomePage = () => {
   return (
