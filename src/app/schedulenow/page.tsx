@@ -1,7 +1,11 @@
-import React from 'react';
+import ComingSoonCard from '@/components/Cards/ComingSoonCard';
 
 const ScheduleNowPage = () => {
-  return <div>ScheduleNowPage</div>;
+  return (
+    <div>
+      <ComingSoonCard />
+    </div>
+  );
 };
 
 export default ScheduleNowPage;

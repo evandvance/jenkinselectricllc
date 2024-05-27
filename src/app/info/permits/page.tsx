@@ -1,7 +1,10 @@
-import React from 'react';
-
+import ComingSoonCard from '@/components/Cards/ComingSoonCard';
 const PermitPage = () => {
-  return <div>PermitPage</div>;
+  return (
+    <div>
+      <ComingSoonCard />
+    </div>
+  );
 };
 
 export default PermitPage;

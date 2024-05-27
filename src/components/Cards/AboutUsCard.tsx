@@ -9,7 +9,7 @@ const AboutUsCard = ({ className }: AbouteUsCardProps) => {
     <div
       data-testid="aboutUsCard-1"
       id="about"
-      className={`w-[80vw] h-64 m-5 ${className ? className : ''}`}
+      className={`w-[80vw] h-content m-5 ${className ? className : ''}`}
     >
       <h2 className="text-5xl m-5">About Us</h2>
       <div className="flex flex-col justify-around items-center lg:flex-row">

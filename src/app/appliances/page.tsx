@@ -1,7 +1,10 @@
-import React from 'react';
-
+import ComingSoonCard from '@/components/Cards/ComingSoonCard';
 const AppliancePage = () => {
-  return <div>AppliancePage</div>;
+  return (
+    <div>
+      <ComingSoonCard />
+    </div>
+  );
 };
 
 export default AppliancePage;

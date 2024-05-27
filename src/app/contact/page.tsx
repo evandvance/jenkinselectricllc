@@ -1,7 +1,10 @@
-import React from 'react';
-
+import ComingSoonCard from '@/components/Cards/ComingSoonCard';
 const ContactPage = () => {
-  return <div>ContactPage</div>;
+  return (
+    <div>
+      <ComingSoonCard />
+    </div>
+  );
 };
 
 export default ContactPage;

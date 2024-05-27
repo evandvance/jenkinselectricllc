@@ -19,7 +19,7 @@ const ServicesProvidedCard = ({ className }: ServicesProvidedCardProps) => {
     <div
       data-testid="servicesProvidedCard-1"
       id="services"
-      className={`w-[80vw] h-64 m-5 ${className ? className : ''}`}
+      className={`w-[80vw] h-content m-5 ${className ? className : ''}`}
     >
       <h2 className="text-5xl m-5">Services Provided</h2>
       <div className="flex flex-col justify-around items-center lg:flex-row">
