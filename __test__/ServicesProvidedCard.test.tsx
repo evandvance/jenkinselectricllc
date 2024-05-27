@@ -11,18 +11,18 @@ suite('Services Provided Card Tests', () => {
   });
 
   test('Services Provided Card contains a header', () => {
-    expect(servicesProvidedCard.innerHTML).toContain('H2');
+    expect(servicesProvidedCard.innerHTML.includes('h2')).toBe(true);
   });
 
   test('Services Provided Card has a list of Services', () => {
-    expect(servicesProvidedCard.innerHTML).toContain('ul');
+    expect(servicesProvidedCard.innerHTML.includes('ul')).toBe(true);
   });
 
   test('Services Provided Card contains an image', () => {
-    expect(servicesProvidedCard.innerHTML).toContain('img');
+    expect(servicesProvidedCard.innerHTML.includes('img')).toBe(true);
   });
 
   test('Services Provided Card handles mobile somehow', () => {
-    expect(servicesProvidedCard.innerHTML).toContain('sm');
+    expect(servicesProvidedCard.innerHTML.includes('lg:flex-col')).toBe(true);
   });
 });

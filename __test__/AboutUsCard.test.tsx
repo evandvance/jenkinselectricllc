@@ -16,7 +16,7 @@ suite('About Us Card Tests', () => {
   });
 
   test('About Us Card Contains Header', () => {
-    expect(aboutUsCard.innerHTML.includes('H2')).toBe(true);
+    expect(aboutUsCard.innerHTML.includes('h2')).toBe(true);
   });
 
   test('About Us Card Contains Paragraph', () => {
@@ -25,7 +25,7 @@ suite('About Us Card Tests', () => {
 
   test('About Us Card Handles Mobile', () => {
     expect(screen.getByRole('img').parentElement?.classList).toContain(
-      'sm:flex-col'
+      'lg:flex-row'
     );
   });
 });
