@@ -14,18 +14,31 @@ const HomePage = () => {
           </video>
         </div>
 
-        <div className="h-[100vh] max-w-[100vw]">
-          <h1 className="text-7xl text-white top-8 left-56">
-            Jenkins <br></br>
-            <span className="text-jellcblue">Electric LLC</span>
-          </h1>
-          <Link className="left-[50vw] top-[70vh]" href={'#services'}>
-            <FaChevronDown size="25" color="white" />
-          </Link>
+        <div className="flex flex-col justify-between h-[92vh]">
+          <div className="flex w-screen">
+            <div className="flex w-1/3">
+              <div className="w-1/3"></div>
+              <h1 className="text-7xl mt-5 h-64 text-left text-white w-2/3">
+                Jenkins <br></br>
+                <span className="text-jellcblue">Electric LLC</span>
+              </h1>
+            </div>
+            <div className="w-1/3"></div>
+            <div className="w-1/3"></div>
+          </div>
+          <div className="flex w-screen">
+            <div className="w-1/3"></div>
+            <div className="w-1/3 flex justify-center items-center">
+              <Link className="" href={'#services'}>
+                <FaChevronDown size="25" color="white" />
+              </Link>
+            </div>
+            <div className="w-1/3"></div>
+          </div>
         </div>
       </div>
 
-      <ServicesProvidedCard />
+      <ServicesProvidedCard className="mt-24" />
       <AboutUsCard />
     </div>
   );
