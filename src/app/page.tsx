@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { FaChevronDown } from 'react-icons/fa';
 import ServicesProvidedCard from '../components/Cards/ServicesProvidedCard';
 import AboutUsCard from '../components/Cards/AboutUsCard';
+import BlueButton from '@/components/Buttons/BlueButton';
 
 const HomePage = () => {
   return (

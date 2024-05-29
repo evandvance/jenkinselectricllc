@@ -19,7 +19,7 @@ const Footer = () => {
         <div className="w-1/4"></div>
         <div className="w-1/8"></div>
         <Link
-          className="text-2xl m-3 border p-3 rounded hover:bg-white hover:text-black"
+          className="text-2xl m-3 border p-3 rounded-xl hover:bg-white hover:text-black"
           href={'/contact'}
         >
           Contact Us Now!
