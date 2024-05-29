@@ -5,13 +5,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "npx primsa migrate deploy && next start",
     "lint": "next lint",
     "test": "vitest",
+    "migrate": "sh ./prisma/migrate.sh",
     "dev:docker": "docker compose up --detach && docker compose watch"
   },
   "dependencies": {
+    "@prisma/client": "^5.14.0",
     "next": "14.2.3",
+    "prisma": "^5.14.0",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1"

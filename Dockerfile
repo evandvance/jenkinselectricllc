@@ -16,6 +16,7 @@ RUN npm ci
 
 COPY . .
 
+RUN npx prisma generate
 RUN npm run build
 
 CMD [ "npm", "run", "start" ]
@@ -27,5 +28,7 @@ ENV NODE_ENV=development
 RUN npm install
 
 COPY . .
+
+RUN npx prisma generate
 
 CMD [ "npm", "run", "dev" ]
