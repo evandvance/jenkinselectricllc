@@ -7,17 +7,21 @@ const Footer = () => {
   return (
     <footer
       data-testid="footer-1"
-      className="flex flex-col lg:flex-row justify-around items-centerw-screen h-[8vh] bg-black text-white"
+      className="flex flex-col lg:flex-row justify-around items-center w-screen lg:h-[8vh] bg-black text-white"
     >
       <Link
-        className="flex justify-center items-center h-full w-1/3 text-2xl"
+        className="flex m-3 justify-center items-center h-full lg:w-1/3 text-2xl"
         href={'/'}
       >
         Jenkins Electric LLC.
       </Link>
       <div className="flex flex-col lg:flex-row justify-around items-center w-2/3 h-full">
-        <div></div>
-        <Link className="text-2xl" href={'/contact'}>
+        <div className="w-1/4"></div>
+        <div className="w-1/8"></div>
+        <Link
+          className="text-2xl m-3 border p-3 rounded hover:bg-white hover:text-black"
+          href={'/contact'}
+        >
           Contact Us Now!
         </Link>
         <div id="icons" className="flex justify-around w-48 h-[8vh] text-4xl">

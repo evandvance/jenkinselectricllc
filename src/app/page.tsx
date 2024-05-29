@@ -26,7 +26,7 @@ const HomePage = () => {
             <div className="w-1/3"></div>
             <div className="w-1/3"></div>
           </div>
-          <div className="flex w-screen">
+          <div className="flex w-screen h-[8vh]">
             <div className="w-1/3"></div>
             <div className="w-1/3 flex justify-center items-center">
               <Link className="" href={'#services'}>
