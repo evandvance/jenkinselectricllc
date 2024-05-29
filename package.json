@@ -8,7 +8,7 @@
     "start": "npx primsa migrate deploy && next start",
     "lint": "next lint",
     "test": "vitest",
-    "migrate": "sh ./prisma/migrate.sh",
+    "migrate": "echo 'Dont forget to incrament migration number and change env var' && sh ./prisma/migrate.sh",
     "dev:docker": "docker compose up --detach && docker compose watch"
   },
   "dependencies": {
