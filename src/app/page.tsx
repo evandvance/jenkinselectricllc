@@ -10,7 +10,10 @@ const HomePage = () => {
       <div data-testid="landing-1" className="">
         <div className="absolute top-[8vh] left-0 h-[100vh] -z-10">
           <video autoPlay muted loop>
-            <source src="lights.mp4" type="video/mp4" />
+            <source
+              src="https://d1cc4plkhm1feb.cloudfront.net/Lights.mp4"
+              type="video/mp4"
+            />
           </video>
         </div>
 
