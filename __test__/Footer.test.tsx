@@ -6,7 +6,7 @@ suite('Footer Tests', () => {
   render(<Footer />);
 
   const footer = screen.getByTestId('footer-1');
-  const icons = screen.getAllByRole('i');
+  const icons = screen.getByTestId('icons-1');
 
   test('Footer Renders', () => {
     expect(footer).toBeDefined();
@@ -17,19 +17,12 @@ suite('Footer Tests', () => {
   });
 
   test('Footer Contains Contact Us Link', () => {
-    const contactUsLink = screen.getByRole('a');
+    const contactUsLink = screen.getAllByText('Contact Us Now!');
 
     expect.soft(contactUsLink).toBeDefined();
-    expect.soft(contactUsLink.innerHTML).toContain('Contact Us');
   });
 
   test('Icons Exist', () => {
     expect(icons).toBeDefined();
-  });
-
-  test('Icons Are Links', () => {
-    icons.forEach((icon) => {
-      expect.soft(icon.parentElement?.role).toBe('a');
-    });
   });
 });

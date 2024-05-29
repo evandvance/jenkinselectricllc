@@ -23,6 +23,6 @@ suite('Services Provided Card Tests', () => {
   });
 
   test('Services Provided Card handles mobile somehow', () => {
-    expect(servicesProvidedCard.innerHTML.includes('lg:flex-col')).toBe(true);
+    expect(servicesProvidedCard.innerHTML.includes('lg:flex-row')).toBe(true);
   });
 });

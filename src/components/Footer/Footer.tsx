@@ -24,7 +24,11 @@ const Footer = () => {
         >
           Contact Us Now!
         </Link>
-        <div id="icons" className="flex justify-around w-48 h-[8vh] text-4xl">
+        <div
+          data-testid="icons-1"
+          id="icons"
+          className="flex justify-around w-48 h-[8vh] text-4xl"
+        >
           <Link href={'tel:7317276578'}>
             <FaPhone className="h-full" color="white" />
           </Link>
