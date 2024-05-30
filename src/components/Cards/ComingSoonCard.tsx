@@ -9,7 +9,7 @@ const ComingSoonCard = () => {
         width={500}
       />
 
-      <h1 className="text-8xl mt-24">Page Coming Soon!</h1>
+      <h1 className="text-8xl mt-24 mb-24">Page Coming Soon!</h1>
     </div>
   );
 };
