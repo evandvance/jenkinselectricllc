@@ -24,7 +24,7 @@ const TechnicianCard = ({
 }: TechnicianCardProps) => {
   const gradient = isEven(index)
     ? 'bg-gradient-to-r from-jellcdarkblue to-jellcblue'
-    : 'bg-gradient-to-l from-jellcyellow to-jellcorange';
+    : 'bg-gradient-to-l from-jellcyellow to-jellcorange flex-row-reverse';
 
   return (
     <div

@@ -4,6 +4,13 @@ import { getTechnicians } from '@/services/TechnicianServices';
 const TechnicianPage = async () => {
   const technicians = await getTechnicians();
 
+  if (technicians.length === 0)
+    return (
+      <div className="m-5 flex justify-center items-center">
+        No Technicians Found
+      </div>
+    );
+
   return (
     <div className="flex flex-col justify-center items-center">
       {technicians.map((technician, index) => {
