@@ -13,7 +13,7 @@ export async function GET() {
         phoneNumber: true,
         bio: true,
         isCertified: true,
-        image: true,
+        imageUrl: true,
       },
     });
 

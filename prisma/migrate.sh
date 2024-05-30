@@ -5,7 +5,7 @@ DATABASE_PORT=5432
 
 DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@localhost:${DATABASE_PORT}/postgres
 
-migration_number=1
+migration_number=2
 
 docker run -dp 5432:5432 -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} -e POSTGRES_USER=${POSTGRES_USER} --name temp_db postgres:16-alpine 
 
