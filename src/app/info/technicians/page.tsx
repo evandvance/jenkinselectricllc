@@ -7,13 +7,14 @@ const TechnicianPage = async () => {
   return (
     <div className="flex flex-col justify-center items-center">
       {technicians.map((technician, index) => {
+        const { firstName, lastName, bio, isCertified, imageUrl } = technician;
         return (
           <TechnicianCard
-            firstName={technician.firstName}
-            lastname={technician.lastName}
-            bio={technician.bio}
-            isCertified={technician.isCertified}
-            imageUrl={technician.imageUrl}
+            firstName={firstName}
+            lastName={lastName}
+            bio={bio}
+            isCertified={isCertified}
+            imageUrl={imageUrl}
             index={index}
           />
         );

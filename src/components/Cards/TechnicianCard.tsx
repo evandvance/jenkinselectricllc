@@ -1,8 +1,7 @@
 import { FaAward } from 'react-icons/fa6';
-
 interface TechnicianCardProps {
   firstName: string;
-  lastname: string;
+  lastName: string;
   phoneNumber?: string;
   bio: string;
   isCertified: boolean;
@@ -16,7 +15,7 @@ const isEven = (index: number): boolean => {
 
 const TechnicianCard = ({
   firstName,
-  lastname,
+  lastName,
   phoneNumber,
   bio,
   isCertified,
@@ -35,12 +34,12 @@ const TechnicianCard = ({
         <img
           className="h-[500px]"
           src={imageUrl}
-          alt={`Image of ${firstName} ${lastname}`}
+          alt={`Image of ${firstName} ${lastName}`}
         />
         {isCertified && <FaAward color="white" height={50} />}
       </div>
       <div className="w-1/2 flex flex-col justify-center items-start">
-        <h2 className="text-5xl m-5">{`${firstName} ${lastname}`}</h2>
+        <h2 className="text-5xl m-5">{`${firstName} ${lastName}`}</h2>
         <p className="text-2xl m-5">{bio}</p>
       </div>
     </div>
