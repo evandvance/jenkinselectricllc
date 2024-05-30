@@ -11,7 +11,7 @@ const HomePage = () => {
         <div className="absolute top-[8vh] left-0 h-[100vh] -z-10">
           <video autoPlay muted loop>
             <source
-              src="https://d1cc4plkhm1feb.cloudfront.net/Lights.mp4"
+              src="https://mediacdn.jenkinselectric.llc/Lights.mp4"
               type="video/mp4"
             />
           </video>
