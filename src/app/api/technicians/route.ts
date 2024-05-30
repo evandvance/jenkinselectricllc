@@ -1,21 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { getTechnicians } from '@/services/TechnicianServices';
 
 export async function GET() {
   try {
-    const technicians = await prisma.technician.findMany({
-      select: {
-        id: true,
-        firstName: true,
-        lastName: true,
-        phoneNumber: true,
-        bio: true,
-        isCertified: true,
-        imageUrl: true,
-      },
-    });
+    const technicians = await getTechnicians();
 
     return NextResponse.json(technicians);
   } catch (err) {
