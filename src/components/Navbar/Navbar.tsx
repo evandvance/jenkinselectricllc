@@ -6,7 +6,7 @@ import DropDownLink from './DropDownLink';
 import { InfoItems } from './InfoItems';
 import { ApplianceItems } from './ApplianceItems';
 
-const page = () => {
+const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
@@ -28,7 +28,7 @@ const page = () => {
       <ul
         className={`absolute ${
           isNavOpen ? 'translate-y-0' : '-translate-y-[100vh]'
-        } -z-10 w-screen pt-2 text-2xl space-y-1 duration-500 ease-in-out transition-all bg-black`}
+        } w-screen pt-2 text-2xl space-y-1 duration-500 ease-in-out transition-all bg-black`}
       >
         <li className="min-h-[50px] py-1 border-b">
           <Link className="m-1 p-2 hover:text-jellcblue" href={'/schedulenow'}>
@@ -59,4 +59,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Navbar;

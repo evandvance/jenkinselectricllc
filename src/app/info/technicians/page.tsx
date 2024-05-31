@@ -23,6 +23,7 @@ const TechnicianPage = async () => {
             isCertified={isCertified}
             imageUrl={imageUrl}
             index={index}
+            key={firstName + lastName}
           />
         );
       })}
