@@ -11,7 +11,7 @@ const page = () => {
 
   return (
     <nav className="w-screen min-h-[8vh] text-white bg-black">
-      <div className="w-screen h-full z-50 px-3 flex justify-between items-center">
+      <div className="w-screen h-full px-3 flex justify-between items-center">
         <Link href="/" className="h-[8vh] w-24 object-contain">
           <img
             src="/assets/logo.svg"
@@ -27,8 +27,8 @@ const page = () => {
       </div>
       <ul
         className={`absolute ${
-          isNavOpen ? 'translate-x-0' : '-translate-x-full'
-        } z-10 w-screen pt-2 text-2xl space-y-1 duration-500 ease-in-out transition-all bg-black`}
+          isNavOpen ? 'translate-y-0' : '-translate-y-[100vh]'
+        } -z-10 w-screen pt-2 text-2xl space-y-1 duration-500 ease-in-out transition-all bg-black`}
       >
         <li className="min-h-[50px] py-1 border-b">
           <Link className="m-1 p-2 hover:text-jellcblue" href={'/schedulenow'}>

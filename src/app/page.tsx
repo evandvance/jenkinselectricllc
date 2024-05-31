@@ -8,8 +8,13 @@ const HomePage = () => {
   return (
     <div className="flex flex-col justify-center items-center">
       <div data-testid="landing-1" className="">
-        <div className="absolute top-[8vh] left-0 h-[100vh] -z-10">
-          <video autoPlay muted loop>
+        <div className="absolute top-[8vh] left-0 h-[100vh] -z-50">
+          <video
+            className="min-h-full min-w-full object-cover"
+            autoPlay
+            muted
+            loop
+          >
             <source
               src="https://mediacdn.jenkinselectric.llc/Lights.mp4"
               type="video/mp4"
@@ -17,7 +22,7 @@ const HomePage = () => {
           </video>
         </div>
 
-        <div className="flex flex-col justify-between h-[92vh]">
+        <div className="relative -z-20 flex flex-col justify-between h-[92vh]">
           <div className="flex w-screen">
             <div className="flex w-1/3">
               <div className="w-1/3"></div>
