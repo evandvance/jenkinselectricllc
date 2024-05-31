@@ -25,7 +25,7 @@ const ServicesProvidedCard = ({ className }: ServicesProvidedCardProps) => {
       <div className="flex flex-col justify-around items-center lg:flex-row">
         <ul className="text-4xl my-5 list-disc list-inside">
           {servicesArray.map((service) => (
-            <li>{service}</li>
+            <li key={service}>{service}</li>
           ))}
         </ul>
         <Image

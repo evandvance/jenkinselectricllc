@@ -7,6 +7,7 @@ interface TechnicianCardProps {
   isCertified: boolean;
   imageUrl: string;
   index: number;
+  key?: string;
 }
 
 const isEven = (index: number): boolean => {
@@ -21,6 +22,7 @@ const TechnicianCard = ({
   isCertified,
   imageUrl,
   index,
+  key,
 }: TechnicianCardProps) => {
   const gradient = isEven(index)
     ? 'bg-gradient-to-r from-jellcdarkblue to-jellcblue'
@@ -29,6 +31,7 @@ const TechnicianCard = ({
   return (
     <div
       className={`w-[75vw] m-5 p-5 border rounded-xl text-white flex flex-col lg:flex-row ${gradient}`}
+      key={key}
     >
       <div className="w-1/2 flex justify-center items-center">
         <img
