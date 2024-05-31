@@ -1,47 +1,62 @@
+'use client';
 import Link from 'next/link';
-import DropdownButton from './NavbarComponents/DropDownButton';
+import { useState } from 'react';
+import { RxHamburgerMenu } from 'react-icons/rx';
+import DropDownLink from './DropDownLink';
 import { InfoItems } from './InfoItems';
 import { ApplianceItems } from './ApplianceItems';
-import { RxHamburgerMenu } from 'react-icons/rx';
 
-const Navbar = () => {
+const page = () => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
   return (
-    <nav
-      data-testid="nav-1"
-      className="bg-black min-h-[8vh] w-screen flex justify-between z-50"
-    >
-      <Link href="/" className="h-[8vh] w-24 object-contain ml-20">
-        <img
-          src="/assets/logo.svg"
-          alt="JenkinsElectricLLC logo"
-          className="w-auto h-[8vh]"
-        />
-      </Link>
-
-      <div className="flex justify-center items-center text-white text-2xl mr-20">
-        {/* <RxHamburgerMenu className="hover:cursor-pointer" /> */}
-
-        <Link className="hover:text-jellcblue" href={'/schedulenow'}>
-          Schedule Now
+    <nav className="w-screen min-h-[8vh] text-white bg-black">
+      <div className="w-screen h-full z-50 px-3 flex justify-between items-center">
+        <Link href="/" className="h-[8vh] w-24 object-contain">
+          <img
+            src="/assets/logo.svg"
+            alt="JenkinsElectricLLC logo"
+            className="w-auto h-[8vh]"
+          />
         </Link>
-        <DropdownButton
-          title="Info"
-          dropdownItems={InfoItems}
-          className="hover:text-jellcblue"
-          childrenClassName="hover:text-jellcblue"
-        />
-        <Link className="hover:text-jellcblue" href={'/contact'}>
-          Contact Us
-        </Link>
-        <DropdownButton
-          title="Appliances"
-          className="hover:text-jellcblue"
-          dropdownItems={ApplianceItems}
-          childrenClassName="hover:text-jellcblue"
+        <RxHamburgerMenu
+          className="m-2 lg:m-5 text-4xl hover:cursor-pointer"
+          onClick={() => setIsNavOpen(!isNavOpen)}
+          color="white"
         />
       </div>
+      <ul
+        className={`absolute ${
+          isNavOpen ? 'translate-x-0' : '-translate-x-full'
+        } z-10 w-screen pt-2 text-2xl space-y-1 duration-500 ease-in-out transition-all bg-black`}
+      >
+        <li className="min-h-[50px] py-1 border-b">
+          <Link className="m-1 p-2 hover:text-jellcblue" href={'/schedulenow'}>
+            Schedule Now
+          </Link>
+        </li>
+        <li className="min-h-[50px]">
+          <DropDownLink
+            dropDownLinks={InfoItems}
+            title="Info"
+            className="m-1 p-2 border-b"
+          />
+        </li>
+        <li className="min-h-[50px] py-1 border-b">
+          <Link className="m-1 p-2 hover:text-jellcblue" href={'/contact'}>
+            Contact Us
+          </Link>
+        </li>
+        <li className="min-h-[50px]">
+          <DropDownLink
+            dropDownLinks={ApplianceItems}
+            title="Appliances"
+            className="m-1 p-2"
+          />
+        </li>
+      </ul>
     </nav>
   );
 };
 
-export default Navbar;
+export default page;

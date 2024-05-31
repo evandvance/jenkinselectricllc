@@ -33,7 +33,11 @@ const HomePage = () => {
             <div className="w-1/3"></div>
             <div className="w-1/3 flex justify-center items-center">
               <Link className="" href={'#services'}>
-                <FaChevronDown size="25" color="white" />
+                <FaChevronDown
+                  className="animate-bounce"
+                  size="25"
+                  color="white"
+                />
               </Link>
             </div>
             <div className="w-1/3"></div>
