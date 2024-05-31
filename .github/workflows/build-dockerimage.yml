@@ -28,7 +28,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          target: prod
+          target: runner
           tags: evandvance/jenkinselectricllc:latest
 
       - name: Redploy on Render

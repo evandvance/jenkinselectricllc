@@ -12,7 +12,9 @@ node_modules
 .gitignore
 
 #Exclude tests from images
-tests
+__tests__
 
 #Exclude all markdown
 **.md
+
+.next
