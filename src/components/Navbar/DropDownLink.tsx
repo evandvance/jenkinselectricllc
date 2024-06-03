@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 interface DropDownLinkProps {
@@ -22,17 +22,31 @@ const DropDownLink = ({
 }: DropDownLinkProps) => {
   const [isLinksShown, setIsLinksShown] = useState(false);
 
+  useEffect(() => {
+    if (window.innerWidth > 1024) {
+      const dropDownLink = document.getElementById(title);
+
+      dropDownLink?.addEventListener('mouseenter', () => {
+        setIsLinksShown(true);
+      });
+
+      dropDownLink?.addEventListener('mouseleave', () => {
+        setIsLinksShown(false);
+      });
+    }
+  }, []);
+
   return (
-    <div className={`cursor-pointer ${className ? className : ''}`}>
+    <div id={title} className={`${className ? className : ''}`}>
       <p
-        className="hover:text-jellcblue"
+        className="cursor-pointer hover:text-jellcblue"
         onClick={() => setIsLinksShown(!isLinksShown)}
       >
         {title}
       </p>
 
       {isLinksShown && (
-        <ul>
+        <ul className="absolute bg-black lg:border lg:rounded lg:border-white lg:mt-2 lg:space-y-3 pb-1">
           {dropDownLinks.map((item) => {
             return (
               <li key={item.title} className="m-2">
