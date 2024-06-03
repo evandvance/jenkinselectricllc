@@ -5,6 +5,7 @@ import Link from 'next/link';
 interface DropDownLinkProps {
   className?: string;
   title: string;
+  onClick?: () => void;
   dropDownLinks: DropDownLinks[];
 }
 
@@ -17,6 +18,7 @@ const DropDownLink = ({
   className,
   title,
   dropDownLinks,
+  onClick,
 }: DropDownLinkProps) => {
   const [isLinksShown, setIsLinksShown] = useState(false);
 
@@ -34,7 +36,16 @@ const DropDownLink = ({
           {dropDownLinks.map((item) => {
             return (
               <li key={item.title} className="m-2">
-                <Link className="hover:text-jellcblue" href={item.href}>
+                <Link
+                  onClick={() => {
+                    if (onClick) {
+                      onClick();
+                    }
+                    setIsLinksShown(!isLinksShown);
+                  }}
+                  className="hover:text-jellcblue"
+                  href={item.href}
+                >
                   {item.title}
                 </Link>
               </li>

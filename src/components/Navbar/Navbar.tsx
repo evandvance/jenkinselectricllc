@@ -31,7 +31,11 @@ const Navbar = () => {
         } w-screen pt-2 text-2xl space-y-1 duration-500 ease-in-out transition-all bg-black`}
       >
         <li className="min-h-[50px] py-1 border-b">
-          <Link className="m-1 p-2 hover:text-jellcblue" href={'/schedulenow'}>
+          <Link
+            onClick={() => setIsNavOpen(!isNavOpen)}
+            className="m-1 p-2 hover:text-jellcblue"
+            href={'/schedulenow'}
+          >
             Schedule Now
           </Link>
         </li>
@@ -40,10 +44,15 @@ const Navbar = () => {
             dropDownLinks={InfoItems}
             title="Info"
             className="m-1 p-2 border-b"
+            onClick={() => setIsNavOpen(!isNavOpen)}
           />
         </li>
         <li className="min-h-[50px] py-1 border-b">
-          <Link className="m-1 p-2 hover:text-jellcblue" href={'/contact'}>
+          <Link
+            onClick={() => setIsNavOpen(!isNavOpen)}
+            className="m-1 p-2 hover:text-jellcblue"
+            href={'/contact'}
+          >
             Contact Us
           </Link>
         </li>
@@ -52,6 +61,7 @@ const Navbar = () => {
             dropDownLinks={ApplianceItems}
             title="Appliances"
             className="m-1 p-2"
+            onClick={() => setIsNavOpen(!isNavOpen)}
           />
         </li>
       </ul>
