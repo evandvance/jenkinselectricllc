@@ -38,7 +38,7 @@ const Navbar = () => {
       </div>
       <ul
         className={`absolute ${
-          isNavOpen ? 'translate-x-0' : 'translate-x-[100vh]'
+          isNavOpen ? 'translate-x-0' : 'translate-x-[100vw]'
         } w-screen pt-2 text-2xl space-y-1 duration-500 ease-in-out transition-all bg-black`}
       >
         <li className="min-h-[50px] py-1 border-b">
