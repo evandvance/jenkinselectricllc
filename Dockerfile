@@ -67,8 +67,13 @@ ENV HOSTNAME "0.0.0.0"
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
 CMD ["node", "server.js"]
 
-FROM deps as dev
+FROM base as dev
 WORKDIR /app
+
+COPY package*.json .
+
+RUN npm install
+COPY . .
 
 RUN npx prisma generate
 CMD [ "npm", "run", "dev" ]
