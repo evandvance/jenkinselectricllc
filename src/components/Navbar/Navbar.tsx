@@ -2,6 +2,8 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
+import { IoCloseOutline } from 'react-icons/io5';
+
 import DropDownLink from './DropDownLink';
 import { InfoItems } from './InfoItems';
 import { ApplianceItems } from './ApplianceItems';
@@ -19,15 +21,24 @@ const Navbar = () => {
             className="w-auto h-[8vh]"
           />
         </Link>
-        <RxHamburgerMenu
-          className="m-2 lg:m-5 text-4xl hover:cursor-pointer"
-          onClick={() => setIsNavOpen(!isNavOpen)}
-          color="white"
-        />
+
+        {isNavOpen ? (
+          <IoCloseOutline
+            className="m-1 lg:m-4 text-5xl hover:cursor-pointer"
+            onClick={() => setIsNavOpen(!isNavOpen)}
+            color="white"
+          />
+        ) : (
+          <RxHamburgerMenu
+            className="m-2 lg:m-5 text-4xl hover:cursor-pointer"
+            onClick={() => setIsNavOpen(!isNavOpen)}
+            color="white"
+          />
+        )}
       </div>
       <ul
         className={`absolute ${
-          isNavOpen ? 'translate-y-0' : '-translate-y-[100vh]'
+          isNavOpen ? 'translate-x-0' : 'translate-x-[100vh]'
         } w-screen pt-2 text-2xl space-y-1 duration-500 ease-in-out transition-all bg-black`}
       >
         <li className="min-h-[50px] py-1 border-b">
