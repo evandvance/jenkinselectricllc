@@ -22,31 +22,40 @@ const DropDownLink = ({
 }: DropDownLinkProps) => {
   const [isLinksShown, setIsLinksShown] = useState(false);
 
-  useEffect(() => {
-    if (window.innerWidth > 1024) {
-      const dropDownLink = document.getElementById(title);
+  const handleLinksShown = () => setIsLinksShown(!isLinksShown);
 
-      dropDownLink?.addEventListener('mouseenter', () => {
-        setIsLinksShown(true);
-      });
+  const handleResizeEvent = () => {
+    const LARGE_WINDOW_WIDTH = 1024;
+    //This was added because I was strugling with figuring out how to do mouseleave consitently
+    const handleMouseLeave = () => setIsLinksShown(false);
 
-      dropDownLink?.addEventListener('mouseleave', () => {
-        setIsLinksShown(false);
-      });
+    const dropDownLink = document.getElementById(title);
+
+    if (window.innerWidth > LARGE_WINDOW_WIDTH) {
+      dropDownLink?.addEventListener('mouseenter', handleLinksShown);
+      dropDownLink?.addEventListener('mouseleave', handleMouseLeave);
+    } else {
+      dropDownLink?.removeEventListener('mouseenter', handleLinksShown);
+      dropDownLink?.removeEventListener('mouseleave', handleMouseLeave);
     }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResizeEvent);
+    handleResizeEvent();
   }, []);
 
   return (
     <div id={title} className={`${className ? className : ''}`}>
       <p
         className="cursor-pointer hover:text-jellcblue"
-        onClick={() => setIsLinksShown(!isLinksShown)}
+        onClick={handleLinksShown}
       >
         {title}
       </p>
 
       {isLinksShown && (
-        <ul className="absolute bg-black lg:border lg:rounded lg:border-white lg:mt-2 lg:space-y-3 pb-1">
+        <ul className="lg:absolute bg-black lg:border lg:rounded lg:border-white lg:mt-2 lg:space-y-3 pb-1">
           {dropDownLinks.map((item) => {
             return (
               <li key={item.title} className="m-2">
