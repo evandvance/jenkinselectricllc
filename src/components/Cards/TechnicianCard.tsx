@@ -27,7 +27,7 @@ const TechnicianCard = ({
 }: TechnicianCardProps) => {
   const gradient = isEven(index)
     ? 'bg-gradient-to-r from-jellcdarkblue to-jellcblue'
-    : 'bg-gradient-to-l from-jellcyellow to-jellcorange flex-row-reverse';
+    : 'bg-gradient-to-l from-jellcorange to-jellcyellow flex-row-reverse';
 
   return (
     <div
@@ -42,14 +42,17 @@ const TechnicianCard = ({
           alt={`Image of ${firstName} ${lastName}`}
         />
       </div>
-      <div className="w-1/2 flex flex-col justify-center items-start">
-        <div className="text-5xl my-5 flex">
+      <div className="min-w-1/2 flex flex-col justify-center items-start">
+        <div className="text-5xl my-5 w-content flex lg:items-center">
           <h2 className="lg:mx-4">{`${firstName} ${lastName}`}</h2>
           {isCertified && (
-            <FaAward className="text-7xl lg:mx-4" color="white" />
+            <div className="flex flex-col items-center">
+              <FaAward className="text-7xl lg:mx-4" color="white" />
+              <p className=" text-sm">Certified</p>
+            </div>
           )}
         </div>
-        <p className="text-2xl my-5">{bio}</p>
+        <p className="text-xl lg:text-2xl my-5">{bio}</p>
       </div>
     </div>
   );

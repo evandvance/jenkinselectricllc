@@ -7,13 +7,12 @@ const TechnicianPage = () => {
   const [technicians, setTechnicians] = useState<Technician[]>([]);
 
   useEffect(() => {
-    const response = fetch('https://jenkinselectric.llc/api/technicians');
     setTechnicians([
       {
         id: 0,
         firstName: 'Dakota',
         lastName: 'Jenkins',
-        bio: 'Lorem Ipsum',
+        bio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus vitae sit, cum ea accusantium beatae modi fugiat, tenetur optio error eos. Odit libero officiis similique, iusto quisquam deserunt id reprehenderit!',
         isCertified: false,
         imageUrl: '/images/owners.jpg',
         phoneNumber: null,
@@ -22,7 +21,7 @@ const TechnicianPage = () => {
         id: 0,
         firstName: 'Dakota',
         lastName: 'Jenkins',
-        bio: 'Lorem Ipsum',
+        bio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus vitae sit, cum ea accusantium beatae modi fugiat, tenetur optio error eos. Odit libero officiis similique, iusto quisquam deserunt id reprehenderit!',
         isCertified: true,
         imageUrl: '/images/owners.jpg',
         phoneNumber: null,
