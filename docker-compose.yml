@@ -22,12 +22,12 @@ services:
     develop:
       watch:
         - path: ./src
-          target: /next/src
+          target: /app/src
           action: sync
         - path: ./package.json
           action: rebuild
         - path: ./package-lock.json
           action: rebuild
         - path: ./public
-          target: /next/public
+          target: /app/public
           action: sync

@@ -7,7 +7,8 @@ interface ServicesProvidedCardProps {
 const ServicesProvidedCard = ({ className }: ServicesProvidedCardProps) => {
   const servicesArray = [
     'General Electric Needs',
-    'Generator Installation and Maintainence',
+    'Generator Installation',
+    'Generator Maintainence',
     'Service Poles',
     'RV/Electric Car Hookups',
     'Plumbing',
@@ -23,7 +24,7 @@ const ServicesProvidedCard = ({ className }: ServicesProvidedCardProps) => {
     >
       <h2 className="text-5xl m-5">Services Provided</h2>
       <div className="flex flex-col justify-around items-center lg:flex-row">
-        <ul className="text-4xl my-5 list-disc list-inside">
+        <ul className="text-2xl lg:text-4xl my-5 list-disc list-inside">
           {servicesArray.map((service) => (
             <li key={service}>{service}</li>
           ))}

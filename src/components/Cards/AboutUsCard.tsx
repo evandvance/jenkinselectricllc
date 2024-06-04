@@ -20,7 +20,7 @@ const AboutUsCard = ({ className }: AbouteUsCardProps) => {
           height={500}
           width={500}
         />
-        <p className="text-2xl m-5 lg:w-[50%]">
+        <p className="text-xl lg:text-2xl m-5 lg:w-[50%]">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
           voluptas, nisi tenetur dolorem qui obcaecati nulla perferendis, magnam
           fugiat nemo consectetur quaerat illo neque, tempore eius! Soluta
