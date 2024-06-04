@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoCloseOutline } from 'react-icons/io5';
@@ -14,11 +15,13 @@ const Navbar = () => {
   return (
     <nav className="w-screen min-h-[8vh] text-white bg-black lg:flex lg:justify-between">
       <div className="w-screen lg:w-auto h-full lg:ml-10 px-3 flex justify-between items-center">
-        <Link href="/" className="h-[8vh] w-24 object-contain">
-          <img
+        <Link href="/" className="h-[8vh] w-20">
+          <Image
             src="/assets/logo.svg"
             alt="JenkinsElectricLLC logo"
-            className="w-auto h-[8vh]"
+            className="w-full h-auto object-contain"
+            height={3}
+            width={4}
           />
         </Link>
 
