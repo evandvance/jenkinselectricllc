@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { FaAward } from 'react-icons/fa6';
 interface TechnicianCardProps {
   firstName: string;
@@ -30,20 +31,25 @@ const TechnicianCard = ({
 
   return (
     <div
-      className={`w-[75vw] m-5 p-5 border rounded-xl text-white flex flex-col lg:flex-row ${gradient}`}
+      className={`w-5/6 lg:w-3/4 m-5 p-5 border rounded-xl text-white flex flex-col lg:flex-row ${gradient}`}
       key={key}
     >
-      <div className="w-1/2 flex justify-center items-center">
-        <img
-          className="h-[500px]"
+      <div className="w-full lg:w-1/2 flex justify-center items-center">
+        <Image
+          width={400}
+          height={500}
           src={imageUrl}
           alt={`Image of ${firstName} ${lastName}`}
         />
-        {isCertified && <FaAward color="white" height={50} />}
       </div>
       <div className="w-1/2 flex flex-col justify-center items-start">
-        <h2 className="text-5xl m-5">{`${firstName} ${lastName}`}</h2>
-        <p className="text-2xl m-5">{bio}</p>
+        <div className="text-5xl my-5 flex">
+          <h2 className="lg:mx-4">{`${firstName} ${lastName}`}</h2>
+          {isCertified && (
+            <FaAward className="text-7xl lg:mx-4" color="white" />
+          )}
+        </div>
+        <p className="text-2xl my-5">{bio}</p>
       </div>
     </div>
   );
