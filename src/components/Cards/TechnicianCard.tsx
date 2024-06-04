@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { FaAward } from 'react-icons/fa6';
 interface TechnicianCardProps {
   firstName: string;
@@ -26,24 +27,33 @@ const TechnicianCard = ({
 }: TechnicianCardProps) => {
   const gradient = isEven(index)
     ? 'bg-gradient-to-r from-jellcdarkblue to-jellcblue'
-    : 'bg-gradient-to-l from-jellcyellow to-jellcorange flex-row-reverse';
+    : 'bg-gradient-to-r from-jellcorange to-jellcyellow lg:flex-row-reverse';
 
   return (
     <div
-      className={`w-[75vw] m-5 p-5 border rounded-xl text-white flex flex-col lg:flex-row ${gradient}`}
+      className={`w-7/8 lg:w-3/4 m-5 p-5 border rounded-xl text-white flex flex-col lg:flex-row ${gradient}`}
       key={key}
     >
-      <div className="w-1/2 flex justify-center items-center">
-        <img
-          className="h-[500px]"
+      <div className="w-full lg:min-w-1/2 flex justify-center items-center relative">
+        <Image
+          height={500}
+          width={600}
+          className="object-cotain w-full h-auto p-5"
           src={imageUrl}
           alt={`Image of ${firstName} ${lastName}`}
         />
-        {isCertified && <FaAward color="white" height={50} />}
       </div>
-      <div className="w-1/2 flex flex-col justify-center items-start">
-        <h2 className="text-5xl m-5">{`${firstName} ${lastName}`}</h2>
-        <p className="text-2xl m-5">{bio}</p>
+      <div className="flex flex-col justify-center items-start">
+        <div className="text-5xl my-5 w-content flex lg:items-center">
+          <h2 className="lg:mx-5">{`${firstName} ${lastName}`}</h2>
+          {isCertified && (
+            <div className="flex flex-col items-center">
+              <FaAward className="text-7xl lg:mx-4" color="white" />
+              <p className=" text-sm">Certified</p>
+            </div>
+          )}
+        </div>
+        <p className="text-xl lg:text-2xl m-5">{bio}</p>
       </div>
     </div>
   );

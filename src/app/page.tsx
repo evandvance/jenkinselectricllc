@@ -16,23 +16,18 @@ const HomePage = () => {
             loop
           >
             <source
-              src="https://mediacdn.jenkinselectric.llc/Lights.mp4"
-              type="video/mp4"
+              src="https://mediacdn.jenkinselectric.llc/Lights.webm"
+              type="video/webm"
             />
           </video>
         </div>
 
         <div className="relative -z-20 flex flex-col justify-between h-[92vh]">
           <div className="flex w-screen">
-            <div className="flex w-1/3">
-              <div className="w-1/3"></div>
-              <h1 className="text-7xl mt-5 h-64 text-left text-white w-2/3">
-                Jenkins <br></br>
-                <span className="text-jellcblue">Electric LLC</span>
-              </h1>
-            </div>
-            <div className="w-1/3"></div>
-            <div className="w-1/3"></div>
+            <h1 className="text-5xl lg:text-7xl mt-6 ml-5 lg:ml-36 text-left text-white">
+              Jenkins <br></br>
+              <span className="text-jellcblue">Electric LLC</span>
+            </h1>
           </div>
           <div className="flex w-screen h-[8vh]">
             <div className="w-1/3"></div>
