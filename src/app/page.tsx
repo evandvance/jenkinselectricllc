@@ -16,8 +16,8 @@ const HomePage = () => {
             loop
           >
             <source
-              src="https://mediacdn.jenkinselectric.llc/Lights.mp4"
-              type="video/mp4"
+              src="https://mediacdn.jenkinselectric.llc/Lights.webm"
+              type="video/webm"
             />
           </video>
         </div>
