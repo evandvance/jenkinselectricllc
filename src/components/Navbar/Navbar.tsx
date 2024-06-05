@@ -13,9 +13,9 @@ const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
-    <nav className="w-screen min-h-[8vh] text-white bg-black lg:flex lg:justify-between">
-      <div className="w-screen lg:w-auto h-full lg:ml-10 px-3 flex justify-between items-center">
-        <Link href="/" className="h-[8vh] w-20">
+    <nav className="w-screen min-h-[8vh]  text-white bg-black lg:flex lg:justify-between">
+      <div className="w-screen lg:w-auto h-content lg:ml-10 px-3 flex justify-between items-center">
+        <Link href="/" className="h-[9vh] w-20">
           <Image
             src="/assets/logo.svg"
             alt="JenkinsElectricLLC logo"
@@ -46,6 +46,15 @@ const Navbar = () => {
           isNavOpen ? 'translate-y-0' : '-translate-y-[100vh]'
         } w-screen lg:w-auto lg:flex lg:static lg:justify-center lg:items-baseline lg:mr-24 lg:translate-y-0 pt-2 text-2xl space-y-1 duration-500 ease-in-out transition-all bg-black`}
       >
+        <li className="min-h-[50px] py-1 border-b lg:border-none">
+          <Link
+            onClick={() => setIsNavOpen(!isNavOpen)}
+            className="m-1 p-2 hover:text-jellcblue"
+            href={'/'}
+          >
+            Home
+          </Link>
+        </li>
         <li className="min-h-[50px] py-1 border-b lg:border-none">
           <Link
             onClick={() => setIsNavOpen(!isNavOpen)}

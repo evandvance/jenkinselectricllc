@@ -31,14 +31,14 @@ const TechnicianCard = ({
 
   return (
     <div
-      className={`w-7/8 lg:w-3/4 m-5 p-5 border rounded-xl text-white flex flex-col lg:flex-row ${gradient}`}
+      className={`w-7/8 lg:w-3/4 m-5 p-5 -z-20 border rounded-xl text-white flex flex-col lg:flex-row ${gradient}`}
       key={key}
     >
       <div className="w-full lg:min-w-1/2 flex justify-center items-center relative">
         <Image
           height={500}
           width={600}
-          className="object-cotain w-full h-auto p-5"
+          className="object-cotain w-full h-auto p-5 -z-10"
           src={imageUrl}
           alt={`Image of ${firstName} ${lastName}`}
         />
