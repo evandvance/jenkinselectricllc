@@ -13,9 +13,9 @@ const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
-    <nav className="w-screen min-h-[8vh]  text-white bg-black lg:flex lg:justify-between">
-      <div className="w-screen lg:w-auto h-content lg:ml-10 px-3 flex justify-between items-center">
-        <Link href="/" className="h-[9vh] w-20">
+    <nav className="w-screen text-white bg-black lg:flex lg:justify-between">
+      <div className="w-screen lg:w-auto lg:ml-10 px-3 flex justify-between items-center">
+        <Link href="/" className="w-20 h-auto">
           <Image
             src="/assets/logo.svg"
             alt="JenkinsElectricLLC logo"
