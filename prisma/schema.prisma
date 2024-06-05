@@ -21,4 +21,7 @@ model Technician {
   bio String 
   isCertified Boolean @default(false)
   imageUrl String @map("image_url")
+
+  @@unique([firstName, lastName])
+  @@index([firstName, lastName])
 }
