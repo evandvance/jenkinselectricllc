@@ -1,8 +1,9 @@
-import ComingSoonCard from '@/components/Cards/ComingSoonCard';
+import ApplianceCard from '@/components/Cards/ApplianceCard';
+
 const AppliancePage = () => {
   return (
-    <div>
-      <ComingSoonCard />
+    <div className="flex flex-col justify-center items-center">
+      <ApplianceCard />
     </div>
   );
 };
