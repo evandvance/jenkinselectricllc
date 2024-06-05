@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <div className="flex flex-col justify-center items-center">
       <div data-testid="landing-1" className="">
-        <div className="absolute top-[8vh] left-0 h-[100vh] -z-50">
+        <div className="absolute left-0 h-[100vh] -z-50">
           <video
             className="min-h-full min-w-full object-cover"
             autoPlay
