@@ -12,16 +12,17 @@ interface ApplianceCardProps {
 }
 
 const ApplianceCard = () => {
+  const applianceID = 1;
   return (
-    <div className="m-5 p-5 -z-20 flex flex-col lg:flex-row items-center bg-slate-300 w-7/8 lg:w-3/4 border rounded-xl text-black">
+    <div className="m-5 p-5 flex flex-col lg:flex-row items-center bg-slate-300 w-7/8 lg:w-3/4 border rounded-xl text-black">
       <Link
-        href={'/'}
+        href={`/appliances/${applianceID}`}
         className="w-[90%] lg:w-1/2 flex justify-center items-center relative"
       >
         <Image
           height={500}
           width={600}
-          className="object-contain w-full h-auto p-5 -z-10"
+          className="object-contain w-full h-auto p-5 "
           src={'/images/Washingmachine.webp'}
           alt={`Image of ${'Placeholder'}`}
         />
@@ -38,6 +39,12 @@ const ApplianceCard = () => {
             <p>4 Left in Stock</p>
           </div>
         </div>
+        <Link
+          className="text-jellcblue hover:underline text-lg mx-5 lg:ml-24 "
+          href={`/appliances/${applianceID}`}
+        >
+          More details...
+        </Link>
         <div className="lg:w-full lg:flex lg:items-center lg:justify-center">
           <BlueButton href="/" title="Reserve Now" />
         </div>
