@@ -14,6 +14,7 @@
     "dev:docker": "docker compose up --detach && docker compose watch"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.592.0",
     "@prisma/client": "^5.14.0",
     "next": "14.2.3",
     "prisma": "^5.14.0",
