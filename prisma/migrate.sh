@@ -13,6 +13,10 @@ docker run -dp 5432:5432 -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} -e POSTGRES_U
 
 sleep 3
 
+npx prisma format
+
 npx prisma migrate dev --name migration_${migration_number}
+
+npx prisma generate
 
 docker stop temp_db && docker rm temp_db

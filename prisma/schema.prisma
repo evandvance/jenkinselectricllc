@@ -50,17 +50,17 @@ model Users {
   username    String      @unique
   email       String      @unique
   accessLevel AccessLevel @default(None) @map("access_level")
-  passwords   Passwords[]
+  password    String
 
   @@map("users")
 }
 
-model Passwords {
-  id          Int      @id @default(autoincrement())
-  password    String
-  createdDate DateTime @default(now())
-  Users       Users?   @relation(fields: [usersId], references: [id])
-  usersId     Int?
+// model Passwords {
+//   id          Int      @id @default(autoincrement())
+//   password    String
+//   createdDate DateTime @default(now())
+//   Users       Users?   @relation(fields: [usersId], references: [id])
+//   usersId     Int?
 
-  @@map("passwords")
-}
+//   @@map("passwords")
+// }
