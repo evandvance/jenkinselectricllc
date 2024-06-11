@@ -16,7 +16,9 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.592.0",
     "@prisma/client": "^5.14.0",
+    "bcrypt": "^5.1.1",
     "next": "14.2.3",
+    "next-auth": "^4.24.7",
     "prisma": "^5.14.0",
     "react": "^18",
     "react-dom": "^18",
@@ -24,6 +26,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "^15.0.7",
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
