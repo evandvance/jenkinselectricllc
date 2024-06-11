@@ -1,7 +1,33 @@
+'use client';
+import { useState, useEffect } from 'react';
 import TechnicianCard from '@/components/Cards/TechnicianCard';
-import { getTechnicians } from './actions';
-const TechnicianPage = async () => {
-  const technicians = await getTechnicians();
+import { Technicians } from '@prisma/client';
+
+const TechnicianPage = () => {
+  const [technicians, setTechnicians] = useState<Technicians[]>([]);
+
+  useEffect(() => {
+    setTechnicians([
+      {
+        id: 0,
+        firstName: 'Dakota',
+        lastName: 'Jenkins',
+        bio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus vitae sit, cum ea accusantium beatae modi fugiat, tenetur optio error eos. Odit libero officiis similique, iusto quisquam deserunt id reprehenderit!',
+        isCertified: false,
+        imageUrl: '/images/owners.jpg',
+        phoneNumber: null,
+      },
+      {
+        id: 0,
+        firstName: 'Dakota',
+        lastName: 'Jenkins',
+        bio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus vitae sit, cum ea accusantium beatae modi fugiat, tenetur optio error eos. Odit libero officiis similique, iusto quisquam deserunt id reprehenderit!',
+        isCertified: true,
+        imageUrl: '/images/owners.jpg',
+        phoneNumber: null,
+      },
+    ]);
+  }, []);
 
   if (technicians?.length === 0) {
     return (
