@@ -1,5 +1,5 @@
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Users } from '@prisma/client';
 import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
@@ -15,8 +15,10 @@ export const authConfig = {
         },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials, req): Promise<any> {
+      async authorize(credentials, req): Promise<Users | any> {
         if (!credentials?.email || !credentials.password) return null;
+
+        // return { id: '1', email: credentials.email, accessLevel: 'Admin' };
 
         const user = await prisma.users.findUnique({
           where: {
@@ -26,6 +28,7 @@ export const authConfig = {
             id: true,
             email: true,
             password: true,
+            accessLevel: true,
           },
         });
 

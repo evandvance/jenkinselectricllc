@@ -1,7 +1,5 @@
-import { NextRequest } from 'next/server';
-
-export function middleware(req: NextRequest) {}
+export { default } from 'next-auth/middleware';
 
 export const config = {
-  matcher: ['/admin/*'],
+  matcher: ['/admin'],
 };

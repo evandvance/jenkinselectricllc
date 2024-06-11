@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoCloseOutline } from 'react-icons/io5';
 
@@ -11,6 +12,7 @@ import { ApplianceItems } from './ApplianceItems';
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const { data: session, status } = useSession();
 
   return (
     <nav className="w-screen text-white bg-black lg:flex lg:justify-between">
@@ -89,6 +91,17 @@ const Navbar = () => {
             onClick={() => setIsNavOpen(!isNavOpen)}
           />
         </li>
+        {status === 'authenticated' && (
+          <li>
+            <Link
+              href={'/admin'}
+              onClick={() => setIsNavOpen(!isNavOpen)}
+              className="m-1 p-2 hover:text-jellcblue"
+            >
+              Admin
+            </Link>
+          </li>
+        )}
       </ul>
     </nav>
   );
