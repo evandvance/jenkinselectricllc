@@ -41,8 +41,8 @@ const DropDownLink = ({
   };
 
   useEffect(() => {
-    window.addEventListener('resize', handleResizeEvent);
     handleResizeEvent();
+    window.addEventListener('resize', handleResizeEvent);
   }, []);
 
   return (

@@ -44,7 +44,7 @@ const Navbar = () => {
       <ul
         className={`absolute ${
           isNavOpen ? 'translate-y-0' : '-translate-y-[100vh]'
-        } z-40 w-screen lg:w-auto lg:flex lg:static lg:justify-center lg:items-baseline lg:mr-24 lg:translate-y-0 pt-2 text-2xl space-y-1 duration-500 ease-in-out transition-all bg-black`}
+        } z-40 w-screen lg:w-auto lg:flex lg:static lg:justify-center lg:items-baseline lg:mr-24 lg:translate-y-0 pt-2 text-2xl space-y-1 duration-500 ease-in-out transition-all lg:transition-none bg-black`}
       >
         <li className="min-h-[50px] py-1 border-b lg:border-none">
           <Link
