@@ -55,6 +55,7 @@ RUN chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY ./prisma ./prisma
+COPY ./src/startup.sh .
 
 RUN npm i prisma
 
@@ -68,7 +69,7 @@ ENV HOSTNAME "0.0.0.0"
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD ["npx", "prisma", "migrate", "deploy", "&&", "node", "server.js"]
+CMD ["sh", "startup.sh"]
 
 FROM base as dev
 WORKDIR /app
