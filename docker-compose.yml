@@ -18,7 +18,11 @@ services:
     ports:
       - ${NEXT_PORT}:${NEXT_PORT}
     environment:
-      - DATABASE_URL=${DATABASE_URL}
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@db:${DATABASE_PORT}/postgres
+      - AWS_PUBLIC_KEY=${AWS_PUBLIC_KEY}
+      - AWS_SECRET_KEY=${AWS_SECRET_KEY}
+      - NEXTAUTH_URL=${NEXTAUTH_URL}
+      - NEXTAUTH_SECREET=${NEXTAUTH_SECREET}
     develop:
       watch:
         - path: ./src
