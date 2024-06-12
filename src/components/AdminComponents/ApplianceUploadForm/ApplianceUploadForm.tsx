@@ -11,9 +11,12 @@ const schema = z.object({
   modelNumber: z
     .string()
     .min(3, { message: 'Model Number must be at least 3 characters' }),
-  imageFile: z
-    .instanceof(FileList)
-    .refine((file) => file?.length >= 1, 'File is required.'),
+  imageFile:
+    typeof window === 'undefined'
+      ? z.any()
+      : z
+          .instanceof(FileList)
+          .refine((file) => file?.length >= 1, 'File is required.'),
 });
 
 export type FormData = z.infer<typeof schema>;
@@ -95,9 +98,7 @@ const ApplianceUploadForm = () => {
             id="imageFile"
             multiple
           />
-          {errors.imageFile && (
-            <p className="text-red-500">{errors.imageFile.message}</p>
-          )}
+          {errors.imageFile && <p className="text-red-500">File required</p>}
         </div>
         <button
           className="flex justify-center text-2xl items-center m-5 h-16 w-56 bg-gradient-to-r from-jellcdarkblue to-jellcblue text-white rounded-xl hover:bg-white hover:text-jellcblue "
