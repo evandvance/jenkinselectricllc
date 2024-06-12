@@ -1,8 +1,9 @@
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { PrismaClient, Users } from '@prisma/client';
+import { Users } from '@prisma/client';
 import bcrypt from 'bcrypt';
+import PrismaWrapper from '@/helper/PrismaWrapper';
 
-const prisma = new PrismaClient();
+const prisma = PrismaWrapper;
 
 export const authConfig = {
   providers: [
