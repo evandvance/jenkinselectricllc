@@ -6,7 +6,7 @@
     "dev": "npx prisma migrate deploy && next dev",
     "docker-dev": "npx prisma migrate deploy && next dev",
     "build": "next build",
-    "start": "npx primsa migrate deploy && next start",
+    "start": "npx prisma migrate deploy && next start",
     "test-start": "next start",
     "lint": "next lint",
     "test": "vitest",
@@ -22,7 +22,8 @@
     "prisma": "^5.14.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^5.2.1"
+    "react-icons": "^5.2.1",
+    "sharp": "^0.33.4"
   },
   "devDependencies": {
     "@testing-library/react": "^15.0.7",
