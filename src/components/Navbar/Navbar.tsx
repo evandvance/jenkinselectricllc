@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoCloseOutline } from 'react-icons/io5';
 
@@ -11,6 +12,7 @@ import { ApplianceItems } from './ApplianceItems';
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const { status } = useSession();
 
   return (
     <nav className="w-screen text-white bg-black lg:flex lg:justify-between">
@@ -44,7 +46,7 @@ const Navbar = () => {
       <ul
         className={`absolute ${
           isNavOpen ? 'translate-y-0' : '-translate-y-[100vh]'
-        } w-screen lg:w-auto lg:flex lg:static lg:justify-center lg:items-baseline lg:mr-24 lg:translate-y-0 pt-2 text-2xl space-y-1 duration-500 ease-in-out transition-all bg-black`}
+        } z-40 w-screen lg:w-auto lg:flex lg:static lg:justify-center lg:items-baseline lg:mr-24 lg:translate-y-0 pt-2 text-2xl space-y-1 duration-500 ease-in-out transition-all lg:transition-none bg-black`}
       >
         <li className="min-h-[50px] py-1 border-b lg:border-none">
           <Link
@@ -89,6 +91,17 @@ const Navbar = () => {
             onClick={() => setIsNavOpen(!isNavOpen)}
           />
         </li>
+        {status === 'authenticated' && (
+          <li>
+            <Link
+              href={'/admin'}
+              onClick={() => setIsNavOpen(!isNavOpen)}
+              className="m-1 p-2 hover:text-jellcblue"
+            >
+              Admin
+            </Link>
+          </li>
+        )}
       </ul>
     </nav>
   );

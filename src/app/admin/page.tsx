@@ -1,9 +1,7 @@
-import ComingSoonCard from '@/components/Cards/ComingSoonCard';
-
-const AdminPage = () => {
+const AdminPage = async () => {
   return (
-    <div>
-      <ComingSoonCard />
+    <div className="flex items-center justify-center m-5">
+      I dont have content for this page yet but itll come one day im sure...
     </div>
   );
 };

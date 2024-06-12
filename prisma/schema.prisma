@@ -13,15 +13,54 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Technician {
-  id Int @id @default(autoincrement())
-  firstName String @map("first_name")
-  lastName  String @map("last_name")
+model Technicians {
+  id          Int     @id @default(autoincrement())
+  firstName   String  @map("first_name")
+  lastName    String  @map("last_name")
   phoneNumber String? @map("phone_number")
-  bio String 
-  isCertified Boolean @default(false)
-  imageUrl String @map("image_url")
+  bio         String
+  isCertified Boolean @default(false) @map("is_certified")
+  imageUrl    String  @map("image_url")
 
   @@unique([firstName, lastName])
   @@index([firstName, lastName])
+  @@map("technicians")
 }
+
+enum AccessLevel {
+  Admin
+  null
+
+  @@map("access_level")
+}
+
+model Appliances {
+  id            Int     @id @default(autoincrement())
+  applianceName String  @map("appliance_name")
+  price         Float
+  modelNumber   String  @map("model_number")
+  imageUrl      String  @map("image_url")
+  isReserved    Boolean @map("is_reserved")
+
+  @@map("appliances")
+}
+
+model Users {
+  id          Int         @id @default(autoincrement())
+  username    String      @unique
+  email       String      @unique
+  accessLevel AccessLevel @default(null) @map("access_level")
+  password    String
+
+  @@map("users")
+}
+
+// model Passwords {
+//   id          Int      @id @default(autoincrement())
+//   password    String
+//   createdDate DateTime @default(now())
+//   Users       Users?   @relation(fields: [usersId], references: [id])
+//   usersId     Int?
+
+//   @@map("passwords")
+// }

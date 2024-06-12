@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npx prisma migrate deploy && next dev",
     "docker-dev": "npx prisma migrate deploy && next dev",
     "build": "next build",
-    "start": "npx primsa migrate deploy && next start",
+    "start": "npx prisma migrate deploy && next start",
     "test-start": "next start",
     "lint": "next lint",
     "test": "vitest",
@@ -14,15 +14,23 @@
     "dev:docker": "docker compose up --detach && docker compose watch"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.592.0",
+    "@hookform/resolvers": "^3.6.0",
     "@prisma/client": "^5.14.0",
+    "bcrypt": "^5.1.1",
     "next": "14.2.3",
+    "next-auth": "^4.24.7",
     "prisma": "^5.14.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^5.2.1"
+    "react-hook-form": "^7.51.5",
+    "react-icons": "^5.2.1",
+    "sharp": "^0.33.4",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@testing-library/react": "^15.0.7",
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",

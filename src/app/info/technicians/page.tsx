@@ -1,32 +1,15 @@
 'use client';
 import { useState, useEffect } from 'react';
 import TechnicianCard from '@/components/Cards/TechnicianCard';
-import { Technician } from '@prisma/client';
+import { Technicians } from '@prisma/client';
 
 const TechnicianPage = () => {
-  const [technicians, setTechnicians] = useState<Technician[]>([]);
+  const [technicians, setTechnicians] = useState<Technicians[]>([]);
 
   useEffect(() => {
-    setTechnicians([
-      {
-        id: 0,
-        firstName: 'Dakota',
-        lastName: 'Jenkins',
-        bio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus vitae sit, cum ea accusantium beatae modi fugiat, tenetur optio error eos. Odit libero officiis similique, iusto quisquam deserunt id reprehenderit!',
-        isCertified: false,
-        imageUrl: '/images/owners.jpg',
-        phoneNumber: null,
-      },
-      {
-        id: 0,
-        firstName: 'Dakota',
-        lastName: 'Jenkins',
-        bio: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus vitae sit, cum ea accusantium beatae modi fugiat, tenetur optio error eos. Odit libero officiis similique, iusto quisquam deserunt id reprehenderit!',
-        isCertified: true,
-        imageUrl: '/images/owners.jpg',
-        phoneNumber: null,
-      },
-    ]);
+    fetch('/api/technicians').then(async (data) =>
+      setTechnicians(await data.json())
+    );
   }, []);
 
   if (technicians?.length === 0) {

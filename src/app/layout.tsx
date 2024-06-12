@@ -3,6 +3,7 @@ import { Roboto } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SessionWrapper from '@/components/SessionWrapper';
 
 const roboto = Roboto({ weight: '500', subsets: ['latin'] });
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <Navbar />
-        {children}
-        <Footer />
+        <SessionWrapper>
+          <Navbar />
+          {children}
+          <Footer />
+        </SessionWrapper>
       </body>
     </html>
   );
