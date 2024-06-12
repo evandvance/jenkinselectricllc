@@ -22,7 +22,7 @@ services:
       - AWS_PUBLIC_KEY=${AWS_PUBLIC_KEY}
       - AWS_SECRET_KEY=${AWS_SECRET_KEY}
       - NEXTAUTH_URL=${NEXTAUTH_URL}
-      - NEXTAUTH_SECREET=${NEXTAUTH_SECREET}
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECREET}
     develop:
       watch:
         - path: ./src
