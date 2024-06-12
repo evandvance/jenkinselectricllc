@@ -35,3 +35,5 @@ services:
         - path: ./public
           target: /app/public
           action: sync
+        - path: ./.env
+          action: rebuild
