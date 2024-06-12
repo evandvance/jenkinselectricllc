@@ -18,8 +18,6 @@ export const authConfig = {
       async authorize(credentials, req): Promise<Users | any> {
         if (!credentials?.email || !credentials.password) return null;
 
-        // return { id: '1', email: credentials.email, accessLevel: 'Admin' };
-
         const user = await prisma.users.findUnique({
           where: {
             email: credentials?.email,

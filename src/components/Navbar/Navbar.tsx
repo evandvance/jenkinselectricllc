@@ -12,7 +12,7 @@ import { ApplianceItems } from './ApplianceItems';
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   return (
     <nav className="w-screen text-white bg-black lg:flex lg:justify-between">

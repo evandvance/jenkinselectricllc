@@ -1,7 +1,7 @@
-import React from 'react';
+import ComingSoonCard from '@/components/Cards/ComingSoonCard';
 
 const page = () => {
-  return <div>page</div>;
+  return <ComingSoonCard />;
 };
 
 export default page;

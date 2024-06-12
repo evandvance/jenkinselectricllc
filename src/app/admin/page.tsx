@@ -1,18 +1,7 @@
-import ComingSoonCard from '@/components/Cards/ComingSoonCard';
-import { authConfig } from '@/configs/authConfigs';
-import { getServerSession } from 'next-auth';
-import { redirect } from 'next/navigation';
-
 const AdminPage = async () => {
-  const session = await getServerSession(authConfig);
-
-  if (!session?.user) {
-    redirect('/api/auth/signin');
-  }
-
   return (
-    <div>
-      <ComingSoonCard />
+    <div className="flex items-center justify-center m-5">
+      I dont have content for this page yet but itll come one day im sure...
     </div>
   );
 };
