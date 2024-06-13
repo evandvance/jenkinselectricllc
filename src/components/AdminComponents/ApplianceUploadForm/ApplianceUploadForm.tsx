@@ -1,42 +1,46 @@
 'use client';
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-
-const schema = z.object({
-  applianceName: z
-    .string()
-    .min(3, { message: 'Name must be at least 3 characters' }),
-  appliancePrice: z.number().min(0).max(100000),
-  modelNumber: z
-    .string()
-    .min(3, { message: 'Model Number must be at least 3 characters' }),
-  imageFile:
-    typeof window === 'undefined'
-      ? z.any()
-      : z
-          .instanceof(FileList)
-          .refine((file) => file?.length >= 1, 'File is required.'),
-});
-
-export type FormData = z.infer<typeof schema>;
+import {
+  applianceUploadFormSchema,
+  ApplianceFormData,
+} from './ApplianceUploadFormSchema';
 
 const ApplianceUploadForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(schema),
+  } = useForm<ApplianceFormData>({
+    resolver: zodResolver(applianceUploadFormSchema),
   });
+
+  const onSubmit = async (data: FieldValues) => {
+    console.log(data);
+    const formData = new FormData();
+
+    formData.append('applianceName', data.applianceName);
+    formData.append('appliancePrice', data.appliancePrice);
+    formData.append('modelNumber', data.modelNumber);
+
+    for (let i = 0; i < data.imageFile.length; i++) {
+      formData.append('file', data.imageFile[i]);
+    }
+
+    console.log(formData.get('calandar.jpeg'));
+    const result = await fetch('/api/admin/appliances', {
+      method: 'POST',
+      body: formData,
+    });
+
+    console.log(await result.json());
+  };
 
   return (
     <>
       <form
-        className="flex flex-col justify-center items-center w-[90%] p-2 border rounded-xl border-jellcblue bg-slate-300 lg:w-3/4 space-y-3"
-        onSubmit={handleSubmit((data) => {
-          console.log(data);
-        })}
+        className="flex flex-col justify-center items-center w-[90%] p-5 border rounded-xl border-jellcblue bg-slate-300 lg:w-3/4 space-y-3"
+        onSubmit={handleSubmit(onSubmit)}
       >
         <div className="flex flex-col w-3/4">
           <label className="text-xl" htmlFor="applianceName">
