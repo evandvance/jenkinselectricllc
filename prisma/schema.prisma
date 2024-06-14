@@ -34,15 +34,50 @@ enum AccessLevel {
   @@map("access_level")
 }
 
+enum ApplianceTypes {
+  dryer
+  washer
+  dishwasher
+  fridge
+  freezer
+  microwave
+  stoves
+  windowAcUnits
+  iceMakers
+  industrial
+  other
+
+  @@map("appliance_types")
+}
+
+enum ApplianceAges {
+  Used
+  New
+
+  @@map("appliance_ages")
+}
+
 model Appliances {
-  id            Int     @id @default(autoincrement())
-  applianceName String  @map("appliance_name")
+  id            Int               @id @default(autoincrement())
+  applianceName String            @map("appliance_name")
   price         Float
-  modelNumber   String  @map("model_number")
-  imageUrl      String  @map("image_url")
-  isReserved    Boolean @map("is_reserved")
+  modelNumber   String            @map("model_number")
+  isReserved    Boolean           @default(false) @map("is_reserved")
+  images        ApplianceImages[]
+  age           ApplianceAges
+  type          ApplianceTypes
 
   @@map("appliances")
+}
+
+model ApplianceImages {
+  id          Int        @id @default(autoincrement())
+  applianceId Int        @unique @map("appliance_id")
+  imageUrl    String     @unique @map("image_url")
+  appliance   Appliances @relation(fields: [applianceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([applianceId])
+  @@map("appliance_images")
 }
 
 model Users {
@@ -54,13 +89,3 @@ model Users {
 
   @@map("users")
 }
-
-// model Passwords {
-//   id          Int      @id @default(autoincrement())
-//   password    String
-//   createdDate DateTime @default(now())
-//   Users       Users?   @relation(fields: [usersId], references: [id])
-//   usersId     Int?
-
-//   @@map("passwords")
-// }
