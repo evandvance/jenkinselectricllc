@@ -16,7 +16,6 @@ const ApplianceUploadForm = () => {
   });
 
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
     const formData = new FormData();
 
     formData.append('applianceName', data.applianceName);
@@ -27,7 +26,6 @@ const ApplianceUploadForm = () => {
       formData.append('file', data.imageFile[i]);
     }
 
-    console.log(formData.get('calandar.jpeg'));
     const result = await fetch('/api/admin/appliances', {
       method: 'POST',
       body: formData,
@@ -39,7 +37,7 @@ const ApplianceUploadForm = () => {
   return (
     <>
       <form
-        className="flex flex-col justify-center items-center w-[90%] p-5 border rounded-xl border-jellcblue bg-slate-300 lg:w-3/4 space-y-3"
+        className="flex flex-col justify-center items-center w-[90%] p-5 border rounded-xl border-jellcblue text-white bg-black lg:w-3/4 space-y-3"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="flex flex-col w-3/4">
