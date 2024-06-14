@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -17,23 +18,34 @@ const ApplianceUploadForm = () => {
     resolver: zodResolver(applianceUploadFormSchema),
   });
 
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+
   const onSubmit = async (data: FieldValues) => {
     const formData = new FormData();
 
     formData.append('applianceName', data.applianceName);
     formData.append('appliancePrice', data.appliancePrice);
     formData.append('modelNumber', data.modelNumber);
+    formData.append('applianceType', data.type);
+    formData.append('applianceAge', data.age);
 
     for (let i = 0; i < data.imageFile.length; i++) {
       formData.append('file', data.imageFile[i]);
     }
 
-    const result = await fetch('/api/admin/appliances', {
+    const response = await fetch('/api/admin/appliances', {
       method: 'POST',
       body: formData,
     });
 
-    console.log(await result.json());
+    const result = await response.json();
+
+    if (result.status !== 200) {
+      return setError(true);
+    }
+
+    return setSuccess(true);
   };
 
   return (
@@ -48,7 +60,7 @@ const ApplianceUploadForm = () => {
           </label>
           <input
             {...register('applianceName')}
-            className="rounded p-2"
+            className="rounded p-2 text-black"
             type="text"
             name="applianceName"
             id="applianceName"
@@ -63,7 +75,7 @@ const ApplianceUploadForm = () => {
           </label>
           <input
             {...register('appliancePrice', { valueAsNumber: true })}
-            className="rounded p-2"
+            className="rounded p-2 text-black"
             type="number"
             step="0.01"
             name="appliancePrice"
@@ -79,7 +91,7 @@ const ApplianceUploadForm = () => {
           </label>
           <input
             {...register('modelNumber')}
-            className="rounded p-2"
+            className="rounded p-2 text-black"
             type="nuber"
             name="modelNumber"
             id="modelNumber"
@@ -109,7 +121,7 @@ const ApplianceUploadForm = () => {
           <select {...register('type')} name="type" id="type" className="p-1">
             <option value=""></option>
             {applianceTypes.map((type) => (
-              <option key={type} value={type.toLowerCase()}>
+              <option key={type} value={type}>
                 {type.toUpperCase()}
               </option>
             ))}
@@ -123,7 +135,7 @@ const ApplianceUploadForm = () => {
           <select {...register('age')} name="age" id="age" className="p-1">
             <option value=""></option>
             {applianceAges.map((age) => (
-              <option key={age} value={age.toLowerCase()}>
+              <option key={age} value={age}>
                 {age.toUpperCase()}
               </option>
             ))}
@@ -136,6 +148,19 @@ const ApplianceUploadForm = () => {
           Submit
         </button>
       </form>
+
+      {error && (
+        <p className="text-red-500 text-2xl">
+          Error Something when wrong on the server -- Potentially duplicate file
+          uploads
+        </p>
+      )}
+
+      {success && (
+        <p className="text-2xl text-green-600">
+          Appliance Uploaded Successfully
+        </p>
+      )}
     </>
   );
 };

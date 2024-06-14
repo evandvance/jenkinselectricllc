@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { applianceUploadFormSchema } from '@/components/AdminComponents/ApplianceUploadForm/ApplianceUploadFormSchema';
 import PrismaWrapper from '@/helper/PrismaWrapper';
 import { cleanseName, uploadFile } from '@/helper/AWSUploadFile';
+import { ApplianceAges, ApplianceTypes } from '@prisma/client';
 
 const prisma = PrismaWrapper;
 
@@ -14,12 +15,16 @@ export async function POST(req: NextRequest) {
   const appliancePrice = parseInt(formData.get('appliancePrice')?.toString()!);
   const modelNumber = formData.get('modelNumber')?.toString()!;
   const imageFile = formData.get('file');
+  const age: ApplianceAges | any = formData.get('applianceAge')!;
+  const type: ApplianceTypes | any = formData.get('applianceType')!;
 
   const validation = applianceUploadFormSchema.safeParse({
     applianceName,
     appliancePrice,
     modelNumber,
     imageFile,
+    type,
+    age,
   });
 
   if (validation.error) {
@@ -34,7 +39,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const appliace = await prisma.appliances.create({
-      data: { applianceName, price: appliancePrice, modelNumber },
+      data: { applianceName, price: appliancePrice, modelNumber, type, age },
     });
     const folder = `appliances/${cleanApplianceName}`;
     const fileList: File[] | any = formData.getAll('file');
@@ -50,7 +55,7 @@ export async function POST(req: NextRequest) {
       });
     });
 
-    return NextResponse.json({ message: 'Success' });
+    return NextResponse.json({ message: 'Success', status: 200 });
   } catch (err) {
     console.log(err);
     return NextResponse.json(errorMessage);
