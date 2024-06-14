@@ -51,7 +51,7 @@ const ApplianceCard = ({
         >
           More details...
         </Link>
-        <div className="lg:w-full lg:flex lg:items-center lg:justify-center">
+        <div className="w-full flex items-center justify-center">
           <BlueButton
             href={`/appliances/reserve?id=${applianceId}`}
             title="Reserve Now"
