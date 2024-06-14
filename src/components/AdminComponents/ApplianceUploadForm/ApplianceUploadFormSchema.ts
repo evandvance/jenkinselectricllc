@@ -1,5 +1,23 @@
 import { z } from 'zod';
 
+//TODO This is not dry since it is repeated in the schema but i dont have time to fix it
+export const applianceTypes: [string, ...string[]] = [
+  'washer',
+  'dryer',
+  'dishwasher',
+  'fridge',
+  'freezer',
+  'microwave',
+  'stove',
+  'windowacunit',
+  'icemaker',
+  'industrial',
+  'dryerwashersets',
+  'other',
+];
+
+export const applianceAges: [string, ...string[]] = ['New', 'Used'];
+
 export const applianceUploadFormSchema = z.object({
   applianceName: z
     .string()
@@ -11,8 +29,8 @@ export const applianceUploadFormSchema = z.object({
   modelNumber: z
     .string()
     .min(3, { message: 'Model Number must be at least 3 characters' }),
-  age: z.enum(['New', 'Used']),
-  type: z.enum(['washer', 'dryer', 'fridge', 'dishwasher', 'other']),
+  age: z.enum(applianceAges),
+  type: z.enum(applianceTypes),
   imageFile:
     typeof window === 'undefined'
       ? z.any()

@@ -4,6 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
   applianceUploadFormSchema,
   ApplianceFormData,
+  applianceTypes,
+  applianceAges,
 } from './ApplianceUploadFormSchema';
 
 const ApplianceUploadForm = () => {
@@ -55,7 +57,6 @@ const ApplianceUploadForm = () => {
             <p className="text-red-500">{errors.applianceName.message}</p>
           )}
         </div>
-
         <div className="flex flex-col w-3/4">
           <label className="text-xl" htmlFor="appliancePrice">
             Appliance Price
@@ -72,7 +73,6 @@ const ApplianceUploadForm = () => {
             <p className="text-red-500">{errors.appliancePrice.message}</p>
           )}
         </div>
-
         <div className="flex flex-col w-3/4">
           <label className="text-xl" htmlFor="modelNumber">
             Model Number
@@ -88,7 +88,6 @@ const ApplianceUploadForm = () => {
             <p className="text-red-500">{errors.modelNumber.message}</p>
           )}
         </div>
-
         <div className="flex flex-col w-3/4 space-y-2">
           <label className="text-xl" htmlFor="imageFile">
             Upload images
@@ -101,6 +100,34 @@ const ApplianceUploadForm = () => {
             multiple
           />
           {errors.imageFile && <p className="text-red-500">File required</p>}
+        </div>
+
+        <div className="flex flex-col w-3/4 space-y-2 text-black">
+          <label htmlFor="type" className="text-white text-xl">
+            Appliance Type
+          </label>
+          <select {...register('type')} name="type" id="type" className="p-1">
+            <option value=""></option>
+            {applianceTypes.map((type) => (
+              <option key={type} value={type.toLowerCase()}>
+                {type.toUpperCase()}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="flex flex-col w-3/4 space-y-2 text-black">
+          <label htmlFor="age" className="text-white text-xl">
+            Appliance Age
+          </label>
+          <select {...register('age')} name="age" id="age" className="p-1">
+            <option value=""></option>
+            {applianceAges.map((age) => (
+              <option key={age} value={age.toLowerCase()}>
+                {age.toUpperCase()}
+              </option>
+            ))}
+          </select>
         </div>
         <button
           className="flex justify-center text-2xl items-center m-5 h-16 w-56 bg-gradient-to-r from-jellcdarkblue to-jellcblue text-white rounded-xl hover:bg-white hover:text-jellcblue "

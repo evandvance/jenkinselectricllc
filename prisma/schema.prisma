@@ -42,9 +42,10 @@ enum ApplianceTypes {
   freezer
   microwave
   stoves
-  windowAcUnits
-  iceMakers
+  windowacunit
+  icemaker
   industrial
+  dryerwashersets
   other
 
   @@map("appliance_types")
