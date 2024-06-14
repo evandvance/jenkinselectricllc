@@ -1,29 +1,12 @@
 import { appliaceInterface } from '@/interfaces/ApplianceInterface';
-import ApplianceCard from '../Cards/ApplianceCard';
+import ApplianceListingCard from './ApplianceListingCard';
 
-interface ApplianceDisplayProps {
-  age?: string;
-  filter?: string;
-  sortBy?: string;
-}
-
-const ApplianceDisplay = async ({
-  age,
-  filter,
-  sortBy,
-}: ApplianceDisplayProps) => {
-  if (!age) return;
+const ApplianceListingDisplay = async () => {
   const res = await fetch(`http:localhost:3000/api/appliances`, {
     cache: 'no-cache',
   });
 
   let appliances: appliaceInterface[] = await res.json();
-
-  appliances = appliances.filter((appliance) => appliance.age === age);
-
-  if (filter) {
-    appliances = appliances.filter((appliance) => appliance.type === filter);
-  }
 
   if (appliances.length === 0) {
     return (
@@ -34,17 +17,15 @@ const ApplianceDisplay = async ({
   }
 
   return (
-    <div className="flex flex-col justify-center items-center w-screen">
+    <div className="flex flex-col justify-center items-center w-screen space-y-3">
       {appliances.map((appliance) => {
         return (
-          <ApplianceCard
+          <ApplianceListingCard
             key={appliance.id}
             applianceId={appliance.id}
             applianceName={appliance.applianceName}
             modelNumber={appliance.modelNumber}
             price={appliance.price}
-            imageUrl={appliance.images[0].imageUrl}
-            type={appliance.type}
           />
         );
       })}
@@ -52,4 +33,4 @@ const ApplianceDisplay = async ({
   );
 };
 
-export default ApplianceDisplay;
+export default ApplianceListingDisplay;

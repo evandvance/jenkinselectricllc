@@ -45,7 +45,8 @@ const ApplianceUploadForm = () => {
       return setError(true);
     }
 
-    return setSuccess(true);
+    window.location.reload();
+    setSuccess(true);
   };
 
   return (

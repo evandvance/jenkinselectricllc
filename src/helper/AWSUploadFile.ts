@@ -27,7 +27,7 @@ export const uploadFile = async (file: File, folder: string) => {
 
   const result = await s3client.send(new PutObjectCommand(options));
 
-  console.log(result);
+  return `https://mediacdn.jenkinselectric.llc/images/${folder}/${fileName}`;
 };
 
 export const cleanseName = (fileName: string) =>

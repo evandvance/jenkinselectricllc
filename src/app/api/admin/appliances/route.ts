@@ -45,11 +45,11 @@ export async function POST(req: NextRequest) {
     const fileList: File[] | any = formData.getAll('file');
 
     fileList.forEach(async (file: File) => {
-      await uploadFile(file, folder);
+      const fileName = await uploadFile(file, folder);
 
       await prisma.applianceImages.create({
         data: {
-          imageUrl: `https://mediacdn.jenkinselectric.llc/images/${folder}/${file.name}`,
+          imageUrl: fileName,
           applianceId: appliace.id,
         },
       });
