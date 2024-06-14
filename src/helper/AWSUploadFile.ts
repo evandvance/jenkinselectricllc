@@ -31,4 +31,4 @@ export const uploadFile = async (file: File, folder: string) => {
 };
 
 export const cleanseName = (fileName: string) =>
-  fileName.toLocaleLowerCase().replace(' ', '_');
+  fileName.toLocaleLowerCase().replaceAll(' ', '_');

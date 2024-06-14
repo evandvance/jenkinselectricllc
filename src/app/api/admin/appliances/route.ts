@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
 
       await prisma.applianceImages.create({
         data: {
-          imageUrl: `mediacdn.jenkinselectric.llc/images/${folder}/${file.name}`,
+          imageUrl: `https://mediacdn.jenkinselectric.llc/images/${folder}/${file.name}`,
           applianceId: appliace.id,
         },
       });
