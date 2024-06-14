@@ -15,7 +15,7 @@ sleep 3
 
 npx prisma format
 
-npx prisma migrate dev --name migration_${migration_number}
+npx prisma migrate dev --name "migration_${migration_number}"
 
 npx prisma generate
 

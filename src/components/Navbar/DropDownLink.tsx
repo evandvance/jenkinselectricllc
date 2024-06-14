@@ -6,6 +6,7 @@ interface DropDownLinkProps {
   className?: string;
   title: string;
   onClick?: () => void;
+  useAnchortags?: boolean;
   dropDownLinks: DropDownLinks[];
 }
 
@@ -19,6 +20,7 @@ const DropDownLink = ({
   title,
   dropDownLinks,
   onClick,
+  useAnchortags,
 }: DropDownLinkProps) => {
   const [isLinksShown, setIsLinksShown] = useState(false);
 
@@ -59,18 +61,33 @@ const DropDownLink = ({
           {dropDownLinks.map((item) => {
             return (
               <li key={item.title} className="m-2">
-                <Link
-                  onClick={() => {
-                    if (onClick) {
-                      onClick();
-                    }
-                    setIsLinksShown(!isLinksShown);
-                  }}
-                  className="hover:text-jellcblue"
-                  href={item.href}
-                >
-                  {item.title}
-                </Link>
+                {useAnchortags ? (
+                  <a
+                    onClick={() => {
+                      if (onClick) {
+                        onClick();
+                      }
+                      setIsLinksShown(!isLinksShown);
+                    }}
+                    className="hover:text-jellcblue"
+                    href={item.href}
+                  >
+                    {item.title}
+                  </a>
+                ) : (
+                  <Link
+                    onClick={() => {
+                      if (onClick) {
+                        onClick();
+                      }
+                      setIsLinksShown(!isLinksShown);
+                    }}
+                    className="hover:text-jellcblue"
+                    href={item.href}
+                  >
+                    {item.title}
+                  </Link>
+                )}
               </li>
             );
           })}

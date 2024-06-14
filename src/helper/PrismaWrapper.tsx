@@ -15,4 +15,6 @@ class PrismaHelper extends PrismaClient {
   }
 }
 
-export default new PrismaHelper();
+const prisma = new PrismaHelper();
+
+export default prisma;
