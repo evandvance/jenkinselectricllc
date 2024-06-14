@@ -1,12 +1,10 @@
-'use client';
-import { useState, useEffect } from 'react';
-import ApplianceCard from '@/components/Cards/ApplianceCard';
-import { appliaceInterface } from '@/interfaces/ApplianceInterface';
+import ApplianceFilter from '@/components/ApplianceFilter';
+import ApplianceDisplay from '@/components/Displays/ApplianceDisplay';
 
 interface AppliancePageProps {
   searchParams: {
-    age: 'New' | 'Used';
-    filter:
+    age?: 'New' | 'Used';
+    filter?:
       | 'washer'
       | 'dryer'
       | 'dishwasher'
@@ -18,52 +16,23 @@ interface AppliancePageProps {
       | 'icemaker'
       | 'industrial'
       | 'dryerwashersets'
-      | 'other'
-      | null;
-    sortBy: 'priceAscending' | 'priceDescending' | 'relevance' | null;
+      | 'other';
+    sortBy?: 'priceAscending' | 'priceDescending' | 'relevance';
   };
 }
 
 const AppliancePage = ({
   searchParams: { age, filter, sortBy },
 }: AppliancePageProps) => {
-  const [appliances, setAppliances] = useState<appliaceInterface[]>([]);
-
-  useEffect(() => {
-    fetch(`/api/appliances`).then(async (data) =>
-      setAppliances(await data.json())
-    );
-  }, []);
-
-  useEffect(() => {
-    setAppliances(appliances.filter((appliance) => appliance.age === age));
-  }, [age]);
-
-  if (appliances.length === 0) {
-    return (
-      <div className="flex flex-col justify-center items-center m-5 text-2xl">
-        <h1 className="text-5xl mb-6">{age} Appliances</h1>
-        <p>No Appliances Found</p>
-      </div>
-    );
+  if (!age) {
+    return <div>Something went wrong... add age to search param</div>;
   }
 
   return (
-    <div className="flex flex-col m-5 justify-center items-center">
-      <h1 className="text-5xl mb-6">{age} Appliances</h1>
-      {appliances.map((appliance) => {
-        return (
-          <ApplianceCard
-            key={appliance.id}
-            applianceId={appliance.id}
-            applianceName={appliance.applianceName}
-            modelNumber={appliance.modelNumber}
-            price={appliance.price}
-            imageUrl={appliance.images[0].imageUrl}
-            type={appliance.type}
-          />
-        );
-      })}
+    <div className="flex flex-col justify-center items-center">
+      <h1 className="text-5xl m-6">{age} Appliances</h1>
+      <ApplianceFilter age={age} filter={filter} />
+      <ApplianceDisplay age={age} filter={filter} sortBy={sortBy} />
     </div>
   );
 };

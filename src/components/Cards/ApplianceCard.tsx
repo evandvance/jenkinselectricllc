@@ -20,7 +20,7 @@ const ApplianceCard = ({
   type,
 }: ApplianceCardProps) => {
   return (
-    <div className="m-5 p-5 flex flex-col lg:flex-row items-center bg-slate-300 w-7/8 lg:w-3/4 border rounded-xl text-black">
+    <div className="m-5 p-5 flex flex-col lg:flex-row items-center bg-slate-300 w-[85vw] lg:w-3/4 border rounded-xl text-black">
       <Link
         href={`/appliances/${applianceId}`}
         className="w-[90%] lg:w-1/2 flex justify-center items-center relative"
@@ -53,7 +53,7 @@ const ApplianceCard = ({
         </Link>
         <div className="w-full flex items-center justify-center">
           <BlueButton
-            href={`/appliances/reserve?id=${applianceId}`}
+            href={`/appliances/reserve/${applianceId}`}
             title="Reserve Now"
           />
         </div>

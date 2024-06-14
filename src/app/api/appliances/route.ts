@@ -15,6 +15,5 @@ export async function GET(req: NextRequest) {
     },
   });
 
-  console.log(appliances);
   return NextResponse.json(appliances);
 }

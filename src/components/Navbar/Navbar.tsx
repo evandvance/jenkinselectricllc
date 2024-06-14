@@ -85,7 +85,6 @@ const Navbar = () => {
         </li>
         <li className="min-h-[50px]">
           <DropDownLink
-            useAnchortags
             dropDownLinks={ApplianceItems}
             title="Appliances"
             className="m-1 p-2 lg:border-none"
