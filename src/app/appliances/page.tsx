@@ -1,22 +1,10 @@
 import ApplianceFilter from '@/components/ApplianceFilter';
 import ApplianceDisplay from '@/components/Displays/ApplianceDisplay';
-
+import { ApplianceTypes, ApplianceAges } from '@prisma/client';
 interface AppliancePageProps {
   searchParams: {
-    age?: 'New' | 'Used';
-    filter?:
-      | 'washer'
-      | 'dryer'
-      | 'dishwasher'
-      | 'fridge'
-      | 'freezer'
-      | ' microwave'
-      | 'stove'
-      | 'windowacunit'
-      | 'icemaker'
-      | 'industrial'
-      | 'dryerwashersets'
-      | 'other';
+    age?: ApplianceAges;
+    filter?: ApplianceTypes;
     sortBy?: 'priceAscending' | 'priceDescending' | 'relevance';
   };
 }

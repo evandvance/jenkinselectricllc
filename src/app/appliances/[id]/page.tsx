@@ -1,6 +1,4 @@
 'use client';
-import Image from 'next/image';
-import BlueButton from '@/components/Buttons/BlueButton';
 import AppliancePageDisplay from '@/components/Displays/AppliancePageDisplay';
 
 interface ApplianceProps {

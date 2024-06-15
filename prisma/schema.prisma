@@ -42,7 +42,7 @@ enum ApplianceTypes {
   freezer
   microwave
   stoves
-  windowacunit
+  windowunit
   icemaker
   industrial
   dryerwashersets

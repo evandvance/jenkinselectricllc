@@ -2,14 +2,16 @@
 import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { ApplianceAges, ApplianceTypes } from '@prisma/client';
 import {
   applianceUploadFormSchema,
   ApplianceFormData,
-  applianceTypes,
-  applianceAges,
 } from './ApplianceUploadFormSchema';
 
 const ApplianceUploadForm = () => {
+  const applianceAges = Object.keys(ApplianceAges);
+  const applianceTypes = Object.keys(ApplianceTypes);
+
   const {
     register,
     handleSubmit,
@@ -120,7 +122,7 @@ const ApplianceUploadForm = () => {
         </div>
         <div className="flex flex-col w-3/4">
           <label className="text-xl" htmlFor="description">
-            Appliance Name
+            Appliance Description
           </label>
           <input
             {...register('description')}
