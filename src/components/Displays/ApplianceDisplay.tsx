@@ -28,7 +28,8 @@ const ApplianceDisplay = ({ age, filter, sortBy }: ApplianceDisplayProps) => {
     }
 
     setAppliances(result);
-    setIsLoading(false);
+
+    setIsLoading(!(appliances.length > 0));
   }, [age, filter]);
 
   if (!age) return;

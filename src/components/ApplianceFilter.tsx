@@ -10,7 +10,7 @@ const ApplianceFilter = ({ age, filter }: ApplianceFilterInterface) => {
   if (!age) return;
   return (
     <div className="w-[85vw] h-20 p-5 flex justify-between items-center rounded-xl bg-slate-300">
-      <div>
+      <div className="flex">
         <button
           onClick={() => (window.location.href = '/appliances?age=New')}
           className={`m-1 py-1 text-xl px-3 hover:cursur-pointer hover:bg-jellcblue border rounded-xl ${
@@ -35,6 +35,9 @@ const ApplianceFilter = ({ age, filter }: ApplianceFilterInterface) => {
           name="filter"
           id="filter"
           defaultValue={filter}
+          onChange={(event) =>
+            (window.location.href = `/appliances?age=${age}&filter=${event.target.value}`)
+          }
         >
           <option
             onClick={() => (window.location.href = `/appliances?age=${age}`)}
@@ -43,13 +46,7 @@ const ApplianceFilter = ({ age, filter }: ApplianceFilterInterface) => {
             All
           </option>
           {applianceTypes.map((type) => (
-            <option
-              key={type}
-              value={type}
-              onClick={() =>
-                (window.location.href = `/appliances?age=${age}&filter=${type}`)
-              }
-            >
+            <option key={type} value={type}>
               {/* TODO Make this not ugly for user*/}
               {type.charAt(0).toUpperCase() + type.slice(1)}
             </option>
