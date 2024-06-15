@@ -26,23 +26,22 @@ const DropDownLink = ({
 
   const handleLinksShown = () => setIsLinksShown(!isLinksShown);
 
-  const handleResizeEvent = () => {
-    const LARGE_WINDOW_WIDTH = 1024;
-    //This was added because I was strugling with figuring out how to do mouseleave consitently
-    const handleMouseLeave = () => setIsLinksShown(false);
-
-    const dropDownLink = document.getElementById(title);
-
-    if (window.innerWidth > LARGE_WINDOW_WIDTH) {
-      dropDownLink?.addEventListener('mouseenter', handleLinksShown);
-      dropDownLink?.addEventListener('mouseleave', handleMouseLeave);
-    } else {
-      dropDownLink?.removeEventListener('mouseenter', handleLinksShown);
-      dropDownLink?.removeEventListener('mouseleave', handleMouseLeave);
-    }
-  };
-
   useEffect(() => {
+    const handleResizeEvent = () => {
+      const LARGE_WINDOW_WIDTH = 1024;
+      //This was added because I was strugling with figuring out how to do mouseleave consitently
+      const handleMouseLeave = () => setIsLinksShown(false);
+
+      const dropDownLink = document.getElementById(title);
+
+      if (window.innerWidth > LARGE_WINDOW_WIDTH) {
+        dropDownLink?.addEventListener('mouseenter', handleLinksShown);
+        dropDownLink?.addEventListener('mouseleave', handleMouseLeave);
+      } else {
+        dropDownLink?.removeEventListener('mouseenter', handleLinksShown);
+        dropDownLink?.removeEventListener('mouseleave', handleMouseLeave);
+      }
+    };
     handleResizeEvent();
     window.addEventListener('resize', handleResizeEvent);
   }, []);

@@ -1,3 +1,5 @@
+'use client';
+import { useState, useEffect } from 'react';
 import { appliaceInterface } from '@/interfaces/ApplianceInterface';
 import ApplianceCard from '../Cards/ApplianceCard';
 
@@ -7,47 +9,51 @@ interface ApplianceDisplayProps {
   sortBy?: string;
 }
 
-const ApplianceDisplay = async ({
-  age,
-  filter,
-  sortBy,
-}: ApplianceDisplayProps) => {
+const ApplianceDisplay = ({ age, filter, sortBy }: ApplianceDisplayProps) => {
+  const [appliances, setAppliances] = useState<appliaceInterface[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let result: appliaceInterface[] = [];
+    fetch('/api/appliances', {
+      cache: 'no-cache',
+    }).then(async (data) => {
+      result = await data.json();
+    });
+
+    result = result.filter((appliance) => appliance.age === age);
+
+    if (filter) {
+      result = result.filter((appliance) => appliance.type === filter);
+    }
+
+    setAppliances(result);
+    setIsLoading(false);
+  }, [age, filter]);
+
   if (!age) return;
-  const res = await fetch(`http:localhost:3000/api/appliances`, {
-    cache: 'no-cache',
-  });
-
-  let appliances: appliaceInterface[] = await res.json();
-
-  appliances = appliances.filter((appliance) => appliance.age === age);
-
-  if (filter) {
-    appliances = appliances.filter((appliance) => appliance.type === filter);
-  }
-
-  if (appliances.length === 0) {
-    return (
-      <div className="flex flex-col justify-center items-center m-5 text-2xl">
-        <p>No Appliances Found</p>
-      </div>
-    );
-  }
 
   return (
     <div className="flex flex-col justify-center items-center w-screen">
-      {appliances.map((appliance) => {
-        return (
-          <ApplianceCard
-            key={appliance.id}
-            applianceId={appliance.id}
-            applianceName={appliance.applianceName}
-            modelNumber={appliance.modelNumber}
-            price={appliance.price}
-            imageUrl={appliance.images[0].imageUrl}
-            type={appliance.type}
-          />
-        );
-      })}
+      {isLoading && (
+        <div className="flex flex-col justify-center items-center m-5 text-2xl">
+          <p>No Appliances Found</p>
+        </div>
+      )}
+      {appliances.length > 0 &&
+        appliances.map((appliance) => {
+          return (
+            <ApplianceCard
+              key={appliance.id}
+              applianceId={appliance.id}
+              applianceName={appliance.applianceName}
+              modelNumber={appliance.modelNumber}
+              price={appliance.price}
+              imageUrl={appliance.images[0].imageUrl}
+              type={appliance.type}
+            />
+          );
+        })}
     </div>
   );
 };

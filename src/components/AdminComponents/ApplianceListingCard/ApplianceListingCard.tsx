@@ -8,25 +8,16 @@ interface ApplianceListingCardProps {
 }
 
 const handleDelete = async (id: number) => {
-  const result = await fetch(
-    `http://localhost:3000/api/admin/appliances/${id}`,
-    {
-      method: 'DELETE',
-    }
-  );
-  console.log(await result.json());
+  const result = await fetch(`/api/admin/appliances/${id}`, {
+    method: 'DELETE',
+  });
   window.location.reload();
 };
 
 const handleUnreserve = async (id: number) => {
-  const result = await fetch(
-    `http://localhost:3000/api/admin/appliances/${id}`,
-    {
-      method: 'PATCH',
-    }
-  );
-
-  console.log(await result.json());
+  const result = await fetch(`/api/admin/appliances/${id}`, {
+    method: 'PATCH',
+  });
   window.location.reload();
 };
 

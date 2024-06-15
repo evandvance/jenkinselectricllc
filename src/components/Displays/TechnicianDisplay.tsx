@@ -1,9 +1,16 @@
+'use client';
+import { useState, useEffect } from 'react';
 import TechnicianCard from '@/components/Cards/TechnicianCard';
 import { Technicians } from '@prisma/client';
 
-const TechnicianDisplay = async () => {
-  const res = await fetch('https://jenkinselectric.llc/api/technicians');
-  const technicians: Technicians[] = await res.json();
+const TechnicianDisplay = () => {
+  const [technicians, setTechnicians] = useState<Technicians[]>([]);
+
+  useEffect(() => {
+    fetch('/api/technicians', {
+      cache: 'no-cache',
+    }).then(async (data) => setTechnicians(await data.json()));
+  }, []);
 
   if (technicians?.length === 0) {
     return (
