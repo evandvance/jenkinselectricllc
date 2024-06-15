@@ -52,6 +52,7 @@ const ApplianceDisplay = ({ age, filter, sortBy }: ApplianceDisplayProps) => {
               price={appliance.price}
               imageUrl={appliance.images[0]?.imageUrl}
               type={appliance.type}
+              brand={appliance.brand}
             />
           );
         })}

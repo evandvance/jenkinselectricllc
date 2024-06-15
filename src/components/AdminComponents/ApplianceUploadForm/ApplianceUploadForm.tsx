@@ -29,6 +29,8 @@ const ApplianceUploadForm = () => {
     formData.append('modelNumber', data.modelNumber);
     formData.append('applianceType', data.type);
     formData.append('applianceAge', data.age);
+    formData.append('applianceBrand', data.applianceBrand);
+    formData.append('description', data.description);
 
     for (let i = 0; i < data.imageFile.length; i++) {
       formData.append('file', data.imageFile[i]);
@@ -99,6 +101,36 @@ const ApplianceUploadForm = () => {
           />
           {errors.modelNumber && (
             <p className="text-red-500">{errors.modelNumber.message}</p>
+          )}
+        </div>
+        <div className="flex flex-col w-3/4">
+          <label className="text-xl" htmlFor="applianceBrand">
+            Appliance Brand
+          </label>
+          <input
+            {...register('applianceBrand')}
+            className="rounded p-2 text-black"
+            type="text"
+            name="applianceBrand"
+            id="applianceBrand"
+          />
+          {errors.applianceBrand && (
+            <p className="text-red-500">{errors.applianceBrand.message}</p>
+          )}
+        </div>
+        <div className="flex flex-col w-3/4">
+          <label className="text-xl" htmlFor="description">
+            Appliance Name
+          </label>
+          <input
+            {...register('description')}
+            className="rounded p-2 text-black"
+            type="text-area"
+            name="description"
+            id="description"
+          />
+          {errors.description && (
+            <p className="text-red-500">{errors.description.message}</p>
           )}
         </div>
         <div className="flex flex-col w-3/4 space-y-2">

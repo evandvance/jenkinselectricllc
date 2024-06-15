@@ -13,7 +13,9 @@ export async function POST(req: NextRequest) {
 
   const applianceName = formData.get('applianceName')?.toString()!;
   const appliancePrice = parseInt(formData.get('appliancePrice')?.toString()!);
+  const applianceBrand = formData.get('applianceBrand')?.toString()!;
   const modelNumber = formData.get('modelNumber')?.toString()!;
+  const description = formData.get('description')?.toString()!;
   const imageFile = formData.get('file');
   const age: ApplianceAges | any = formData.get('applianceAge')!;
   const type: ApplianceTypes | any = formData.get('applianceType')!;
@@ -22,6 +24,8 @@ export async function POST(req: NextRequest) {
     applianceName,
     appliancePrice,
     modelNumber,
+    applianceBrand,
+    description,
     imageFile,
     type,
     age,
@@ -39,7 +43,15 @@ export async function POST(req: NextRequest) {
 
   try {
     const appliace = await prisma.appliances.create({
-      data: { applianceName, price: appliancePrice, modelNumber, type, age },
+      data: {
+        applianceName,
+        price: appliancePrice,
+        modelNumber,
+        type,
+        age,
+        description,
+        brand: applianceBrand,
+      },
     });
     const folder = `appliances/${cleanApplianceName}`;
     const fileList: File[] | any = formData.getAll('file');

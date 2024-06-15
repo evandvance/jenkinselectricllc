@@ -9,6 +9,7 @@ interface ApplianceCardProps {
   price: number;
   modelNumber: string;
   type: string;
+  brand: string;
 }
 
 const ApplianceCard = ({
@@ -18,6 +19,7 @@ const ApplianceCard = ({
   price,
   modelNumber,
   type,
+  brand,
 }: ApplianceCardProps) => {
   return (
     <div className="m-5 p-5 flex flex-col lg:flex-row items-center bg-slate-300 w-[85vw] lg:w-3/4 border rounded-xl text-black">
@@ -42,7 +44,7 @@ const ApplianceCard = ({
           </div>
           <div className="text-lg">
             <p>Model: {modelNumber}</p>
-            <p>{type.charAt(0).toUpperCase() + type.slice(1)}</p>
+            <p>{brand}</p>
           </div>
         </div>
         <Link
