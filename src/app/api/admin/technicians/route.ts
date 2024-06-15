@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import PrismaWrapper from '@/helper/PrismaWrapper';
-import { uploadFile } from '@/helper/AWSUploadFile';
+import { uploadFile } from '@/helper/AWSFileHandler';
 
 const prisma = PrismaWrapper;
 

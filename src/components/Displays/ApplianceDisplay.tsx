@@ -19,17 +19,17 @@ const ApplianceDisplay = ({ age, filter, sortBy }: ApplianceDisplayProps) => {
       cache: 'no-cache',
     }).then(async (data) => {
       result = await data.json();
+      console.log(result);
+      result = result.filter((appliance) => appliance.age === age);
+
+      if (filter) {
+        result = result.filter((appliance) => appliance.type === filter);
+      }
+
+      setAppliances(result);
+
+      setIsLoading(!(appliances.length > 0));
     });
-
-    result = result.filter((appliance) => appliance.age === age);
-
-    if (filter) {
-      result = result.filter((appliance) => appliance.type === filter);
-    }
-
-    setAppliances(result);
-
-    setIsLoading(!(appliances.length > 0));
   }, [age, filter]);
 
   if (!age) return;
@@ -50,7 +50,7 @@ const ApplianceDisplay = ({ age, filter, sortBy }: ApplianceDisplayProps) => {
               applianceName={appliance.applianceName}
               modelNumber={appliance.modelNumber}
               price={appliance.price}
-              imageUrl={appliance.images[0].imageUrl}
+              imageUrl={appliance.images[0]?.imageUrl}
               type={appliance.type}
             />
           );

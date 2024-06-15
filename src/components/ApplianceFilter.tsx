@@ -31,7 +31,7 @@ const ApplianceFilter = ({ age, filter }: ApplianceFilterInterface) => {
       <div className="flex">
         <h2 className="text-xl mr-2">Filter:</h2>
         <select
-          className="rounded w-24 p-1"
+          className="rounded w-24 lg:w-auto p-1"
           name="filter"
           id="filter"
           defaultValue={filter}

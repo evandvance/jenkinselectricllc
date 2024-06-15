@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+// import { deleteFile, cleanseName } from '@/helper/AWSFileHandler';
 import prisma from '@/helper/PrismaWrapper';
 
 export async function DELETE(
@@ -8,7 +9,15 @@ export async function DELETE(
   const id = parseInt(params.id);
 
   try {
-    await prisma.appliances.delete({ where: { id } });
+    // const appliance = await prisma.appliances.findUnique({ where: { id } });
+
+    // if (!appliance) {
+    //   NextResponse.json({ status: 404, message: 'Appliance not found' });
+    // }
+
+    // await deleteFile(`appliances/${cleanseName(appliance!.applianceName)}/`);
+
+    await await prisma.appliances.delete({ where: { id } });
     return NextResponse.json({ status: 204 });
   } catch (err) {
     console.log(err);
