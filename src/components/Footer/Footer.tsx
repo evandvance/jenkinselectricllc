@@ -38,7 +38,10 @@ const Footer = () => {
           >
             <FaFacebook className="h-full" color="white" />
           </Link>
-          <Link target="_blank" href={''}>
+          <Link
+            target="_blank"
+            href={'https://www.youtube.com/user/dakotbeastj'}
+          >
             <FaYoutube className="h-full" color="white" />
           </Link>
         </div>
