@@ -42,9 +42,10 @@ const DropDownLink = ({
         dropDownLink?.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
+
     handleResizeEvent();
     window.addEventListener('resize', handleResizeEvent);
-  }, []);
+  }, [title]);
 
   return (
     <div id={title} className={`${className ? className : ''}`}>

@@ -7,6 +7,8 @@ export async function GET(req: NextRequest) {
       id: true,
       applianceName: true,
       price: true,
+      brand: true,
+      description: true,
       modelNumber: true,
       isReserved: true,
       images: true,

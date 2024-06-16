@@ -1,5 +1,5 @@
 'use client';
-import { applianceTypes } from './AdminComponents/ApplianceUploadForm/ApplianceUploadFormSchema';
+import { ApplianceTypes } from '@prisma/client';
 
 interface ApplianceFilterInterface {
   age?: string;
@@ -7,12 +7,18 @@ interface ApplianceFilterInterface {
 }
 
 const ApplianceFilter = ({ age, filter }: ApplianceFilterInterface) => {
+  const applianceTypes = Object.keys(ApplianceTypes);
+
   if (!age) return;
   return (
     <div className="w-[85vw] h-20 p-5 flex justify-between items-center rounded-xl bg-slate-300">
       <div className="flex">
         <button
-          onClick={() => (window.location.href = '/appliances?age=New')}
+          onClick={() =>
+            (window.location.href = `/appliances?age=New${
+              filter ? `&filter=${filter}` : ''
+            }`)
+          }
           className={`m-1 py-1 text-xl px-3 hover:cursur-pointer hover:bg-jellcblue border rounded-xl ${
             age === 'New' ? 'bg-jellcblue text-white' : 'bg-white'
           }`}
@@ -20,7 +26,11 @@ const ApplianceFilter = ({ age, filter }: ApplianceFilterInterface) => {
           New
         </button>
         <button
-          onClick={() => (window.location.href = '/appliances?age=Used')}
+          onClick={() =>
+            (window.location.href = `/appliances?age=Used${
+              filter ? `&filter=${filter}` : ''
+            }`)
+          }
           className={`m-1 py-1 px-3 text-xl hover:cursur-pointer hover:bg-jellcblue border rounded-xl ${
             age === 'Used' ? 'bg-jellcblue text-white' : 'bg-white'
           }`}
@@ -31,7 +41,7 @@ const ApplianceFilter = ({ age, filter }: ApplianceFilterInterface) => {
       <div className="flex">
         <h2 className="text-xl mr-2">Filter:</h2>
         <select
-          className="rounded w-24 p-1"
+          className="rounded w-24 lg:w-auto p-1"
           name="filter"
           id="filter"
           defaultValue={filter}
@@ -48,7 +58,7 @@ const ApplianceFilter = ({ age, filter }: ApplianceFilterInterface) => {
           {applianceTypes.map((type) => (
             <option key={type} value={type}>
               {/* TODO Make this not ugly for user*/}
-              {type.charAt(0).toUpperCase() + type.slice(1)}
+              {type.toUpperCase()}
             </option>
           ))}
         </select>

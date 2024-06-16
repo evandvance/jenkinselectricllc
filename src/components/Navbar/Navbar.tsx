@@ -92,7 +92,7 @@ const Navbar = () => {
           />
         </li>
         {status === 'authenticated' && (
-          <li>
+          <li className="min-h-[50px] py-3 border-t lg:border-none">
             <Link
               href={'/admin'}
               onClick={() => setIsNavOpen(!isNavOpen)}

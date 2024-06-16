@@ -42,7 +42,7 @@ enum ApplianceTypes {
   freezer
   microwave
   stoves
-  windowacunit
+  windowunit
   icemaker
   industrial
   dryerwashersets
@@ -64,6 +64,8 @@ model Appliances {
   price         Float
   modelNumber   String            @map("model_number")
   isReserved    Boolean           @default(false) @map("is_reserved")
+  description   String
+  brand         String
   images        ApplianceImages[]
   age           ApplianceAges
   type          ApplianceTypes
