@@ -11,7 +11,6 @@ interface ApplianceDisplayProps {
 
 const ApplianceDisplay = ({ age, filter, sortBy }: ApplianceDisplayProps) => {
   const [appliances, setAppliances] = useState<appliaceInterface[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/appliances', {
@@ -26,8 +25,6 @@ const ApplianceDisplay = ({ age, filter, sortBy }: ApplianceDisplayProps) => {
       }
 
       setAppliances(result);
-
-      setIsLoading(!(appliances.length > 0));
     });
   }, [age, filter]);
 
@@ -35,15 +32,15 @@ const ApplianceDisplay = ({ age, filter, sortBy }: ApplianceDisplayProps) => {
 
   return (
     <div className="flex flex-col justify-center items-center w-screen">
-      {isLoading && (
+      {appliances.length <= 0 ? (
         <div className="flex flex-col justify-center items-center m-5 text-2xl">
           <p>No Appliances Found</p>
         </div>
-      )}
-      {appliances.length > 0 &&
+      ) : (
         appliances.map((appliance) => {
           return <ApplianceCard key={appliance.id} appliance={appliance} />;
-        })}
+        })
+      )}
     </div>
   );
 };

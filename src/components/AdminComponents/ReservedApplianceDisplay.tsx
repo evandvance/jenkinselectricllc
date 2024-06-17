@@ -23,7 +23,9 @@ const ReservedApplianceDisplay = () => {
         <div> No Reservation Found</div>
       ) : (
         reservations?.map((reservation) => {
-          return <AdminReserveCard reservation={reservation} />;
+          return (
+            <AdminReserveCard key={reservation.id} reservation={reservation} />
+          );
         })
       )}
     </div>

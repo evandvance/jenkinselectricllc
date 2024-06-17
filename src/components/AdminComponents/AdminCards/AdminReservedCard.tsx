@@ -18,8 +18,9 @@ const AdminReserveCard = ({ reservation }: AdminReserveCardsProps) => {
         </Link>
         <p className="ml-1">
           has reserved applianceId {reservation.applianceId} on{' '}
-          {new Date(reservation.reservedAt).toLocaleString()} with comments "
-          {reservation.comments}"
+          {new Date(reservation.reservedAt).toLocaleString()} with comments
+          &quot;
+          {reservation.comments}&quot;
         </p>
       </div>
 
