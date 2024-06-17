@@ -17,7 +17,6 @@ model Technicians {
   id          Int     @id @default(autoincrement())
   firstName   String  @map("first_name")
   lastName    String  @map("last_name")
-  phoneNumber String? @map("phone_number")
   bio         String
   isCertified Boolean @default(false) @map("is_certified")
   imageUrl    String  @map("image_url")
@@ -25,13 +24,6 @@ model Technicians {
   @@unique([firstName, lastName])
   @@index([firstName, lastName])
   @@map("technicians")
-}
-
-enum AccessLevel {
-  Admin
-  null
-
-  @@map("access_level")
 }
 
 enum ApplianceTypes {
@@ -61,11 +53,11 @@ enum ApplianceAges {
 model Appliances {
   id            Int               @id @default(autoincrement())
   applianceName String            @map("appliance_name")
-  price         Float
+  price         Decimal
   modelNumber   String            @map("model_number")
-  isReserved    Boolean           @default(false) @map("is_reserved")
   description   String
   brand         String
+  reservation   Reservations?
   images        ApplianceImages[]
   age           ApplianceAges
   type          ApplianceTypes
@@ -75,7 +67,7 @@ model Appliances {
 
 model ApplianceImages {
   id          Int        @id @default(autoincrement())
-  applianceId Int        @unique @map("appliance_id")
+  applianceId Int        @map("appliance_id")
   imageUrl    String     @unique @map("image_url")
   appliance   Appliances @relation(fields: [applianceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
@@ -83,12 +75,22 @@ model ApplianceImages {
   @@map("appliance_images")
 }
 
+model Reservations {
+  id          Int        @id @default(autoincrement())
+  applianceId Int        @unique @map("appliance_id")
+  email       String     @unique
+  reservedAt  DateTime   @default(now()) @map("reserved_at")
+  appliance   Appliances @relation(fields: [applianceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([email])
+  @@map("reservations")
+}
+
 model Users {
-  id          Int         @id @default(autoincrement())
-  username    String      @unique
-  email       String      @unique
-  accessLevel AccessLevel @default(null) @map("access_level")
-  password    String
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  email    String @unique
+  password String
 
   @@map("users")
 }
