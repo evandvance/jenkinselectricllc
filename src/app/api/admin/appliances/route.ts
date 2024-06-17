@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { applianceUploadFormSchema } from '@/components/AdminComponents/ApplianceUploadForm/ApplianceUploadFormSchema';
+import { applianceUploadFormSchema } from '@/interfaces/ApplianceUploadFormSchema';
 import PrismaWrapper from '@/helper/PrismaWrapper';
 import { cleanseName, uploadFile } from '@/helper/AWSFileHandler';
 import { ApplianceAges, ApplianceTypes } from '@prisma/client';

@@ -4,14 +4,14 @@ interface ApplianceListingCardProps {
   appliance: appliaceInterface;
 }
 
-const handleDelete = async (id: number) => {
+export const handleDelete = async (id: number) => {
   const result = await fetch(`/api/admin/appliances/${id}`, {
     method: 'DELETE',
   });
   window.location.reload();
 };
 
-const handleUnreserve = async (id: number) => {
+export const handleUnreserve = async (id: number) => {
   const result = await fetch(`/api/admin/appliances/${id}`, {
     method: 'PATCH',
   });
@@ -25,21 +25,24 @@ const ApplianceListingCard = ({ appliance }: ApplianceListingCardProps) => {
       <div className="flex space-x-3">
         <p>{appliance.modelNumber}</p>
         <p>${appliance.price}</p>
-        {appliance.reservation.email && (
-          <p
-            onClick={() => handleUnreserve(appliance.id)}
-            className="text-red-500"
-          >
-            Reserved
-          </p>
-        )}
       </div>
-      <button
-        onClick={() => handleDelete(appliance.id)}
-        className="text-red-500 hover:underline underline-offset-2"
-      >
-        Delete
-      </button>
+      <div>
+        {appliance.reservation && (
+          <button
+            onClick={() => handleUnreserve(appliance.id)}
+            className="text-green-500 hover:underline hover:cursor-pointer underline-offset-2"
+          >
+            Unreserve
+          </button>
+        )}
+
+        <button
+          onClick={() => handleDelete(appliance.id)}
+          className="text-red-500 hover:underline underline-offset-2"
+        >
+          Delete
+        </button>
+      </div>
     </div>
   );
 };

@@ -14,11 +14,10 @@ const ApplianceDisplay = ({ age, filter, sortBy }: ApplianceDisplayProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    let result: appliaceInterface[] = [];
     fetch('/api/appliances', {
       cache: 'no-cache',
     }).then(async (data) => {
-      result = await data.json();
+      let result: appliaceInterface[] = await data.json();
       console.log(result);
       result = result.filter((appliance) => appliance.age === age);
 

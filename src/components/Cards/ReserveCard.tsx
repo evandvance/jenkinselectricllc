@@ -1,20 +1,17 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { appliaceInterface } from '@/interfaces/ApplianceInterface';
 import { FieldValues, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { appliaceInterface } from '@/interfaces/ApplianceInterface';
+import {
+  reserveFormSchema,
+  ReserveFormData,
+} from '@/interfaces/ReserveFormSchema';
+import { ReserveApiErrors } from '@/interfaces/ReserveApiErrors';
 
 interface ReserveCardProps {
   id: number;
 }
-
-export const reserveFormSchema = z.object({
-  email: z.string().email(),
-  comments: z.string(),
-});
-
-export type ReserveFormData = z.infer<typeof reserveFormSchema>;
 
 const ReserveCard = ({ id }: ReserveCardProps) => {
   const {
@@ -23,6 +20,8 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
     formState: { errors },
   } = useForm<ReserveFormData>({ resolver: zodResolver(reserveFormSchema) });
   const [appliance, setAppliance] = useState<appliaceInterface>();
+  const [uploadError, setUploadError] = useState<ReserveApiErrors>({});
+  const [uploadSuccess, setUploadSuccess] = useState(false);
 
   useEffect(() => {
     fetch(`/api/appliances/${id}`).then(async (data) => {
@@ -30,7 +29,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
 
       setAppliance(result);
     });
-  });
+  }, []);
 
   const onSubmit = async (data: FieldValues) => {
     const formData = new FormData();
@@ -45,7 +44,12 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
 
     const result = await response.json();
 
-    console.log(result);
+    if (result.status !== 200) {
+      setUploadSuccess(false);
+      return setUploadError(result);
+    }
+
+    setUploadSuccess(true);
   };
 
   return (
@@ -55,7 +59,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
         className="mt-5 flex flex-col justify-center items-center w-[90%] p-5 border rounded-xl bg-gradient-to-r from-jellcdarkblue to-jellcblue text-white lg:w-3/4 space-y-5"
       >
         <h2 className="text-3xl">Reserve {appliance?.applianceName}</h2>
-        <div className="flex flex-col w-3/4">
+        <div className="flex flex-col w-3/4 space-y-2">
           <label className="text-xl" htmlFor="email">
             Email
           </label>
@@ -70,7 +74,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
             <p className="text-red-500">{errors.email.message}</p>
           )}
         </div>
-        <div className="flex flex-col w-3/4">
+        <div className="flex flex-col w-3/4 space-y-2">
           <label className="text-xl" htmlFor="comments">
             Comments (optional)
           </label>
@@ -93,6 +97,18 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
           Submit
         </button>
       </form>
+
+      {uploadError && (
+        <div className="text-2xl lg:text-4xl text-red-500 text-center w-[90%] lg:w-3/4">
+          <p>{uploadError.message}</p>
+        </div>
+      )}
+
+      {uploadSuccess && (
+        <div className="text-2xl lg:text-4xl text-green-600 text-center w-[90%] lg:w-3/4">
+          Appliance Reserved Successfully
+        </div>
+      )}
     </>
   );
 };

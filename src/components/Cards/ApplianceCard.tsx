@@ -34,6 +34,7 @@ const ApplianceCard = ({ appliance }: ApplianceCardProps) => {
           <div className="text-lg">
             <p>Model: {appliance.modelNumber}</p>
             <p>{appliance.brand}</p>
+            <p>{appliance.type.toUpperCase()}</p>
           </div>
         </div>
         <Link
@@ -43,10 +44,14 @@ const ApplianceCard = ({ appliance }: ApplianceCardProps) => {
           More details...
         </Link>
         <div className="w-full flex items-center justify-center">
-          <BlueButton
-            href={`/appliances/reserve/${appliance.id}`}
-            title="Reserve Now"
-          />
+          {appliance.reservation ? (
+            <div className="text-4xl">Appliance Reserved.</div>
+          ) : (
+            <BlueButton
+              href={`/appliances/reserve/${appliance.id}`}
+              title="Reserve Now"
+            />
+          )}
         </div>
       </div>
     </div>

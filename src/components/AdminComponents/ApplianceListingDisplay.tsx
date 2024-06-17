@@ -1,14 +1,14 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { appliaceInterface } from '@/interfaces/ApplianceInterface';
-import ApplianceListingCard from './ApplianceListingCard';
+import ApplianceListingCard from './AdminCards/ApplianceListingCard';
 
 const ApplianceListingDisplay = () => {
   const [appliances, setAppliances] = useState<appliaceInterface[]>([]);
 
   useEffect(() => {
     fetch('/api/appliances', { cache: 'no-cache' }).then(async (data) => {
-      let result = await data.json();
+      const result = await data.json();
       setAppliances(result);
     });
   }, []);
