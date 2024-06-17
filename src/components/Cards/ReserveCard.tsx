@@ -29,7 +29,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
 
       setAppliance(result);
     });
-  }, []);
+  }, [id]);
 
   const onSubmit = async (data: FieldValues) => {
     const formData = new FormData();
