@@ -106,7 +106,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
 
       {uploadSuccess && (
         <div className="text-2xl lg:text-4xl text-green-600 text-center w-[90%] lg:w-3/4">
-          Appliance Reserved Successfully
+          Appliance Reserved Successfully. You will hear from us soon!
         </div>
       )}
     </>
