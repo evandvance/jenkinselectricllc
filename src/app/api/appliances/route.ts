@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
       brand: true,
       description: true,
       modelNumber: true,
-      isReserved: true,
+      reservation: true,
       images: true,
       age: true,
       type: true,

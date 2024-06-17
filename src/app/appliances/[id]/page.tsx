@@ -2,11 +2,11 @@
 import AppliancePageDisplay from '@/components/Displays/AppliancePageDisplay';
 
 interface ApplianceProps {
-  params: { id: string[] };
+  params: { id: string };
 }
 
 const page = ({ params: { id } }: ApplianceProps) => {
-  const applianceId = parseInt(id[0]);
+  const applianceId = parseInt(id);
 
   return <AppliancePageDisplay id={applianceId} />;
 };

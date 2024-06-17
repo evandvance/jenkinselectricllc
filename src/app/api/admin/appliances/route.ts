@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { applianceUploadFormSchema } from '@/components/AdminComponents/ApplianceUploadForm/ApplianceUploadFormSchema';
+import { applianceUploadFormSchema } from '@/interfaces/ApplianceUploadFormSchema';
 import PrismaWrapper from '@/helper/PrismaWrapper';
 import { cleanseName, uploadFile } from '@/helper/AWSFileHandler';
 import { ApplianceAges, ApplianceTypes } from '@prisma/client';
@@ -68,21 +68,6 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ message: 'Success', status: 200 });
-  } catch (err) {
-    console.log(err);
-    return NextResponse.json(errorMessage);
-  }
-}
-
-export async function DELETE(req: NextRequest) {
-  const formData = await req.formData();
-
-  const id = parseInt(formData.get('applianceId')?.toString()!);
-
-  try {
-    await prisma.appliances.delete({ where: { id } });
-
-    return NextResponse.json({ status: 204 });
   } catch (err) {
     console.log(err);
     return NextResponse.json(errorMessage);

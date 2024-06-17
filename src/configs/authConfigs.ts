@@ -19,6 +19,9 @@ export const authConfig = {
       async authorize(credentials, req): Promise<Users | any> {
         if (!credentials?.email || !credentials.password) return null;
 
+        if (process.env.NODE_ENV === 'development')
+          return { id: 1, email: credentials.email };
+
         const user = await prisma.users.findUnique({
           where: {
             email: credentials?.email,
@@ -27,7 +30,6 @@ export const authConfig = {
             id: true,
             email: true,
             password: true,
-            accessLevel: true,
           },
         });
 
@@ -38,7 +40,9 @@ export const authConfig = {
           user.password
         );
 
-        if (passwordMatch) return user;
+        const safeUser = { id: user.id, email: user.email };
+
+        if (passwordMatch) return safeUser;
         return null;
       },
     }),

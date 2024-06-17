@@ -57,7 +57,6 @@ const ApplianceFilter = ({ age, filter }: ApplianceFilterInterface) => {
           </option>
           {applianceTypes.map((type) => (
             <option key={type} value={type}>
-              {/* TODO Make this not ugly for user*/}
               {type.toUpperCase()}
             </option>
           ))}

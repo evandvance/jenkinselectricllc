@@ -6,7 +6,7 @@ import { ApplianceAges, ApplianceTypes } from '@prisma/client';
 import {
   applianceUploadFormSchema,
   ApplianceFormData,
-} from './ApplianceUploadFormSchema';
+} from '@/interfaces/ApplianceUploadFormSchema';
 
 const ApplianceUploadForm = () => {
   const applianceAges = Object.keys(ApplianceAges);
@@ -24,6 +24,7 @@ const ApplianceUploadForm = () => {
   const [success, setSuccess] = useState(false);
 
   const onSubmit = async (data: FieldValues) => {
+    console.log('here');
     const formData = new FormData();
 
     formData.append('applianceName', data.applianceName);
@@ -34,6 +35,7 @@ const ApplianceUploadForm = () => {
     formData.append('applianceBrand', data.applianceBrand);
     formData.append('description', data.description);
 
+    console.log(data.imageFile.length);
     for (let i = 0; i < data.imageFile.length; i++) {
       formData.append('file', data.imageFile[i]);
     }
@@ -177,7 +179,7 @@ const ApplianceUploadForm = () => {
           </select>
         </div>
         <button
-          className="flex justify-center text-2xl items-center m-5 h-16 w-56 bg-gradient-to-r from-jellcdarkblue to-jellcblue text-white rounded-xl hover:bg-white hover:text-jellcblue "
+          className="flex justify-center text-2xl items-center m-5 h-16 w-56 bg-gradient-to-r from-jellcdarkblue to-jellcblue text-white rounded-xl hover:bg-white hover:text-jellcblue"
           type="submit"
         >
           Submit

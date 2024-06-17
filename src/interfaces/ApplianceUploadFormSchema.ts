@@ -17,8 +17,8 @@ export const applianceUploadFormSchema = z.object({
   modelNumber: z
     .string()
     .min(3, { message: 'Model Number must be at least 3 characters' }),
-  age: z.enum(Object.create(ApplianceAges)),
-  type: z.enum(Object.create(ApplianceTypes)),
+  age: z.nativeEnum(ApplianceAges),
+  type: z.nativeEnum(ApplianceTypes),
   imageFile:
     typeof window === 'undefined'
       ? z.any()

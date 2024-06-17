@@ -47,10 +47,15 @@ const AppliancePageDisplay = ({ id }: AppliancePageDisplayProps) => {
             <div className="text-3xl mb-3 lg:w-1/3 flex flex-col items-center space-y-2">
               <h2>Price</h2>
               <h2 className="text-jellcblue">${appliance?.price}</h2>
-              <BlueButton
-                href={`/api/appliances/reserve/${appliance?.id}`}
-                title="Reserve Now!"
-              />
+              {appliance?.reservation ? (
+                <div className="text-3xl">Appliance Reserved</div>
+              ) : (
+                <BlueButton
+                  href={`/api/appliances/reserve/${appliance?.id}`}
+                  title="Reserve Now!"
+                />
+              )}
+
               <h2 className="hidden lg:static text-2xl">{appliance?.brand}</h2>
             </div>
             <div className="h-full m-5 space-y-2 justify-between">
