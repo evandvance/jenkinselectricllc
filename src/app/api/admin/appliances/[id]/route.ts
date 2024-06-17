@@ -17,7 +17,7 @@ export async function DELETE(
 
     // await deleteFile(`appliances/${cleanseName(appliance!.applianceName)}/`);
 
-    await await prisma.appliances.delete({ where: { id } });
+    await prisma.appliances.delete({ where: { id } });
     return NextResponse.json({ status: 204 });
   } catch (err) {
     console.log(err);
