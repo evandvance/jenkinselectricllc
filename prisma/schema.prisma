@@ -53,7 +53,7 @@ enum ApplianceAges {
 model Appliances {
   id            Int               @id @default(autoincrement())
   applianceName String            @map("appliance_name")
-  price         Decimal
+  price         Float
   modelNumber   String            @map("model_number")
   description   String
   brand         String

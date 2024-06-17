@@ -22,13 +22,7 @@ const ApplianceListingDisplay = () => {
       ) : (
         appliances.map((appliance) => {
           return (
-            <ApplianceListingCard
-              key={appliance.id}
-              applianceId={appliance.id}
-              applianceName={appliance.applianceName}
-              modelNumber={appliance.modelNumber}
-              price={appliance.price}
-            />
+            <ApplianceListingCard key={appliance.id} appliance={appliance} />
           );
         })
       )}

@@ -32,12 +32,11 @@ export async function PATCH(
   const id = parseInt(params.id);
 
   try {
-    const result = await prisma.appliances.update({
-      where: { id },
-      data: { isReserved: false },
+    const result = await prisma.reservations.delete({
+      where: { applianceId: id },
     });
 
-    return NextResponse.json(result);
+    return NextResponse.json({ status: 204 });
   } catch (err) {
     console.log(err);
     return NextResponse.json({ message: 'An error has occured', status: 500 });

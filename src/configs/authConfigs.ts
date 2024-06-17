@@ -30,7 +30,6 @@ export const authConfig = {
             id: true,
             email: true,
             password: true,
-            accessLevel: true,
           },
         });
 
@@ -41,7 +40,9 @@ export const authConfig = {
           user.password
         );
 
-        if (passwordMatch) return user;
+        const safeUser = { id: user.id, email: user.email };
+
+        if (passwordMatch) return safeUser;
         return null;
       },
     }),

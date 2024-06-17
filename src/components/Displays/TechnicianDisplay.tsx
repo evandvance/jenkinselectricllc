@@ -26,11 +26,7 @@ const TechnicianDisplay = () => {
         const { firstName, lastName, bio, isCertified, imageUrl } = technician;
         return (
           <TechnicianCard
-            firstName={firstName}
-            lastName={lastName}
-            bio={bio}
-            isCertified={isCertified}
-            imageUrl={imageUrl}
+            technician={technician}
             index={index}
             key={firstName + lastName}
           />

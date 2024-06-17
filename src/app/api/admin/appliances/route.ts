@@ -74,19 +74,4 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function DELETE(req: NextRequest) {
-  const formData = await req.formData();
-
-  const id = parseInt(formData.get('applianceId')?.toString()!);
-
-  try {
-    await prisma.appliances.delete({ where: { id } });
-
-    return NextResponse.json({ status: 204 });
-  } catch (err) {
-    console.log(err);
-    return NextResponse.json(errorMessage);
-  }
-}
-
 export const dynamic = 'force-dynamic';

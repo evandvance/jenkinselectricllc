@@ -9,7 +9,7 @@ interface ReserveCardProps {
   id: number;
 }
 
-const reserveFormSchema = z.object({
+export const reserveFormSchema = z.object({
   email: z.string().email(),
   comments: z.string(),
 });
@@ -32,10 +32,26 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
     });
   });
 
+  const onSubmit = async (data: FieldValues) => {
+    const formData = new FormData();
+
+    formData.append('email', data.email);
+    formData.append('comments', data.comments);
+
+    const response = await fetch(`/api/appliances/reserve/${id}`, {
+      method: 'POST',
+      body: formData,
+    });
+
+    const result = await response.json();
+
+    console.log(result);
+  };
+
   return (
     <>
       <form
-        action=""
+        onSubmit={handleSubmit(onSubmit)}
         className="mt-5 flex flex-col justify-center items-center w-[90%] p-5 border rounded-xl bg-gradient-to-r from-jellcdarkblue to-jellcblue text-white lg:w-3/4 space-y-5"
       >
         <h2 className="text-3xl">Reserve {appliance?.applianceName}</h2>

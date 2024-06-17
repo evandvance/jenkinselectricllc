@@ -43,18 +43,7 @@ const ApplianceDisplay = ({ age, filter, sortBy }: ApplianceDisplayProps) => {
       )}
       {appliances.length > 0 &&
         appliances.map((appliance) => {
-          return (
-            <ApplianceCard
-              key={appliance.id}
-              applianceId={appliance.id}
-              applianceName={appliance.applianceName}
-              modelNumber={appliance.modelNumber}
-              price={appliance.price}
-              imageUrl={appliance.images[0]?.imageUrl}
-              type={appliance.type}
-              brand={appliance.brand}
-            />
-          );
+          return <ApplianceCard key={appliance.id} appliance={appliance} />;
         })}
     </div>
   );

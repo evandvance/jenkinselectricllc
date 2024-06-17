@@ -13,7 +13,6 @@ export async function GET(req: NextRequest) {
         bio: true,
         isCertified: true,
         imageUrl: true,
-        phoneNumber: true,
       },
     });
 

@@ -1,10 +1,7 @@
 'use client';
+import { appliaceInterface } from '@/interfaces/ApplianceInterface';
 interface ApplianceListingCardProps {
-  applianceId: number;
-  applianceName: string;
-  modelNumber: string;
-  price: number;
-  isReserved?: boolean;
+  appliance: appliaceInterface;
 }
 
 const handleDelete = async (id: number) => {
@@ -21,22 +18,16 @@ const handleUnreserve = async (id: number) => {
   window.location.reload();
 };
 
-const ApplianceListingCard = ({
-  applianceId,
-  applianceName,
-  modelNumber,
-  price,
-  isReserved,
-}: ApplianceListingCardProps) => {
+const ApplianceListingCard = ({ appliance }: ApplianceListingCardProps) => {
   return (
     <div className="w-[85vw]  bg-slate-300 rounded-xl flex p-5 items-center justify-between">
-      <h2>{applianceName}</h2>
+      <h2>{appliance.applianceName}</h2>
       <div className="flex space-x-3">
-        <p>{modelNumber}</p>
-        <p>${price}</p>
-        {isReserved && (
+        <p>{appliance.modelNumber}</p>
+        <p>${appliance.price}</p>
+        {appliance.reservation.email && (
           <p
-            onClick={() => handleUnreserve(applianceId)}
+            onClick={() => handleUnreserve(appliance.id)}
             className="text-red-500"
           >
             Reserved
@@ -44,7 +35,7 @@ const ApplianceListingCard = ({
         )}
       </div>
       <button
-        onClick={() => handleDelete(applianceId)}
+        onClick={() => handleDelete(appliance.id)}
         className="text-red-500 hover:underline underline-offset-2"
       >
         Delete
