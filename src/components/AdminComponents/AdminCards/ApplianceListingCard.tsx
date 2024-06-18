@@ -1,5 +1,7 @@
 'use client';
 import { appliaceInterface } from '@/interfaces/ApplianceInterface';
+import RedButton from '@/components/Buttons/RedButton';
+import GreenButton from '@/components/Buttons/GreenButton';
 interface ApplianceListingCardProps {
   appliance: appliaceInterface;
 }
@@ -20,28 +22,22 @@ export const handleUnreserve = async (id: number) => {
 
 const ApplianceListingCard = ({ appliance }: ApplianceListingCardProps) => {
   return (
-    <div className="w-[85vw]  bg-slate-300 rounded-xl flex p-5 items-center justify-between">
+    <div className="w-[85vw]  bg-slate-300 rounded-xl flex flex-wrap p-5 items-center justify-between">
       <h2>{appliance.applianceName}</h2>
       <div className="flex space-x-3">
         <p>{appliance.modelNumber}</p>
         <p>${appliance.price}</p>
+        <p>{appliance.type}</p>
+        <p>id: {appliance.id}</p>
       </div>
-      <div>
+      <div className="space-x-2">
         {appliance.reservation && (
-          <button
-            onClick={() => handleUnreserve(appliance.id)}
-            className="text-green-500 hover:underline hover:cursor-pointer underline-offset-2"
-          >
+          <GreenButton onClick={() => handleUnreserve(appliance.id)}>
             Unreserve
-          </button>
+          </GreenButton>
         )}
 
-        <button
-          onClick={() => handleDelete(appliance.id)}
-          className="text-red-500 hover:underline underline-offset-2"
-        >
-          Delete
-        </button>
+        <RedButton onClick={() => handleDelete(appliance.id)}>Delete</RedButton>
       </div>
     </div>
   );

@@ -27,7 +27,7 @@ export async function POST(
   }
 
   try {
-    const applianceExists = await prisma.reservations.count({ where: { id } });
+    const applianceExists = await prisma.appliances.count({ where: { id } });
 
     if (!applianceExists)
       return NextResponse.json({ message: 'Appliance Not found', status: 404 });

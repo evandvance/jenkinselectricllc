@@ -17,7 +17,6 @@ const ApplianceDisplay = ({ age, filter, sortBy }: ApplianceDisplayProps) => {
       cache: 'no-cache',
     }).then(async (data) => {
       let result: appliaceInterface[] = await data.json();
-      console.log(result);
       result = result.filter((appliance) => appliance.age === age);
 
       if (filter) {

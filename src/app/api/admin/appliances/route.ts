@@ -53,7 +53,8 @@ export async function POST(req: NextRequest) {
         brand: applianceBrand,
       },
     });
-    const folder = `appliances/${cleanApplianceName}`;
+
+    const folder = `appliances/${appliace.id}_${cleanApplianceName}`;
     const fileList: File[] | any = formData.getAll('file');
 
     fileList.forEach(async (file: File) => {

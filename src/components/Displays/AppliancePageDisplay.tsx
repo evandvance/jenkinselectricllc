@@ -1,8 +1,9 @@
 'use client';
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import BlueButton from '../Buttons/BlueButton';
 import { appliaceInterface } from '@/interfaces/ApplianceInterface';
+import SimilarItemsCarousel from '../Carousels/SimilarItemsCarousel';
+import ApplianceImagesCarousel from '../Carousels/ApplianceImagesCarousel';
 
 interface AppliancePageDisplayProps {
   id: number;
@@ -31,18 +32,10 @@ const AppliancePageDisplay = ({ id }: AppliancePageDisplayProps) => {
               {appliance?.applianceName}
             </h1>
           </div>
-          <div>
-            <div className="w-[90%] flex justify-center items-center relative">
-              <Image
-                height={500}
-                width={600}
-                className="object-contain w-full h-auto p-5 "
-                src={appliance?.images[0].imageUrl!}
-                alt={`Image of ${appliance?.applianceName}`}
-              />
-            </div>
-            <div className="h-24">This is where the carousel will go </div>
-          </div>
+          <ApplianceImagesCarousel
+            images={appliance!.images}
+            applianceName={appliance?.applianceName}
+          />
           <div className="w-full lg:w-1/2 p-5 flex flex-col lg:flex-row-reverse justify-center items-center">
             <div className="text-3xl mb-3 lg:w-1/3 flex flex-col items-center space-y-2">
               <h2>Price</h2>
@@ -51,7 +44,7 @@ const AppliancePageDisplay = ({ id }: AppliancePageDisplayProps) => {
                 <div className="text-3xl">Appliance Reserved</div>
               ) : (
                 <BlueButton
-                  href={`/api/appliances/reserve/${appliance?.id}`}
+                  href={`/appliances/reserve/${appliance?.id}`}
                   title="Reserve Now!"
                 />
               )}
@@ -66,9 +59,7 @@ const AppliancePageDisplay = ({ id }: AppliancePageDisplayProps) => {
         </>
       )}
 
-      <div className="h-24">
-        This is where the Similar Appliances carousel will go
-      </div>
+      <SimilarItemsCarousel type={appliance?.type} id={appliance?.id} />
     </div>
   );
 };
