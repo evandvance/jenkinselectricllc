@@ -27,6 +27,22 @@ export async function POST(
   }
 
   try {
+    const applianceExists = await prisma.appliances.count({ where: { id } });
+
+    if (!applianceExists)
+      return NextResponse.json({ message: 'Appliance Not found', status: 404 });
+
+    const applianceIsReserved = await prisma.reservations.count({
+      where: { email },
+    });
+
+    if (applianceIsReserved)
+      return NextResponse.json({
+        message:
+          'You have already reserved an appliance. Please contact us to unreserve it or to reserve multiple',
+        status: 400,
+      });
+
     const reservation = await prisma.reservations.create({
       data: {
         applianceId: id,
@@ -37,16 +53,14 @@ export async function POST(
 
     return NextResponse.json({ ...reservation, status: 200 });
   } catch (err: any) {
-    console.log(err);
-
     if (err.code === 'P2002') {
       return NextResponse.json({
-        message:
-          'A reservation already exists on this appliance or you have already reserved an appliance contact us to reserve multiple',
+        message: 'A reservation already exists on this appliance',
         status: 400,
       });
     }
 
+    console.log(err);
     return NextResponse.json({ message: 'An error has occured', status: 500 });
   }
 }

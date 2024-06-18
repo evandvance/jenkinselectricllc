@@ -15,7 +15,7 @@ const ReservedApplianceDisplay = () => {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center mt-5 space-y-3">
+    <div className="flex flex-col justify-center items-center mt-5 space-y-3 w-[90%]">
       <h2 className="tex-3xl text-red-500">
         WARNING! There is no confirm for deletions or unreserves yet
       </h2>

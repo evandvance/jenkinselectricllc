@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/helper/PrismaWrapper';
+import { ApplianceSelectConfig } from '@/configs/SelectConfigs';
 
 export async function GET(
   req: NextRequest,
@@ -10,18 +11,7 @@ export async function GET(
   try {
     const appliance = await prisma.appliances.findUnique({
       where: { id },
-      select: {
-        id: true,
-        applianceName: true,
-        price: true,
-        brand: true,
-        description: true,
-        modelNumber: true,
-        reservation: true,
-        images: true,
-        age: true,
-        type: true,
-      },
+      select: ApplianceSelectConfig,
     });
 
     return NextResponse.json(appliance);
