@@ -37,6 +37,7 @@ const ApplianceImagesCarousel = ({
         {remainingImages.map((image) => {
           return (
             <Image
+              key={image.id}
               onClick={() => handleOnClick(image.imageUrl)}
               height={500}
               width={600}

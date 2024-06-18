@@ -35,7 +35,9 @@ const SimilarItemsCarousel = ({ type, id }: SimilarItemsCarouselProps) => {
           </div>
         ) : (
           appliances.map((appliance) => {
-            return <SimilarItemsCard appliance={appliance} />;
+            return (
+              <SimilarItemsCard key={appliance.id} appliance={appliance} />
+            );
           })
         )}
       </div>
