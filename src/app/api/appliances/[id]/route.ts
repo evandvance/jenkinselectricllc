@@ -14,7 +14,11 @@ export async function GET(
       select: ApplianceSelectConfig,
     });
 
-    return NextResponse.json(appliance);
+    return NextResponse.json({
+      message: 'Success',
+      status: 200,
+      data: appliance,
+    });
   } catch (err) {
     console.log(err);
     return NextResponse.json({ message: 'An error has occured', status: 500 });

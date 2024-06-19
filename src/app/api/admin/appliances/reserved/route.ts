@@ -5,7 +5,11 @@ export async function GET(req: NextRequest) {
   try {
     const reservedAppliances = await prisma.reservations.findMany();
 
-    return NextResponse.json(reservedAppliances);
+    return NextResponse.json({
+      message: 'Success',
+      status: 200,
+      data: reservedAppliances,
+    });
   } catch (err) {
     console.log(err);
     return NextResponse.json({

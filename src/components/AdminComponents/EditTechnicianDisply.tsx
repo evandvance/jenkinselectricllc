@@ -8,9 +8,12 @@ const EditTechnicianDisply = () => {
 
   useEffect(() => {
     fetch('/api/technicians').then(async (data) => {
-      const result = await data.json();
+      const result = (await data.json()) as ApiResponse<Technicians[]>;
 
-      setTechnicians(result);
+      const technicianResponse = result.data;
+      if (!technicianResponse) return;
+
+      setTechnicians(technicianResponse!);
     });
   }, []);
 

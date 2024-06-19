@@ -9,7 +9,10 @@ const TechnicianDisplay = () => {
   useEffect(() => {
     fetch('/api/technicians', {
       cache: 'no-cache',
-    }).then(async (data) => setTechnicians(await data.json()));
+    }).then(async (data) => {
+      const result = (await data.json()) as ApiResponse<Technicians[]>;
+      setTechnicians(result.data!);
+    });
   }, []);
 
   if (technicians?.length === 0) {

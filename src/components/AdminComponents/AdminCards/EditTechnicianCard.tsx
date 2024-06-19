@@ -30,6 +30,8 @@ const EditTechnicianCard = ({ technician }: EditTechnicianCardProps) => {
     const result = await fetch(`/api/admin/technicians/${id}`, {
       method: 'DELETE',
     });
+
+    const response = (await result.json()) as ApiResponse<Technicians>;
     window.location.reload();
   };
 
@@ -46,7 +48,7 @@ const EditTechnicianCard = ({ technician }: EditTechnicianCardProps) => {
       body: formData,
     });
 
-    const result = await response.json();
+    const result = (await response.json()) as ApiResponse<Technicians>;
 
     if (result.status !== 200) {
       return setError(true);

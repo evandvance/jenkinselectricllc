@@ -7,7 +7,7 @@ import {
   reserveFormSchema,
   ReserveFormData,
 } from '@/interfaces/ReserveFormSchema';
-import { ReserveApiErrors } from '@/interfaces/ReserveApiErrors';
+import { Reservations } from '@prisma/client';
 
 interface ReserveCardProps {
   id: number;
@@ -20,14 +20,16 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
     formState: { errors },
   } = useForm<ReserveFormData>({ resolver: zodResolver(reserveFormSchema) });
   const [appliance, setAppliance] = useState<appliaceInterface>();
-  const [uploadError, setUploadError] = useState<ReserveApiErrors>({});
+  const [uploadError, setUploadError] = useState<ApiResponse<Reservations>>();
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
   useEffect(() => {
     fetch(`/api/appliances/${id}`).then(async (data) => {
-      const result = await data.json();
+      const result = (await data.json()) as ApiResponse<appliaceInterface>;
+      const applianceResult = result.data;
+      if (!applianceResult) return;
 
-      setAppliance(result);
+      setAppliance(applianceResult);
     });
   }, [id]);
 
@@ -42,7 +44,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
       body: formData,
     });
 
-    const result = await response.json();
+    const result = (await response.json()) as ApiResponse<Reservations>;
 
     if (result.status !== 200) {
       setUploadSuccess(false);

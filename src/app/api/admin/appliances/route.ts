@@ -68,7 +68,11 @@ export async function POST(req: NextRequest) {
       });
     });
 
-    return NextResponse.json({ message: 'Success', status: 200, ...appliance });
+    return NextResponse.json({
+      message: 'Success',
+      status: 201,
+      data: appliance,
+    });
   } catch (err) {
     console.log(err);
     return NextResponse.json(errorMessage);

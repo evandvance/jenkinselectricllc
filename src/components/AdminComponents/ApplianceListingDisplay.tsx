@@ -8,8 +8,11 @@ const ApplianceListingDisplay = () => {
 
   useEffect(() => {
     fetch('/api/appliances', { cache: 'no-cache' }).then(async (data) => {
-      const result = await data.json();
-      setAppliances(result);
+      const result = (await data.json()) as ApiResponse<appliaceInterface[]>;
+      const applianceResult = result.data;
+
+      if (!applianceResult) return;
+      setAppliances(applianceResult!);
     });
   }, []);
 

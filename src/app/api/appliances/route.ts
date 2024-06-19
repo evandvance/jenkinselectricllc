@@ -10,14 +10,22 @@ export async function GET(req: NextRequest) {
   ) as ApplianceTypes;
 
   if (applianceType) {
-    return NextResponse.json(await getByType(applianceType));
+    return NextResponse.json({
+      message: 'Success',
+      status: 200,
+      data: await getByType(applianceType),
+    });
   }
 
   const appliances = await prisma.appliances.findMany({
     select: ApplianceSelectConfig,
   });
 
-  return NextResponse.json(appliances);
+  return NextResponse.json({
+    message: 'Success',
+    status: 200,
+    data: appliances,
+  });
 }
 
 async function getByType(applianceType: ApplianceTypes) {

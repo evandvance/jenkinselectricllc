@@ -51,7 +51,11 @@ export async function POST(
       },
     });
 
-    return NextResponse.json({ ...reservation, status: 200 });
+    return NextResponse.json({
+      message: 'Reservation Successfully Created',
+      data: reservation,
+      status: 200,
+    });
   } catch (err: any) {
     if (err.code === 'P2002') {
       return NextResponse.json({

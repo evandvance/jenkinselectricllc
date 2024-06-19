@@ -8,9 +8,12 @@ const ReservedApplianceDisplay = () => {
 
   useEffect(() => {
     fetch('/api/admin/appliances/reserved').then(async (data) => {
-      const result = await data.json();
+      const result = (await data.json()) as ApiResponse<Reservations[]>;
 
-      setReservations(result);
+      const reservationsResult = result.data;
+      if (!reservationsResult) return;
+
+      setReservations(reservationsResult);
     });
   }, []);
 

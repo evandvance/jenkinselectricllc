@@ -6,6 +6,7 @@ import {
   TechnicianFormData,
   technicianFormSchema,
 } from '@/interfaces/TechnicianUploadFormSchema';
+import { Technicians } from '@prisma/client';
 
 const TechnicianUploadForm = () => {
   const {
@@ -33,11 +34,9 @@ const TechnicianUploadForm = () => {
       body: formData,
     });
 
-    const result = await response.json();
+    const result = (await response.json()) as ApiResponse<Technicians>;
 
-    console.log(result);
-
-    if (result.status !== 200) {
+    if (result.status !== 201) {
       return setError(true);
     }
 

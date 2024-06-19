@@ -10,7 +10,10 @@ export async function DELETE(
 
   try {
     await prisma.technicians.delete({ where: { id } });
-    return NextResponse.json({ status: 204 });
+    return NextResponse.json({
+      status: 204,
+      message: 'Technician Deleted Successfully',
+    });
   } catch (err) {
     console.log(err);
     return NextResponse.json({ message: 'An error has occured', status: 500 });
@@ -51,7 +54,11 @@ export async function PUT(
       data: { firstName, lastName, bio, isCertified },
     });
 
-    return NextResponse.json({ status: 200, ...technician });
+    return NextResponse.json({
+      message: 'Technician Successfully Updated',
+      status: 200,
+      data: technician,
+    });
   } catch (err) {
     console.log(err);
     return NextResponse.json({ message: 'An error has occured', status: 500 });
