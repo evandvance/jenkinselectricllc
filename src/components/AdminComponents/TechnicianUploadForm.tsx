@@ -48,7 +48,7 @@ const TechnicianUploadForm = () => {
   return (
     <>
       <form
-        className="flex flex-col justify-center items-center w-[90%] p-5 border rounded-xl border-jellcblue text-white bg-black lg:w-3/4 space-y-3"
+        className="flex m-5 flex-col justify-center items-center w-[90%] p-5 border rounded-xl border-jellcblue text-white bg-black lg:w-3/4 space-y-3"
         onSubmit={handleSubmit(onSubmit)}
       >
         <h2 className="text-3xl m-2">Technician Upload</h2>
@@ -129,14 +129,14 @@ const TechnicianUploadForm = () => {
       </form>
 
       {error && (
-        <p className="text-red-500 text-2xl">
-          Error Something when wrong on the server -- Potentially duplicate file
-          uploads
+        <p className="text-red-500 text-2xl m-2">
+          Error Something when wrong on the server -- Potentially Duplicate
+          Technicians
         </p>
       )}
 
       {success && (
-        <p className="text-2xl text-green-600">
+        <p className="text-2xl text-green-600 m-2">
           Technician Uploaded Successfully
         </p>
       )}

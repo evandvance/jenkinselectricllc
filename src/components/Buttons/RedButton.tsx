@@ -5,12 +5,14 @@ interface RedButtonProps {
   onClick?: () => void;
   className?: string;
   children: ReactNode;
+  type?: 'submit' | 'reset' | 'button';
 }
 
-const RedButton = ({ onClick, className, children }: RedButtonProps) => {
+const RedButton = ({ onClick, className, children, type }: RedButtonProps) => {
   return (
     <button
       onClick={onClick}
+      type={type}
       className={`min-w-24 px-5 py-3 rounded-xl bg-red-500 text-white hover:bg-white hover:text-red-500 hover:underline underline-offset-2 ${
         className ? className : ''
       }`}

@@ -17,7 +17,7 @@ const TechnicianCard = ({ technician, index }: TechnicianCardProps) => {
 
   return (
     <div
-      className={`w-7/8 lg:w-3/4 m-5 p-5 -z-20 border rounded-xl text-white flex flex-col lg:flex-row ${gradient}`}
+      className={`w-[85vw] lg:w-3/4 m-5 p-5 -z-20 border rounded-xl text-white flex flex-col lg:flex-row ${gradient}`}
     >
       <div className="w-full lg:min-w-1/2 flex justify-center items-center relative">
         <Image
@@ -29,7 +29,7 @@ const TechnicianCard = ({ technician, index }: TechnicianCardProps) => {
         />
       </div>
       <div className="flex flex-col justify-center items-start">
-        <div className="text-5xl my-5 w-content flex lg:items-center">
+        <div className="text-5xl m-5 flex justify-between lg:items-center">
           <h2 className="lg:mx-5">{`${technician.firstName} ${technician.lastName}`}</h2>
           {technician.isCertified && (
             <div className="flex flex-col items-center">

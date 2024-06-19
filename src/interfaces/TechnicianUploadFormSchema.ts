@@ -14,3 +14,12 @@ export const technicianFormSchema = z.object({
 });
 
 export type TechnicianFormData = z.infer<typeof technicianFormSchema>;
+
+export const editTechnicianSchema = z.object({
+  firstName: z.string(),
+  lastName: z.string(),
+  bio: z.string(),
+  isCertified: z.boolean(),
+});
+
+export type EditTechnicianFormData = z.infer<typeof editTechnicianSchema>;

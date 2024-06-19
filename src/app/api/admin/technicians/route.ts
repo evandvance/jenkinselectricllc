@@ -16,7 +16,6 @@ export async function POST(req: NextRequest) {
   const isCertified = formData.get('isCertified') === 'true';
   const image = formData.get('image') as File;
 
-  console.log(isCertified);
   const validation = technicianFormSchema.safeParse({
     firstName,
     lastName,
