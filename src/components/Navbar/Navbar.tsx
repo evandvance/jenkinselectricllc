@@ -21,7 +21,7 @@ const Navbar = () => {
           <Image
             src="/assets/logo.svg"
             alt="JenkinsElectricLLC logo"
-            className="w-full h-auto object-contain"
+            className="w-full h-auto object-contain bg-black"
             height={3}
             width={4}
           />

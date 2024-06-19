@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
   const cleanApplianceName = cleanseName(applianceName);
 
   try {
-    const appliace = await prisma.appliances.create({
+    const appliance = await prisma.appliances.create({
       data: {
         applianceName,
         price: appliancePrice,
@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    const folder = `appliances/${appliace.id}_${cleanApplianceName}`;
+    const folder = `appliances/${appliance.id}_${cleanApplianceName}`;
     const fileList: File[] | any = formData.getAll('file');
 
     fileList.forEach(async (file: File) => {
@@ -63,12 +63,12 @@ export async function POST(req: NextRequest) {
       await prisma.applianceImages.create({
         data: {
           imageUrl: fileName,
-          applianceId: appliace.id,
+          applianceId: appliance.id,
         },
       });
     });
 
-    return NextResponse.json({ message: 'Success', status: 200 });
+    return NextResponse.json({ message: 'Success', status: 200, ...appliance });
   } catch (err) {
     console.log(err);
     return NextResponse.json(errorMessage);

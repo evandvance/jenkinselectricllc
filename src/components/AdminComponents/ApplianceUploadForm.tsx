@@ -24,7 +24,6 @@ const ApplianceUploadForm = () => {
   const [success, setSuccess] = useState(false);
 
   const onSubmit = async (data: FieldValues) => {
-    console.log('here');
     const formData = new FormData();
 
     formData.append('applianceName', data.applianceName);
@@ -99,7 +98,7 @@ const ApplianceUploadForm = () => {
           <input
             {...register('modelNumber')}
             className="rounded p-2 text-black"
-            type="nuber"
+            type="text"
             name="modelNumber"
             id="modelNumber"
           />
@@ -126,10 +125,9 @@ const ApplianceUploadForm = () => {
           <label className="text-xl" htmlFor="description">
             Appliance Description
           </label>
-          <input
+          <textarea
             {...register('description')}
             className="rounded p-2 text-black"
-            type="text-area"
             name="description"
             id="description"
           />
