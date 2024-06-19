@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Technicians } from '@prisma/client';
@@ -12,9 +12,15 @@ import RedButton from '@/components/Buttons/RedButton';
 
 interface EditTechnicianCardProps {
   technician: Technicians;
+  allTechnicians: Technicians[];
+  setTechnicians: Dispatch<SetStateAction<Technicians[] | undefined>>;
 }
 
-const EditTechnicianCard = ({ technician }: EditTechnicianCardProps) => {
+const EditTechnicianCard = ({
+  technician,
+  setTechnicians,
+  allTechnicians,
+}: EditTechnicianCardProps) => {
   const {
     register,
     handleSubmit,
@@ -27,21 +33,43 @@ const EditTechnicianCard = ({ technician }: EditTechnicianCardProps) => {
   const [success, setSuccess] = useState(false);
 
   const handleDelete = async (id: number) => {
+    const oldTechnicians = allTechnicians;
+    setTechnicians([
+      ...allTechnicians.filter((tech) => tech.id !== technician.id),
+    ]);
+
     const result = await fetch(`/api/admin/technicians/${id}`, {
       method: 'DELETE',
     });
 
     const response = (await result.json()) as ApiResponse<Technicians>;
-    window.location.reload();
+    if (response.status !== 204) {
+      setTechnicians(oldTechnicians);
+    }
   };
 
   const onSumbit = async (data: FieldValues) => {
+    const newTechnician = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      bio: data.bio,
+      isCertified: data.isCertified,
+      imageUrl: technician.imageUrl,
+      id: technician.id,
+    };
+    const oldTechnicians = allTechnicians;
+
+    setTechnicians([
+      ...allTechnicians.filter((tech) => tech.id !== technician.id),
+      newTechnician,
+    ]);
+
     const formData = new FormData();
 
-    formData.append('firstName', data.firstName);
-    formData.append('lastName', data.lastName);
-    formData.append('bio', data.bio);
-    formData.append('isCertified', data.isCertified);
+    formData.append('firstName', newTechnician.firstName);
+    formData.append('lastName', newTechnician.lastName);
+    formData.append('bio', newTechnician.bio);
+    formData.append('isCertified', newTechnician.isCertified);
 
     const response = await fetch(`/api/admin/technicians/${technician.id}`, {
       method: 'PUT',
@@ -51,10 +79,10 @@ const EditTechnicianCard = ({ technician }: EditTechnicianCardProps) => {
     const result = (await response.json()) as ApiResponse<Technicians>;
 
     if (result.status !== 200) {
+      setTechnicians(oldTechnicians);
       return setError(true);
     }
 
-    window.location.reload();
     setSuccess(true);
   };
 

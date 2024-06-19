@@ -1,14 +1,20 @@
 import { Reservations } from '@prisma/client';
+import { Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
-import { handleDelete, handleUnreserve } from './ApplianceListingCard';
 import RedButton from '@/components/Buttons/RedButton';
 import GreenButton from '@/components/Buttons/GreenButton';
 
 interface AdminReserveCardsProps {
   reservation: Reservations;
+  allReservations: Reservations[];
+  setReservations: Dispatch<SetStateAction<Reservations[]>>;
 }
 
-const AdminReserveCard = ({ reservation }: AdminReserveCardsProps) => {
+const AdminReserveCard = ({
+  reservation,
+  allReservations,
+  setReservations,
+}: AdminReserveCardsProps) => {
   return (
     <div className="w-[90vw] rounded-xl p-4 flex flex-col justify-start items-start lg:flex-row lg:justify-between lg:items-center bg-slate-300">
       <div className="lg:flex lg:text-wrap flex lg:justify-center items-center flex-wrap">
@@ -33,13 +39,9 @@ const AdminReserveCard = ({ reservation }: AdminReserveCardsProps) => {
       </div>
 
       <div className="w-full flex justify-around items-center mt-3 lg:space-x-5 lg:w-1/4 lg:justify-end">
-        <GreenButton onClick={() => handleUnreserve(reservation.applianceId)}>
-          Unreserve
-        </GreenButton>
+        <GreenButton onClick={handleUnreserve}>Unreserve</GreenButton>
 
-        <RedButton onClick={() => handleDelete(reservation.applianceId)}>
-          Delete Appliance
-        </RedButton>
+        <RedButton onClick={handleDelete}>Delete Appliance</RedButton>
       </div>
     </div>
   );

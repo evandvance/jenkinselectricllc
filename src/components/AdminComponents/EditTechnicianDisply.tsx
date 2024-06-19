@@ -1,22 +1,17 @@
 'use client';
-import { useState, useEffect } from 'react';
-import EditTechnicianCard from './AdminCards/EditTechnicianCard';
 import { Technicians } from '@prisma/client';
+import EditTechnicianCard from './AdminCards/EditTechnicianCard';
+import { Dispatch, SetStateAction } from 'react';
 
-const EditTechnicianDisply = () => {
-  const [technicians, setTechnicians] = useState<Technicians[]>();
+interface EditTechnicianDisplayProps {
+  technicians?: Technicians[];
+  setTechnicians: Dispatch<SetStateAction<Technicians[] | undefined>>;
+}
 
-  useEffect(() => {
-    fetch('/api/technicians').then(async (data) => {
-      const result = (await data.json()) as ApiResponse<Technicians[]>;
-
-      const technicianResponse = result.data;
-      if (!technicianResponse) return;
-
-      setTechnicians(technicianResponse!);
-    });
-  }, []);
-
+const EditTechnicianDisply = ({
+  technicians,
+  setTechnicians,
+}: EditTechnicianDisplayProps) => {
   return (
     <div className="w-screen flex flex-col justify-center items-center space-y-4 mb-5">
       <h2 className="text-3xl">Technicians listed</h2>
@@ -27,7 +22,12 @@ const EditTechnicianDisply = () => {
         <div>No technicians found</div>
       ) : (
         technicians?.map((technician) => (
-          <EditTechnicianCard key={technician.id} technician={technician} />
+          <EditTechnicianCard
+            key={technician.id}
+            allTechnicians={technicians}
+            technician={technician}
+            setTechnicians={setTechnicians}
+          />
         ))
       )}
     </div>
