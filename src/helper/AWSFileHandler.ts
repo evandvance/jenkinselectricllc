@@ -1,3 +1,4 @@
+'use server';
 import {
   S3,
   PutObjectCommandInput,
@@ -6,7 +7,7 @@ import {
 } from '@aws-sdk/client-s3';
 
 export const uploadFile = async (file: File, folder: string) => {
-  const fileBuffer = Buffer.from(await file.arrayBuffer());
+  const fileBuffer = await Buffer.from(await file.arrayBuffer());
 
   const fileName = cleanseName(file.name);
 
@@ -22,7 +23,6 @@ export const uploadFile = async (file: File, folder: string) => {
     process.env.NODE_ENV === 'development' ? 'dev/' : ''
   }${folder}/${fileName}`;
 
-  console.log(Key);
   const options: PutObjectCommandInput = {
     Bucket: 'jenkinselectricllc',
     Key: Key,

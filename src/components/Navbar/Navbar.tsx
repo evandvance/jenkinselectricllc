@@ -21,7 +21,7 @@ const Navbar = () => {
           <Image
             src="/assets/logo.svg"
             alt="JenkinsElectricLLC logo"
-            className="w-full h-auto object-contain"
+            className="w-full h-auto object-contain bg-black"
             height={3}
             width={4}
           />
@@ -44,9 +44,10 @@ const Navbar = () => {
         </div>
       </div>
       <ul
+        // The nabar comes from the top because there is a weird behavior on mobile where it enables horizontal scrolling if it comes from the side
         className={`absolute ${
-          isNavOpen ? 'translate-x-0' : 'translate-x-[100vw]'
-        } z-40 w-screen lg:w-auto lg:flex lg:static lg:justify-center lg:items-baseline lg:mr-24 lg:translate-x-0 pt-2 text-2xl space-y-1 duration-500 ease-in-out transition-all lg:transition-none bg-black`}
+          isNavOpen ? 'translate-y-0' : '-translate-y-[100vh]'
+        } z-40 w-screen lg:w-auto lg:flex lg:static lg:justify-center lg:items-baseline lg:mr-24 lg:translate-y-0 pt-2 text-2xl space-y-1 duration-500 ease-in-out transition-all lg:transition-none bg-black`}
       >
         <li className="min-h-[50px] py-1 border-b lg:border-none">
           <Link
