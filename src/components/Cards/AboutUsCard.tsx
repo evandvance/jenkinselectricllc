@@ -17,24 +17,17 @@ const AboutUsCard = ({ className }: AbouteUsCardProps) => {
           className="m-5"
           src="/images/owners.jpg"
           alt="Image of the Owners of Jenkins Electric LLC"
-          height={500}
-          width={500}
+          height={400}
+          width={400}
         />
         <p className="text-xl lg:text-2xl m-5 lg:w-[50%]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-          voluptas, nisi tenetur dolorem qui obcaecati nulla perferendis, magnam
-          fugiat nemo consectetur quaerat illo neque, tempore eius! Soluta
-          adipisci commodi error. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Officiis voluptas, nisi tenetur dolorem qui
-          obcaecati nulla perferendis, magnam fugiat nemo consectetur quaerat
-          illo neque, tempore eius! Soluta adipisci commodi error. Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Officiis voluptas, nisi
-          tenetur dolorem qui obcaecati nulla perferendis, magnam fugiat nemo
-          consectetur quaerat illo neque, tempore eius! Soluta adipisci commodi
-          error. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Officiis voluptas, nisi tenetur dolorem qui obcaecati nulla
-          perferendis, magnam fugiat nemo consectetur quaerat illo neque,
-          tempore eius! Soluta adipisci commodi error.
+          We are licensed electricians and plumbers located in the Adamsville,
+          TN. area. We have an appliance technician on staff. From changing
+          lightbulbs to full house rewires, we have the experience, knowledge,
+          and toolsets to meet your electrical and plumbing needs. We sell and
+          repair appliances and window AC units. We also sell, program, install,
+          and service Generac and Duramax generators. We are here to serve you.
+          Thank you and God bless!
         </p>
       </div>
     </div>
