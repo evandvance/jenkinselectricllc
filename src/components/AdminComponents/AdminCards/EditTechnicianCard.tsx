@@ -73,7 +73,7 @@ const EditTechnicianCard = ({ technician }: EditTechnicianCardProps) => {
         </p>
       )}
 
-      <div className="flex space-x-4">
+      <div className="flex flex-col justify-center items-center lg:flex-row space-y-3 lg:space-y-0 lg:space-x-4">
         <input
           {...register('firstName')}
           defaultValue={technician.firstName}
@@ -102,7 +102,7 @@ const EditTechnicianCard = ({ technician }: EditTechnicianCardProps) => {
       <textarea
         {...register('bio')}
         defaultValue={technician.bio}
-        className="rounded p-2 text-black"
+        className="rounded p-2 text-black w-60 h-40 lg:h-auto lg:w-96"
         name="bio"
         id="bio"
       />
