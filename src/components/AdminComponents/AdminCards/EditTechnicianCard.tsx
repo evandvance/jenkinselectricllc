@@ -87,80 +87,81 @@ const EditTechnicianCard = ({
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSumbit)}
-      className="w-[90vw] bg-slate-300 rounded-xl flex flex-col space-y-3 lg:flex-row p-3 lg:px-5 items-center justify-between"
-    >
+    <div className="w-[90vw] bg-slate-300 rounded-xl flex flex-col items-center justify-center">
       {error && (
-        <p className="text-red-500 text-2xl m-2">
+        <p className="text-red-500 text-2xl text-center w-full px-5 m-2">
           Error - Something when wrong on the server
         </p>
       )}
 
       {success && (
-        <p className="text-2xl text-green-600 m-2">
+        <p className="text-2xl text-center w-full px-5 text-green-600 m-2">
           Technician Updated Successfully
         </p>
       )}
+      <form
+        onSubmit={handleSubmit(onSumbit)}
+        className="w-full flex flex-col space-y-3 lg:flex-row p-3 lg:px-8 items-center justify-between"
+      >
+        <div className="flex flex-col justify-center items-center lg:flex-row space-y-3 lg:space-y-0 lg:space-x-4">
+          <input
+            {...register('firstName')}
+            defaultValue={technician.firstName}
+            className="rounded p-2 text-black w-60"
+            type="text"
+            name="firstName"
+            id="firstName"
+          />
+          {errors.firstName && (
+            <p className="text-red-500">{errors.firstName.message}</p>
+          )}
 
-      <div className="flex flex-col justify-center items-center lg:flex-row space-y-3 lg:space-y-0 lg:space-x-4">
-        <input
-          {...register('firstName')}
-          defaultValue={technician.firstName}
-          className="rounded p-2 text-black w-60"
-          type="text"
-          name="firstName"
-          id="firstName"
+          <input
+            {...register('lastName')}
+            defaultValue={technician.lastName}
+            className="rounded p-2 text-black w-60"
+            type="text"
+            name="lastName"
+            id="lastName"
+          />
+          {errors.lastName && (
+            <p className="text-red-500">{errors.lastName.message}</p>
+          )}
+        </div>
+
+        <textarea
+          {...register('bio')}
+          defaultValue={technician.bio}
+          className="rounded p-2 text-black w-60 h-40 lg:h-auto lg:w-96"
+          name="bio"
+          id="bio"
         />
-        {errors.firstName && (
-          <p className="text-red-500">{errors.firstName.message}</p>
-        )}
+        {errors.bio && <p className="text-red-500">{errors.bio.message}</p>}
 
-        <input
-          {...register('lastName')}
-          defaultValue={technician.lastName}
-          className="rounded p-2 text-black w-60"
-          type="text"
-          name="lastName"
-          id="lastName"
-        />
-        {errors.lastName && (
-          <p className="text-red-500">{errors.lastName.message}</p>
-        )}
-      </div>
-
-      <textarea
-        {...register('bio')}
-        defaultValue={technician.bio}
-        className="rounded p-2 text-black w-60 h-40 lg:h-auto lg:w-96"
-        name="bio"
-        id="bio"
-      />
-      {errors.bio && <p className="text-red-500">{errors.bio.message}</p>}
-
-      <div className="flex items-center">
-        <input
-          {...register('isCertified')}
-          className="rounded p-2 m-2 text-black"
-          defaultChecked={technician.isCertified ? true : false}
-          type="checkbox"
-          name="isCertified"
-          id="isCertified"
-        />
-        <label className="text-xl" htmlFor="isCertified">
-          Electrician Is Certified?
-        </label>
-        {errors.isCertified && (
-          <p className="text-red-500">{errors.isCertified.message}</p>
-        )}
-      </div>
-      <div className="space-x-3">
-        <GreenButton type="submit">Update</GreenButton>
-        <RedButton onClick={() => handleDelete(technician.id)}>
-          Delete
-        </RedButton>
-      </div>
-    </form>
+        <div className="flex items-center">
+          <input
+            {...register('isCertified')}
+            className="rounded p-2 m-2 text-black"
+            defaultChecked={technician.isCertified ? true : false}
+            type="checkbox"
+            name="isCertified"
+            id="isCertified"
+          />
+          <label className="text-xl" htmlFor="isCertified">
+            Electrician Is Certified?
+          </label>
+          {errors.isCertified && (
+            <p className="text-red-500">{errors.isCertified.message}</p>
+          )}
+        </div>
+        <div className="space-x-3">
+          <GreenButton type="submit">Update</GreenButton>
+          <RedButton onClick={() => handleDelete(technician.id)}>
+            Delete
+          </RedButton>
+        </div>
+      </form>
+    </div>
   );
 };
 

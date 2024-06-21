@@ -15,6 +15,42 @@ const AdminReserveCard = ({
   allReservations,
   setReservations,
 }: AdminReserveCardsProps) => {
+  const handleDelete = async () => {
+    const oldReservations = allReservations;
+    setReservations(allReservations.filter((res) => res.id !== reservation.id));
+
+    const response = await fetch(
+      `/api/admin/appliances/${reservation.applianceId}`,
+      {
+        method: 'DELETE',
+      }
+    );
+    const data = (await response.json()) as ApiResponse<undefined>;
+
+    if (data.status !== 204) {
+      setReservations(oldReservations);
+    }
+  };
+
+  const handleUnreserve = async () => {
+    const oldReservations = allReservations;
+
+    setReservations(allReservations.filter((res) => res.id !== reservation.id));
+
+    const result = await fetch(
+      `/api/admin/appliances/${reservation.applianceId}`,
+      {
+        method: 'PATCH',
+      }
+    );
+
+    const data = (await result.json()) as ApiResponse<undefined>;
+
+    if (data.status !== 200) {
+      setReservations(oldReservations);
+    }
+  };
+
   return (
     <div className="w-[90vw] rounded-xl p-4 flex flex-col justify-start items-start lg:flex-row lg:justify-between lg:items-center bg-slate-300">
       <div className="lg:flex lg:text-wrap flex lg:justify-center items-center flex-wrap">
