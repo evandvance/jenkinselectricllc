@@ -7,7 +7,7 @@ import GreenButton from '@/components/Buttons/GreenButton';
 interface AdminReserveCardsProps {
   reservation: Reservations;
   allReservations: Reservations[];
-  setReservations: Dispatch<SetStateAction<Reservations[]>>;
+  setReservations: Dispatch<SetStateAction<Reservations[] | undefined>>;
 }
 
 const AdminReserveCard = ({

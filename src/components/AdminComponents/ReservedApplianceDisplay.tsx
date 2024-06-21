@@ -27,7 +27,12 @@ const ReservedApplianceDisplay = () => {
       ) : (
         reservations?.map((reservation) => {
           return (
-            <AdminReserveCard key={reservation.id} reservation={reservation} />
+            <AdminReserveCard
+              key={reservation.id}
+              reservation={reservation}
+              allReservations={reservations}
+              setReservations={setReservations}
+            />
           );
         })
       )}
