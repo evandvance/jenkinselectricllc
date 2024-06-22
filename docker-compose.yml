@@ -23,6 +23,7 @@ services:
       - AWS_SECRET_KEY=${AWS_SECRET_KEY}
       - NEXTAUTH_URL=${NEXTAUTH_URL}
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - RESEND_API_KEY=${RESEND_API_KEY}
     develop:
       watch:
         - path: ./src
