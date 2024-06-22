@@ -7,14 +7,14 @@ class PrismaHelper extends PrismaClient {
 
   constructor() {
     super();
-    if (this._instance) {
-      return this;
-    } else {
-      this._instance = this;
-    }
+  }
+
+  getInstance() {
+    return this;
   }
 }
 
-const prisma = new PrismaHelper();
+const prismaHelper = new PrismaHelper();
+const prisma = prismaHelper.getInstance();
 
 export default prisma;
