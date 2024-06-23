@@ -17,8 +17,8 @@ export async function POST(req: NextRequest) {
   const modelNumber = formData.get('modelNumber')?.toString()!;
   const description = formData.get('description')?.toString()!;
   const imageFile = formData.get('file');
-  const age: ApplianceAges | any = formData.get('applianceAge')!;
-  const type: ApplianceTypes | any = formData.get('applianceType')!;
+  const age = formData.get('applianceAge')! as ApplianceAges;
+  const type = formData.get('applianceType')! as ApplianceTypes;
 
   const validation = applianceUploadFormSchema.safeParse({
     applianceName,
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
     });
 
     const folder = `appliances/${appliance.id}_${cleanApplianceName}`;
-    const fileList: File[] | any = formData.getAll('file');
+    const fileList = formData.getAll('file') as File[];
 
     fileList.forEach(async (file: File) => {
       const fileName = await uploadFile(file, folder);
@@ -68,7 +68,11 @@ export async function POST(req: NextRequest) {
       });
     });
 
-    return NextResponse.json({ message: 'Success', status: 200, ...appliance });
+    return NextResponse.json({
+      message: 'Success',
+      status: 201,
+      data: appliance,
+    });
   } catch (err) {
     console.log(err);
     return NextResponse.json(errorMessage);

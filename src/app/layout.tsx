@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={roboto.className}>
         <SessionWrapper>
           <Navbar />
-          {children}
+          <div className="min-h-[82vh]">{children}</div>
           <Footer />
         </SessionWrapper>
       </body>

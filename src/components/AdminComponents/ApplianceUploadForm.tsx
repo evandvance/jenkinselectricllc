@@ -7,6 +7,7 @@ import {
   applianceUploadFormSchema,
   ApplianceFormData,
 } from '@/interfaces/ApplianceUploadFormSchema';
+import { appliaceInterface } from '@/interfaces/ApplianceInterface';
 
 const ApplianceUploadForm = () => {
   const applianceAges = Object.keys(ApplianceAges);
@@ -34,7 +35,6 @@ const ApplianceUploadForm = () => {
     formData.append('applianceBrand', data.applianceBrand);
     formData.append('description', data.description);
 
-    console.log(data.imageFile.length);
     for (let i = 0; i < data.imageFile.length; i++) {
       formData.append('file', data.imageFile[i]);
     }
@@ -44,9 +44,9 @@ const ApplianceUploadForm = () => {
       body: formData,
     });
 
-    const result = await response.json();
+    const result = (await response.json()) as ApiResponse<appliaceInterface>;
 
-    if (result.status !== 200) {
+    if (result.status !== 201) {
       return setError(true);
     }
 

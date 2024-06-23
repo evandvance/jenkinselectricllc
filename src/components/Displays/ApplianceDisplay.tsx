@@ -16,14 +16,22 @@ const ApplianceDisplay = ({ age, filter, sortBy }: ApplianceDisplayProps) => {
     fetch('/api/appliances', {
       cache: 'no-cache',
     }).then(async (data) => {
-      let result: appliaceInterface[] = await data.json();
-      result = result.filter((appliance) => appliance.age === age);
+      const result = (await data.json()) as ApiResponse<appliaceInterface[]>;
+      let applianceArray = result.data;
+
+      if (!applianceArray) return;
+
+      applianceArray = applianceArray.filter(
+        (appliance) => appliance.age === age
+      );
 
       if (filter) {
-        result = result.filter((appliance) => appliance.type === filter);
+        applianceArray = applianceArray.filter(
+          (appliance) => appliance.type === filter
+        );
       }
 
-      setAppliances(result);
+      setAppliances(applianceArray);
     });
   }, [age, filter]);
 

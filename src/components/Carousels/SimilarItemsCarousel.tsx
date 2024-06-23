@@ -14,14 +14,19 @@ const SimilarItemsCarousel = ({ type, id }: SimilarItemsCarouselProps) => {
 
   useEffect(() => {
     fetch(`/api/appliances?type=${type}`).then(async (data) => {
-      let result: appliaceInterface[] = await data.json();
+      let result = (await data.json()) as ApiResponse<appliaceInterface[]>;
+      let similarAppliances = result.data;
 
-      result = result.filter((appliance) => appliance.id !== id);
+      if (!similarAppliances) return;
+
+      similarAppliances = similarAppliances.filter(
+        (appliance) => appliance.id !== id
+      );
 
       //todo make this be larger and have a carousel
-      result = result.slice(0, 3);
+      similarAppliances = similarAppliances.slice(0, 3);
 
-      setAppliances(result);
+      setAppliances(similarAppliances);
     });
   }, [type, id]);
 

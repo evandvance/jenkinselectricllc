@@ -7,7 +7,7 @@ import {
 
 export interface appliaceInterface extends Appliances {
   images: ApplianceImages[];
-  reservation: Reservations;
+  reservation?: Reservations;
 }
 
 export function isApplianceType(type: any): boolean {

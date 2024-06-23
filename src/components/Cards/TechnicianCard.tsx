@@ -19,11 +19,11 @@ const TechnicianCard = ({ technician, index }: TechnicianCardProps) => {
     <div
       className={`w-[85vw] lg:w-3/4 m-5 p-5 -z-20 border rounded-xl text-white flex flex-col lg:flex-row ${gradient}`}
     >
-      <div className="w-full lg:min-w-1/2 flex justify-center items-center relative">
+      <div className="w-full lg:w-1/2 flex justify-center items-center relative">
         <Image
-          height={500}
-          width={600}
-          className="object-cotain w-full h-auto p-5 -z-10"
+          height={400}
+          width={500}
+          className="object-cotain w-full h-auto lg:max-w-[500px] p-5 -z-10"
           src={technician.imageUrl}
           alt={`Image of ${technician.firstName} ${technician.lastName}`}
         />

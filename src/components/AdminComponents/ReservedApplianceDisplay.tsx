@@ -1,16 +1,19 @@
 'use client';
 import { useState, useEffect } from 'react';
 import AdminReserveCard from './AdminCards/AdminReservedCard';
-import { Reservations } from '@prisma/client';
+import { ReservationInterface } from '@/interfaces/ReservationInterface';
 
 const ReservedApplianceDisplay = () => {
-  const [reservations, setReservations] = useState<Reservations[]>();
+  const [reservations, setReservations] = useState<ReservationInterface[]>();
 
   useEffect(() => {
     fetch('/api/admin/appliances/reserved').then(async (data) => {
-      const result = await data.json();
+      const result = (await data.json()) as ApiResponse<ReservationInterface[]>;
 
-      setReservations(result);
+      const reservationsResult = result.data;
+      if (!reservationsResult) return;
+
+      setReservations(reservationsResult);
     });
   }, []);
 
@@ -24,7 +27,12 @@ const ReservedApplianceDisplay = () => {
       ) : (
         reservations?.map((reservation) => {
           return (
-            <AdminReserveCard key={reservation.id} reservation={reservation} />
+            <AdminReserveCard
+              key={reservation.id}
+              reservation={reservation}
+              allReservations={reservations}
+              setReservations={setReservations}
+            />
           );
         })
       )}

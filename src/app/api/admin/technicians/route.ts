@@ -52,8 +52,8 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({
       message: 'Success',
-      status: 200,
-      ...technician,
+      status: 201,
+      data: technician,
     });
   } catch (err) {
     console.log(err);

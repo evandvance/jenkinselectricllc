@@ -9,6 +9,7 @@ import { IoCloseOutline } from 'react-icons/io5';
 import DropDownLink from './DropDownLink';
 import { InfoItems } from './InfoItems';
 import { ApplianceItems } from './ApplianceItems';
+import { GeneratorItems } from './GeneratorItems';
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -88,6 +89,14 @@ const Navbar = () => {
           <DropDownLink
             dropDownLinks={ApplianceItems}
             title="Appliances"
+            className="m-1 p-2 lg:border-none"
+            onClick={() => setIsNavOpen(!isNavOpen)}
+          />
+        </li>
+        <li className="min-h-[50px]">
+          <DropDownLink
+            dropDownLinks={GeneratorItems}
+            title="Generators"
             className="m-1 p-2 lg:border-none"
             onClick={() => setIsNavOpen(!isNavOpen)}
           />

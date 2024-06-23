@@ -15,8 +15,11 @@ const AppliancePageDisplay = ({ id }: AppliancePageDisplayProps) => {
 
   useEffect(() => {
     fetch(`/api/appliances/${id}`, { cache: 'no-cache' }).then(async (data) => {
-      const result = await data.json();
-      setAppliance(result);
+      const result = (await data.json()) as ApiResponse<appliaceInterface>;
+      const applianceData = result.data;
+      if (!applianceData) return;
+
+      setAppliance(applianceData);
       setNoAppliance(false);
     });
   }, [id]);

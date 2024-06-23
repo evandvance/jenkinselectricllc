@@ -81,6 +81,13 @@ model Reservations {
   email       String     @unique
   comments    String?
   reservedAt  DateTime   @default(now()) @map("reserved_at")
+  firstName   String     @map("first_name")
+  lastName    String     @map("last_name")
+  phoneNumber String     @map("phone_number")
+  street      String
+  city        String
+  state       String
+  zip         Int
   appliance   Appliances @relation(fields: [applianceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@index([email])

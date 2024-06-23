@@ -1,13 +1,22 @@
 'use client';
-import { useState } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   TechnicianFormData,
   technicianFormSchema,
 } from '@/interfaces/TechnicianUploadFormSchema';
+import { Technicians } from '@prisma/client';
 
-const TechnicianUploadForm = () => {
+interface TechnicianUploadFormProps {
+  technicians?: Technicians[];
+  setTechnicians: Dispatch<SetStateAction<Technicians[] | undefined>>;
+}
+
+const TechnicianUploadForm = ({
+  technicians,
+  setTechnicians,
+}: TechnicianUploadFormProps) => {
   const {
     register,
     handleSubmit,
@@ -33,15 +42,15 @@ const TechnicianUploadForm = () => {
       body: formData,
     });
 
-    const result = await response.json();
+    const result = (await response.json()) as ApiResponse<Technicians>;
 
-    console.log(result);
-
-    if (result.status !== 200) {
+    if (result.status !== 201) {
       return setError(true);
     }
 
-    window.location.reload();
+    const newTechnician = result.data;
+
+    setTechnicians([...technicians!, newTechnician!]);
     setSuccess(true);
   };
 

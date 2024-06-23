@@ -1,18 +1,17 @@
 'use client';
-import { useState, useEffect } from 'react';
 import { appliaceInterface } from '@/interfaces/ApplianceInterface';
 import ApplianceListingCard from './AdminCards/ApplianceListingCard';
+import { Dispatch, SetStateAction } from 'react';
 
-const ApplianceListingDisplay = () => {
-  const [appliances, setAppliances] = useState<appliaceInterface[]>([]);
+interface ApplianceListingDisplayProps {
+  appliances: appliaceInterface[];
+  setAppliances: Dispatch<SetStateAction<appliaceInterface[]>>;
+}
 
-  useEffect(() => {
-    fetch('/api/appliances', { cache: 'no-cache' }).then(async (data) => {
-      const result = await data.json();
-      setAppliances(result);
-    });
-  }, []);
-
+const ApplianceListingDisplay = ({
+  appliances,
+  setAppliances,
+}: ApplianceListingDisplayProps) => {
   return (
     <div className="flex flex-col justify-center items-center w-screen space-y-3">
       {appliances.length === 0 ? (
@@ -22,7 +21,12 @@ const ApplianceListingDisplay = () => {
       ) : (
         appliances.map((appliance) => {
           return (
-            <ApplianceListingCard key={appliance.id} appliance={appliance} />
+            <ApplianceListingCard
+              key={appliance.id}
+              appliance={appliance}
+              allAppliances={appliances}
+              setAppliances={setAppliances}
+            />
           );
         })
       )}
