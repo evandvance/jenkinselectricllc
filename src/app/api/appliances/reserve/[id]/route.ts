@@ -16,8 +16,8 @@ export async function POST(
   const lastName = formData.get('lastName')?.toString()!;
   const phoneNumber = formData.get('phoneNumber')?.toString()!;
   const street = formData.get('street')?.toString()!;
-  const city = formData.get('city')?.toString()!;
-  const state = formData.get('state')?.toString()!;
+  const city = formData.get('city')?.toString()!.toUpperCase()!;
+  const state = formData.get('state')?.toString()!.toUpperCase()!;
   const zip = formData.get('zip')?.toString()!;
 
   const validation = reserveFormSchema.safeParse({
@@ -75,7 +75,7 @@ export async function POST(
     return NextResponse.json({
       message: 'Reservation Successfully Created',
       data: reservation,
-      status: 200,
+      status: 201,
     });
   } catch (err: any) {
     if (err.code === 'P2002') {

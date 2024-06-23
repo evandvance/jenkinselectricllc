@@ -12,7 +12,12 @@ export const reserveFormSchema = z.object({
   phoneNumber: z.string().regex(phoneRegex, 'Invalid Phone Number.'),
   street: z.string().min(3).max(50),
   city: z.string().min(3).max(50),
-  state: z.string().min(2).max(2),
+  state: z
+    .string()
+    .min(2, {
+      message: 'State expected to be represented as an abreviation ex: TN',
+    })
+    .max(2),
   zip: z.string().regex(new RegExp(/^\d{5}$/), 'Invalid Zip Code'),
 });
 
