@@ -3,7 +3,23 @@ import prisma from '@/helper/PrismaWrapper';
 
 export async function GET(req: NextRequest) {
   try {
-    const reservedAppliances = await prisma.reservations.findMany();
+    const reservedAppliances = await prisma.reservations.findMany({
+      select: {
+        id: true,
+        email: true,
+        comments: true,
+        firstName: true,
+        lastName: true,
+        phoneNumber: true,
+        street: true,
+        city: true,
+        state: true,
+        zip: true,
+        applianceId: true,
+        reservedAt: true,
+        appliance: true,
+      },
+    });
 
     return NextResponse.json({
       message: 'Success',
