@@ -12,13 +12,27 @@ export async function POST(
 
   const email = formData.get('email')?.toString()!;
   const comments = formData.get('comments')?.toString()!;
+  const firstName = formData.get('firstName')?.toString()!;
+  const lastName = formData.get('lastName')?.toString()!;
+  const phoneNumber = formData.get('phoneNumber')?.toString()!;
+  const street = formData.get('street')?.toString()!;
+  const city = formData.get('city')?.toString()!;
+  const state = formData.get('state')?.toString()!;
+  const zip = formData.get('zip')?.toString()!;
 
   const validation = reserveFormSchema.safeParse({
     email,
     comments,
+    firstName,
+    lastName,
+    phoneNumber,
+    street,
+    city,
+    state,
+    zip,
   });
 
-  if (validation.error) {
+  if (validation.error || isNaN(parseInt(zip))) {
     return NextResponse.json({
       message: 'Invalid Input',
       status: 400,
@@ -48,6 +62,13 @@ export async function POST(
         applianceId: id,
         email,
         comments,
+        firstName,
+        lastName,
+        phoneNumber,
+        street,
+        city,
+        state,
+        zip: parseInt(zip),
       },
     });
 
