@@ -55,7 +55,7 @@ const AdminReserveCard = ({
     <div className="w-[90vw] rounded-xl p-4 flex flex-col justify-start items-start lg:flex-row lg:justify-between lg:items-center bg-slate-300">
       <div className="lg:flex lg:text-wrap flex lg:justify-center items-center flex-wrap">
         <Link
-          className="hover:underline underline-offset-2 text-jellcblue underline underline-offset-2"
+          className="hover:underline underline-offset-2 text-jellcblue underline"
           href={`mailto:${reservation.email}`}
         >
           {reservation.firstName + ' ' + reservation.lastName}{' '}

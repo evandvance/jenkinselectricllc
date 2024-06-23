@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { applianceUploadFormSchema } from '@/interfaces/ApplianceUploadFormSchema';
+import { ApplianceAges, ApplianceTypes } from '@prisma/client';
 // import { deleteFile, cleanseName } from '@/helper/AWSFileHandler';
 import prisma from '@/helper/PrismaWrapper';
+
+const errorMessage = { message: 'Error - something went wrong', status: 500 };
 
 export async function DELETE(
   req: NextRequest,
@@ -21,7 +25,7 @@ export async function DELETE(
     return NextResponse.json({ message: 'Deletion Successful', status: 204 });
   } catch (err) {
     console.log(err);
-    return NextResponse.json({ message: 'An error has occured', status: 500 });
+    return NextResponse.json(errorMessage);
   }
 }
 
@@ -42,7 +46,65 @@ export async function PATCH(
     });
   } catch (err) {
     console.log(err);
-    return NextResponse.json({ message: 'An error has occured', status: 500 });
+    return NextResponse.json(errorMessage);
+  }
+}
+
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const id = parseInt(params.id);
+  const formData = await req.formData();
+
+  const applianceName = formData.get('applianceName')?.toString()!;
+  const appliancePrice = parseInt(formData.get('appliancePrice')?.toString()!);
+  const applianceBrand = formData.get('applianceBrand')?.toString()!;
+  const modelNumber = formData.get('modelNumber')?.toString()!;
+  const description = formData.get('description')?.toString()!;
+  const age = formData.get('age')! as ApplianceAges;
+  const type = formData.get('type')! as ApplianceTypes;
+
+  const validation = applianceUploadFormSchema.safeParse({
+    applianceName,
+    appliancePrice,
+    modelNumber,
+    applianceBrand,
+    description,
+    type,
+    age,
+  });
+
+  if (validation.error) {
+    return NextResponse.json({
+      message: 'Invalid Input',
+      status: 400,
+      error: validation.error,
+    });
+  }
+
+  try {
+    const appliance = await prisma.appliances.update({
+      where: { id },
+      data: {
+        applianceName,
+        price: appliancePrice,
+        modelNumber,
+        type,
+        age,
+        description,
+        brand: applianceBrand,
+      },
+    });
+
+    return NextResponse.json({
+      message: 'Success',
+      status: 200,
+      data: appliance,
+    });
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json(errorMessage);
   }
 }
 
