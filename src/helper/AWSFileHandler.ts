@@ -9,7 +9,7 @@ import {
 export const uploadFile = async (file: File, folder: string) => {
   const fileBuffer = await Buffer.from(await file.arrayBuffer());
 
-  const fileName = cleanseName(file.name);
+  const fileName = await cleanseName(file.name);
 
   const s3client = new S3({
     region: 'us-east-1',

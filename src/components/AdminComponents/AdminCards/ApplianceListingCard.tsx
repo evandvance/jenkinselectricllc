@@ -84,7 +84,7 @@ const ApplianceListingCard = ({
       images: appliance.images,
     };
 
-    const oldAppliances = allAppliances;
+    const oldAppliances = [...allAppliances];
 
     setAppliances([
       ...allAppliances.filter((app) => app.id !== appliance.id),
@@ -222,7 +222,9 @@ const ApplianceListingCard = ({
         )}
 
         <div className="space-x-3">
-          <GreenButton onClick={handleUnreserve}>Unreserve</GreenButton>
+          {appliance.reservation && (
+            <GreenButton onClick={handleUnreserve}>Unreserve</GreenButton>
+          )}
           <GreenButton type="submit">Update</GreenButton>
           <RedButton onClick={handleDelete}>Delete</RedButton>
         </div>

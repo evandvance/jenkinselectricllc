@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  const cleanApplianceName = cleanseName(applianceName);
+  const cleanApplianceName = await cleanseName(applianceName);
 
   try {
     const appliance = await prisma.appliances.create({
