@@ -16,7 +16,7 @@ const AdminReserveCard = ({
   setReservations,
 }: AdminReserveCardsProps) => {
   const handleDelete = async () => {
-    const oldReservations = allReservations;
+    const oldReservations = [...allReservations];
     setReservations(allReservations.filter((res) => res.id !== reservation.id));
 
     const response = await fetch(
@@ -33,7 +33,7 @@ const AdminReserveCard = ({
   };
 
   const handleUnreserve = async () => {
-    const oldReservations = allReservations;
+    const oldReservations = [...allReservations];
 
     setReservations(allReservations.filter((res) => res.id !== reservation.id));
 
@@ -52,17 +52,17 @@ const AdminReserveCard = ({
   };
 
   return (
-    <div className="w-[90vw] rounded-xl p-4 flex flex-col justify-start items-start lg:flex-row lg:justify-between lg:items-center bg-slate-300">
+    <div className="w-[90vw] rounded-xl p-4 flex flex-col justify-start items-start lg:flex-row lg:justify-around lg:items-center bg-slate-300">
       <div className="lg:flex lg:text-wrap flex lg:justify-center items-center flex-wrap">
         <Link
-          className="hover:underline underline-offset-2 text-jellcblue underline"
+          className="hover:text-white underline-offset-2 text-jellcblue underline"
           href={`mailto:${reservation.email}`}
         >
           {reservation.firstName + ' ' + reservation.lastName}{' '}
         </Link>
         <p className="lg:ml-1">has reserved appliance </p>
         <Link
-          className="lg:ml-1 text-jellcblue underline underline-offset-2"
+          className="lg:ml-1 text-jellcblue underline underline-offset-2 hover:text-white"
           href={`/appliances/${reservation.applianceId}`}
         >
           {reservation.appliance.applianceName}
@@ -79,14 +79,14 @@ const AdminReserveCard = ({
         </p>
 
         <Link
-          className="lg:ml-1 text-jellcblue underline underline-offset-2"
+          className="lg:ml-1 text-jellcblue underline underline-offset-2 hover:text-white"
           href={`tel:${reservation.phoneNumber}`}
         >
           {reservation.phoneNumber}
         </Link>
       </div>
 
-      <div className="w-full flex justify-around items-center mt-3 lg:space-x-5 lg:w-1/4 lg:justify-end">
+      <div className="w-full flex justify-around items-center mt-3 lg:space-x-5 lg:justify-end">
         <GreenButton onClick={handleUnreserve}>Unreserve</GreenButton>
 
         <RedButton onClick={handleDelete}>Delete Appliance</RedButton>

@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ApplianceAges, ApplianceTypes } from '@prisma/client';
@@ -9,13 +9,22 @@ import {
 } from '@/interfaces/ApplianceUploadFormSchema';
 import { appliaceInterface } from '@/interfaces/ApplianceInterface';
 
-const ApplianceUploadForm = () => {
+interface ApplianceUploadFormProps {
+  allAppliances: appliaceInterface[];
+  setAppliances: Dispatch<SetStateAction<appliaceInterface[]>>;
+}
+
+const ApplianceUploadForm = ({
+  allAppliances,
+  setAppliances,
+}: ApplianceUploadFormProps) => {
   const applianceAges = Object.keys(ApplianceAges);
   const applianceTypes = Object.keys(ApplianceTypes);
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<ApplianceFormData>({
     resolver: zodResolver(applianceUploadFormSchema),
@@ -50,12 +59,26 @@ const ApplianceUploadForm = () => {
       return setError(true);
     }
 
-    window.location.reload();
+    const newAppliance = result.data!;
+
     setSuccess(true);
+    reset();
+    setAppliances([...allAppliances, newAppliance]);
   };
 
   return (
     <>
+      {error && (
+        <p className="text-red-500 text-2xl">
+          Error Something when wrong on the server
+        </p>
+      )}
+
+      {success && (
+        <p className="text-2xl text-green-600">
+          Appliance Uploaded Successfully
+        </p>
+      )}
       <form
         className="flex flex-col justify-center items-center w-[90%] p-5 border rounded-xl border-jellcblue text-white bg-black lg:w-3/4 space-y-3"
         onSubmit={handleSubmit(onSubmit)}
@@ -183,19 +206,6 @@ const ApplianceUploadForm = () => {
           Submit
         </button>
       </form>
-
-      {error && (
-        <p className="text-red-500 text-2xl">
-          Error Something when wrong on the server -- Potentially duplicate file
-          uploads
-        </p>
-      )}
-
-      {success && (
-        <p className="text-2xl text-green-600">
-          Appliance Uploaded Successfully
-        </p>
-      )}
     </>
   );
 };
