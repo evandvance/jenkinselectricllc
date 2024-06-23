@@ -6,10 +6,10 @@ const phoneRegex = new RegExp(
 
 export const reserveFormSchema = z.object({
   email: z.string().email(),
-  firstName: z.string(),
-  lastName: z.string(),
-  phoneNumber: z.string().regex(phoneRegex, 'Invalid Phone Number.'),
   comments: z.string(),
+  firstName: z.string().min(1, { message: 'Must include a first name' }),
+  lastName: z.string().min(1, { message: 'Must include a last name' }),
+  phoneNumber: z.string().regex(phoneRegex, 'Invalid Phone Number.'),
   street: z.string().min(3).max(50),
   city: z.string().min(3).max(50),
   state: z.string().min(2).max(2),

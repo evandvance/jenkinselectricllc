@@ -37,7 +37,15 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
     const formData = new FormData();
 
     formData.append('email', data.email);
+
     formData.append('comments', data.comments);
+    formData.append('firstName', data.firstName);
+    formData.append('lastName', data.lastName);
+    formData.append('phoneNumber', data.phoneNumber);
+    formData.append('street', data.street);
+    formData.append('city', data.city);
+    formData.append('state', data.state);
+    formData.append('zip', data.zip);
 
     const response = await fetch(`/api/appliances/reserve/${id}`, {
       method: 'POST',
@@ -69,13 +77,123 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
             <input
               {...register('email')}
               className="rounded p-2 text-black"
-              type="text-area"
+              type="text"
               name="email"
               id="email"
             />
             {errors.email && (
               <p className="text-red-500">{errors.email.message}</p>
             )}
+          </div>
+          <div className="flex flex-col lg:flex-row w-3/4 space-y-2 lg:space-x-4 lg:space-y-0">
+            <div className="flex flex-col w-1/2">
+              <label className="text-xl" htmlFor="firstName">
+                First Name
+              </label>
+              <input
+                {...register('firstName')}
+                className="rounded p-2 text-black"
+                type="text"
+                name="firstName"
+                id="firstName"
+              />
+              {errors.firstName && (
+                <p className="text-red-500">{errors.firstName.message}</p>
+              )}
+            </div>
+            <div className="flex flex-col w-1/2">
+              <label className="text-xl" htmlFor="lastName">
+                Last Name
+              </label>
+              <input
+                {...register('lastName')}
+                className="rounded p-2 text-black"
+                type="text"
+                name="lastName"
+                id="lastName"
+              />
+              {errors.lastName && (
+                <p className="text-red-500">{errors.lastName.message}</p>
+              )}
+            </div>
+          </div>
+          <div className="flex flex-col w-3/4 space-y-2">
+            <label className="text-xl" htmlFor="phoneNumber">
+              Phone Number
+            </label>
+            <input
+              {...register('phoneNumber')}
+              className="rounded p-2 text-black"
+              type="tel"
+              name="phoneNumber"
+              id="phoneNumber"
+              pattern="
+              /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/"
+            />
+            {errors.phoneNumber && (
+              <p className="text-red-500">{errors.phoneNumber.message}</p>
+            )}
+          </div>
+
+          <div className="flex flex-col w-3/4 space-y-2">
+            <label className="text-xl" htmlFor="street">
+              Street
+            </label>
+            <input
+              {...register('street')}
+              className="rounded p-2 text-black"
+              type="tel"
+              name="street"
+              id="street"
+            />
+            {errors.street && (
+              <p className="text-red-500">{errors.street.message}</p>
+            )}
+          </div>
+          <div className="flex flex-col lg:flex-row w-3/4 space-y-2 lg:space-x-4 lg:space-y-0">
+            <div className="flex flex-col w-1/2 space-y-2">
+              <label className="text-xl" htmlFor="city">
+                City
+              </label>
+              <input
+                {...register('city')}
+                className="rounded p-2 text-black"
+                type="tel"
+                name="city"
+                id="city"
+              />
+              {errors.city && (
+                <p className="text-red-500">{errors.city.message}</p>
+              )}
+            </div>
+            <div className="flex flex-col w-1/2 space-y-2">
+              <label className="text-xl" htmlFor="state">
+                State
+              </label>
+              <input
+                {...register('state')}
+                className="rounded p-2 text-black"
+                type="tel"
+                name="state"
+                id="state"
+              />
+              {errors.state && (
+                <p className="text-red-500">{errors.state.message}</p>
+              )}
+            </div>
+          </div>
+          <div className="flex flex-col w-3/4 space-y-2">
+            <label className="text-xl" htmlFor="zip">
+              Zip Code
+            </label>
+            <input
+              {...register('zip')}
+              className="rounded p-2 text-black"
+              type="tel"
+              name="zip"
+              id="zip"
+            />
+            {errors.zip && <p className="text-red-500">{errors.zip.message}</p>}
           </div>
           <div className="flex flex-col w-3/4 space-y-2">
             <label className="text-xl" htmlFor="comments">
