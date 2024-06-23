@@ -24,10 +24,10 @@ const AboutUsCard = ({ className }: AbouteUsCardProps) => {
           We are licensed electricians and plumbers located in the Adamsville,
           TN. area. We have an appliance technician on staff. From changing
           lightbulbs to full house rewires, we have the experience, knowledge,
-          and toolsets to meet your electrical and plumbing needs. We sell and
+          and skillsets to meet your electrical and plumbing needs. We sell and
           repair appliances and window AC units. We also sell, program, install,
-          and service Generac and Duramax generators. We are here to serve you.
-          Thank you and God bless!
+          and service Champion, Duramax, and Generac generators. We are here to
+          serve you. Thank you and God bless!
         </p>
       </div>
     </div>
