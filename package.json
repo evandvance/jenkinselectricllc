@@ -12,7 +12,7 @@
     "test": "vitest",
     "migrate": "echo 'Dont forget to incrament migration number and change env var' && sh ./prisma/migrate.sh",
     "dev:docker": "docker compose up --detach && docker compose watch",
-    "prev-email": "email dev -p 3001"
+    "prev-email": "email dev -p 3001 --dir ./src/emails"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.592.0",
