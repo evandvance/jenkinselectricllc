@@ -10,13 +10,19 @@ export async function DELETE(
 
   try {
     await prisma.technicians.delete({ where: { id } });
-    return NextResponse.json({
-      status: 204,
-      message: 'Technician Deleted Successfully',
-    });
+    return NextResponse.json(
+      {
+        status: 204,
+        message: 'Technician Deleted Successfully',
+      },
+      { status: 204 }
+    );
   } catch (err) {
     console.log(err);
-    return NextResponse.json({ message: 'An error has occured', status: 500 });
+    return NextResponse.json(
+      { message: 'An error has occured', status: 500 },
+      { status: 500 }
+    );
   }
 }
 
@@ -41,11 +47,14 @@ export async function PUT(
 
   if (validation.error) {
     console.log(validation.error);
-    return NextResponse.json({
-      message: 'Invalid Input',
-      status: 400,
-      error: validation.error,
-    });
+    return NextResponse.json(
+      {
+        message: 'Invalid Input',
+        status: 400,
+        error: validation.error,
+      },
+      { status: 400 }
+    );
   }
 
   try {
@@ -54,14 +63,20 @@ export async function PUT(
       data: { firstName, lastName, bio, isCertified },
     });
 
-    return NextResponse.json({
-      message: 'Technician Successfully Updated',
-      status: 200,
-      data: technician,
-    });
+    return NextResponse.json(
+      {
+        message: 'Technician Successfully Updated',
+        status: 200,
+        data: technician,
+      },
+      { status: 200 }
+    );
   } catch (err) {
     console.log(err);
-    return NextResponse.json({ message: 'An error has occured', status: 500 });
+    return NextResponse.json(
+      { message: 'An error has occured', status: 500 },
+      { status: 500 }
+    );
   }
 }
 

@@ -32,11 +32,14 @@ export async function POST(req: NextRequest) {
   });
 
   if (validation.error) {
-    return NextResponse.json({
-      message: 'Invalid Input',
-      status: 400,
-      error: validation.error,
-    });
+    return NextResponse.json(
+      {
+        message: 'Invalid Input',
+        status: 400,
+        error: validation.error,
+      },
+      { status: 400 }
+    );
   }
 
   const cleanApplianceName = await cleanseName(applianceName);
@@ -68,14 +71,17 @@ export async function POST(req: NextRequest) {
       });
     });
 
-    return NextResponse.json({
-      message: 'Success',
-      status: 201,
-      data: appliance,
-    });
+    return NextResponse.json(
+      {
+        message: 'Success',
+        status: 201,
+        data: appliance,
+      },
+      { status: 201 }
+    );
   } catch (err) {
     console.log(err);
-    return NextResponse.json(errorMessage);
+    return NextResponse.json(errorMessage, { status: 500 });
   }
 }
 

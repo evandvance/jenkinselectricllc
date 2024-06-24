@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/helper/PrismaWrapper';
+import { Resend } from 'resend';
 import { reserveFormSchema } from '@/interfaces/ReserveFormSchema';
+import ApplianceReserved from '@/emails/ApplianceReserved';
+import EmployeeContact from '@/emails/EmployeeContact';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(
   req: NextRequest,
@@ -33,29 +38,38 @@ export async function POST(
   });
 
   if (validation.error || isNaN(parseInt(zip))) {
-    return NextResponse.json({
-      message: 'Invalid Input',
-      status: 400,
-      error: validation.error,
-    });
+    return NextResponse.json(
+      {
+        message: 'Invalid Input',
+        status: 400,
+        error: validation.error,
+      },
+      { status: 400 }
+    );
   }
 
   try {
-    const applianceExists = await prisma.appliances.count({ where: { id } });
+    const appliance = await prisma.appliances.findFirst({ where: { id } });
 
-    if (!applianceExists)
-      return NextResponse.json({ message: 'Appliance Not found', status: 404 });
+    if (!appliance)
+      return NextResponse.json(
+        { message: 'Appliance Not found', status: 404 },
+        { status: 404 }
+      );
 
-    const applianceIsReserved = await prisma.reservations.count({
+    const customerHasReservedAnAppliance = await prisma.reservations.count({
       where: { email },
     });
 
-    if (applianceIsReserved)
-      return NextResponse.json({
-        message:
-          'You have already reserved an appliance. Please contact us to unreserve it or to reserve multiple',
-        status: 400,
-      });
+    if (customerHasReservedAnAppliance)
+      return NextResponse.json(
+        {
+          message:
+            'You have already reserved an appliance. Please contact us to unreserve it or to reserve multiple',
+          status: 400,
+        },
+        { status: 400 }
+      );
 
     const reservation = await prisma.reservations.create({
       data: {
@@ -72,21 +86,48 @@ export async function POST(
       },
     });
 
-    return NextResponse.json({
-      message: 'Reservation Successfully Created',
-      data: reservation,
-      status: 201,
+    await resend.emails.send({
+      from: 'noreply@mail.jenkinselectric.llc',
+      to: [reservation.email],
+      subject: `${appliance.applianceName} Reservation`,
+      react: ApplianceReserved({ appliance, reservation }),
     });
+
+    await resend.emails.send({
+      from: 'noreply@mail.jenkinselectric.llc',
+      to: [
+        process.env.NODE_ENV === 'development'
+          ? 'evandvance@gmail.com'
+          : 'jenkinselectric96@gmail.com',
+      ],
+      subject: `${reservation.firstName} ${reservation.lastName} has reserved ${appliance.applianceName}`,
+      react: EmployeeContact({ appliance, reservation }),
+    });
+
+    return NextResponse.json(
+      {
+        message: 'Reservation Successfully Created',
+        data: reservation,
+        status: 201,
+      },
+      { status: 201 }
+    );
   } catch (err: any) {
     if (err.code === 'P2002') {
-      return NextResponse.json({
-        message: 'A reservation already exists on this appliance',
-        status: 400,
-      });
+      return NextResponse.json(
+        {
+          message: 'A reservation already exists on this appliance',
+          status: 400,
+        },
+        { status: 400 }
+      );
     }
 
     console.log(err);
-    return NextResponse.json({ message: 'An error has occured', status: 500 });
+    return NextResponse.json(
+      { message: 'An error has occured', status: 500 },
+      { status: 500 }
+    );
   }
 }
 

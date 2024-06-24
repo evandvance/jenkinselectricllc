@@ -10,22 +10,28 @@ export async function GET(req: NextRequest) {
   ) as ApplianceTypes;
 
   if (applianceType) {
-    return NextResponse.json({
-      message: 'Success',
-      status: 200,
-      data: await getByType(applianceType),
-    });
+    return NextResponse.json(
+      {
+        message: 'Success',
+        status: 200,
+        data: await getByType(applianceType),
+      },
+      { status: 400 }
+    );
   }
 
   const appliances = await prisma.appliances.findMany({
     select: ApplianceSelectConfig,
   });
 
-  return NextResponse.json({
-    message: 'Success',
-    status: 200,
-    data: appliances,
-  });
+  return NextResponse.json(
+    {
+      message: 'Success',
+      status: 200,
+      data: appliances,
+    },
+    { status: 200 }
+  );
 }
 
 async function getByType(applianceType: ApplianceTypes) {
