@@ -33,8 +33,6 @@ export async function GET(req: NextRequest) {
 
   const appliances = await prisma.appliances.findMany({
     select: ApplianceSelectConfig,
-    take,
-    skip,
   });
 
   return NextResponse.json(
@@ -59,8 +57,6 @@ async function getByType(
   const appliances = await prisma.appliances.findMany({
     where: { type: applianceType },
     select: ApplianceSelectConfig,
-    take,
-    skip,
   });
 
   return appliances;
