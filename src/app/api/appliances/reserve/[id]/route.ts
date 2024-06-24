@@ -5,12 +5,11 @@ import { reserveFormSchema } from '@/interfaces/ReserveFormSchema';
 import ApplianceReserved from '@/emails/ApplianceReserved';
 import EmployeeContact from '@/emails/EmployeeContact';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
   const id = parseInt(params.id);
 
   const formData = await req.formData();
