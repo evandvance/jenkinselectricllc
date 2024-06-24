@@ -21,6 +21,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
   const [appliance, setAppliance] = useState<appliaceInterface>();
   const [uploadError, setUploadError] = useState<ApiResponse<undefined>>();
   const [uploadSuccess, setUploadSuccess] = useState(false);
+  const [isLoading, setIsloading] = useState(false);
 
   useEffect(() => {
     fetch(`/api/appliances/${id}`).then(async (data) => {
@@ -32,6 +33,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
   }, [id]);
 
   const onSubmit = async (data: FieldValues) => {
+    setIsloading(true);
     const formData = new FormData();
 
     formData.append('email', data.email);
@@ -51,6 +53,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
     });
 
     const result = (await response.json()) as ApiResponse<undefined>;
+    setIsloading(false);
 
     if (result.status !== 201) {
       setUploadSuccess(false);
@@ -222,6 +225,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
           Requested appliance not found
         </div>
       )}
+      {isLoading && <p className="text-3xl text-jellcblue">Loading...</p>}
 
       {uploadError && (
         <div className="text-2xl lg:text-4xl text-red-500 text-center w-[90%] lg:w-3/4">
