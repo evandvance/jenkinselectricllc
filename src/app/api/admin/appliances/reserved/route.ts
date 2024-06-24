@@ -21,17 +21,23 @@ export async function GET(req: NextRequest) {
       },
     });
 
-    return NextResponse.json({
-      message: 'Success',
-      status: 200,
-      data: reservedAppliances,
-    });
+    return NextResponse.json(
+      {
+        message: 'Success',
+        status: 200,
+        data: reservedAppliances,
+      },
+      { status: 200 }
+    );
   } catch (err) {
     console.log(err);
-    return NextResponse.json({
-      message: 'An internal error has occured',
-      status: 500,
-    });
+    return NextResponse.json(
+      {
+        message: 'An internal error has occured',
+        status: 500,
+      },
+      { status: 500 }
+    );
   }
 }
 

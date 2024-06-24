@@ -22,7 +22,10 @@ export async function DELETE(
     // await deleteFile(`appliances/${cleanseName(appliance!.applianceName)}/`);
 
     await prisma.appliances.delete({ where: { id } });
-    return NextResponse.json({ message: 'Deletion Successful', status: 204 });
+    return NextResponse.json(
+      { message: 'Deletion Successful', status: 204 },
+      { status: 204 }
+    );
   } catch (err) {
     console.log(err);
     return NextResponse.json(errorMessage);
@@ -40,13 +43,16 @@ export async function PATCH(
       where: { applianceId: id },
     });
 
-    return NextResponse.json({
-      message: 'Reservation Removed Successfully',
-      status: 200,
-    });
+    return NextResponse.json(
+      {
+        message: 'Reservation Removed Successfully',
+        status: 200,
+      },
+      { status: 200 }
+    );
   } catch (err) {
     console.log(err);
-    return NextResponse.json(errorMessage);
+    return NextResponse.json(errorMessage, { status: 504 });
   }
 }
 
@@ -76,11 +82,14 @@ export async function PUT(
   });
 
   if (validation.error) {
-    return NextResponse.json({
-      message: 'Invalid Input',
-      status: 400,
-      error: validation.error,
-    });
+    return NextResponse.json(
+      {
+        message: 'Invalid Input',
+        status: 400,
+        error: validation.error,
+      },
+      { status: 400 }
+    );
   }
 
   try {
@@ -97,14 +106,17 @@ export async function PUT(
       },
     });
 
-    return NextResponse.json({
-      message: 'Success',
-      status: 200,
-      data: appliance,
-    });
+    return NextResponse.json(
+      {
+        message: 'Success',
+        status: 200,
+        data: appliance,
+      },
+      { status: 200 }
+    );
   } catch (err) {
     console.log(err);
-    return NextResponse.json(errorMessage);
+    return NextResponse.json(errorMessage, { status: 500 });
   }
 }
 

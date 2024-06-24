@@ -16,14 +16,20 @@ export async function GET(req: NextRequest) {
       },
     });
 
-    return NextResponse.json({
-      status: 200,
-      message: 'Success',
-      data: technicians,
-    });
+    return NextResponse.json(
+      {
+        status: 200,
+        message: 'Success',
+        data: technicians,
+      },
+      { status: 200 }
+    );
   } catch (err) {
     console.log(err);
-    return NextResponse.json({ message: 'An error has occured', status: 500 });
+    return NextResponse.json(
+      { message: 'An error has occured', status: 500 },
+      { status: 500 }
+    );
   }
 }
 

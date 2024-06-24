@@ -26,11 +26,14 @@ export async function POST(req: NextRequest) {
 
   if (validation.error) {
     console.log(validation.error);
-    return NextResponse.json({
-      message: 'Invalid Input',
-      status: 400,
-      error: validation.error,
-    });
+    return NextResponse.json(
+      {
+        message: 'Invalid Input',
+        status: 400,
+        error: validation.error,
+      },
+      { status: 400 }
+    );
   }
 
   try {
@@ -50,14 +53,17 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    return NextResponse.json({
-      message: 'Success',
-      status: 201,
-      data: technician,
-    });
+    return NextResponse.json(
+      {
+        message: 'Success',
+        status: 201,
+        data: technician,
+      },
+      { status: 201 }
+    );
   } catch (err) {
     console.log(err);
-    return NextResponse.json(errorMessage);
+    return NextResponse.json(errorMessage, { status: 500 });
   }
 }
 
