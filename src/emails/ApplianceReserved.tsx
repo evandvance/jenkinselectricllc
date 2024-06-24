@@ -35,8 +35,8 @@ const ApplianceReserved = ({
                   <Img
                     alt="Image of JELLC logo"
                     src="https://mediacdn.jenkinselectric.llc/images/logo.jpg"
-                    width={50}
-                    height={50}
+                    width={70}
+                    height={70}
                   />
                 </Link>
               </Column>
