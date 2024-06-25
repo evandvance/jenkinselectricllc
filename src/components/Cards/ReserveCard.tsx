@@ -200,10 +200,9 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
             <label className="text-xl" htmlFor="comments">
               Comments (optional)
             </label>
-            <input
+            <textarea
               {...register('comments')}
               className="rounded p-2 text-black"
-              type="text-area"
               name="comments"
               id="comments"
             />
@@ -213,7 +212,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
           </div>
 
           <button
-            className="flex justify-center text-2xl items-center m-5 h-16 w-56 bg-white text-black rounded-xl "
+            className="flex justify-center text-2xl items-center m-5 h-16 w-56 bg-white text-black rounded-xl hover:bg-black hover:text-white "
             type="submit"
           >
             Submit
