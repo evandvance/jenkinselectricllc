@@ -66,29 +66,33 @@ model Appliances {
 }
 
 model ApplianceImages {
-  id          Int        @id @default(autoincrement())
-  applianceId Int        @map("appliance_id")
-  imageUrl    String     @unique @map("image_url")
-  appliance   Appliances @relation(fields: [applianceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  id          Int         @id @default(autoincrement())
+  applianceId Int?        @map("appliance_id")
+  generatorId Int?        @map("generator_id")
+  imageUrl    String      @unique @map("image_url")
+  appliance   Appliances? @relation(fields: [applianceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  generator   Generator?  @relation(fields: [generatorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@index([applianceId])
   @@map("appliance_images")
 }
 
 model Reservations {
-  id          Int        @id @default(autoincrement())
-  applianceId Int        @unique @map("appliance_id")
-  email       String     @unique
+  id          Int         @id @default(autoincrement())
+  applianceId Int?        @unique @map("appliance_id")
+  email       String      @unique
   comments    String?
-  reservedAt  DateTime   @default(now()) @map("reserved_at")
-  firstName   String     @map("first_name")
-  lastName    String     @map("last_name")
-  phoneNumber String     @map("phone_number")
+  reservedAt  DateTime    @default(now()) @map("reserved_at")
+  firstName   String      @map("first_name")
+  lastName    String      @map("last_name")
+  phoneNumber String      @map("phone_number")
   street      String
   city        String
   state       String
   zip         Int
-  appliance   Appliances @relation(fields: [applianceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  generatorId Int?        @unique @map("generator_id")
+  appliance   Appliances? @relation(fields: [applianceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  generator   Generator?  @relation(fields: [generatorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@index([email])
   @@map("reservations")
@@ -101,4 +105,23 @@ model Users {
   password String
 
   @@map("users")
+}
+
+enum GeneratorTypes {
+  Champion
+  Duramax
+  Generac
+
+  @@map("generator_types")
+}
+
+model Generator {
+  id            Int               @id @default(autoincrement())
+  generatorName String            @map("generator_name")
+  price         Float
+  modelNumber   String            @map("model_number")
+  description   String
+  brand         GeneratorTypes
+  reservation   Reservations?
+  images        ApplianceImages[]
 }
