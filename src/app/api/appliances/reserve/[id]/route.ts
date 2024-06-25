@@ -85,14 +85,14 @@ export async function POST(
       },
     });
 
-    await resend.emails.send({
+    resend.emails.send({
       from: 'noreply@mail.jenkinselectric.llc',
       to: [reservation.email],
       subject: `${appliance.applianceName} Reservation`,
       react: ApplianceReserved({ appliance, reservation }),
     });
 
-    await resend.emails.send({
+    resend.emails.send({
       from: 'noreply@mail.jenkinselectric.llc',
       to: [
         process.env.NODE_ENV === 'development'

@@ -12,14 +12,14 @@ import {
   Column,
 } from '@react-email/components';
 
-interface CustomerContactProps {
+interface ContactFormEmployeeProps {
   formData: ContactFormData;
 }
 
-const CustomerContact = ({ formData }: CustomerContactProps) => {
+const ContactFormEmployee = ({ formData }: ContactFormEmployeeProps) => {
   return (
     <Html>
-      <Preview>Someone will reach out to you soon.</Preview>
+      <Preview>{formData.name} has reached out to you.</Preview>
       <Body>
         <Tailwind>
           <Container>
@@ -40,19 +40,29 @@ const CustomerContact = ({ formData }: CustomerContactProps) => {
             </Row>
             <Row>
               <Text>
-                Thank you {formData.name} for contacting us! Somone will reach
-                out to you soon to help you with your needs.
+                {formData.name} has reached out using your websites contact
+                form.
               </Text>
             </Row>
 
             <Row>
-              <Text>You said: {formData.comments}</Text>
+              <Text>They said: </Text>
             </Row>
+            <Row>&quot;{formData.comments}&quot;</Row>
 
             <Row>
               <Text>
-                With contact information: {formData.email}{' '}
-                {formData.phoneNumber}
+                Reach out to them at{' '}
+                <Link href={`tel:${formData.phoneNumber}`}>
+                  {formData.phoneNumber}
+                </Link>
+              </Text>
+            </Row>
+            <Row>
+              {' '}
+              <Text>
+                Or email them at{' '}
+                <Link href={`mailto:${formData.email}`}>{formData.email}</Link>
               </Text>
             </Row>
           </Container>
@@ -62,8 +72,8 @@ const CustomerContact = ({ formData }: CustomerContactProps) => {
   );
 };
 
-export default CustomerContact;
+export default ContactFormEmployee;
 
-CustomerContact.PreviewProps = {
+ContactFormEmployee.PreviewProps = {
   formData: {},
-} as CustomerContactProps;
+} as ContactFormEmployeeProps;

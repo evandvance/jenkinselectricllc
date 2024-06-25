@@ -21,7 +21,8 @@ const EmployeeContact = ({ appliance, reservation }: EmployeeContactProps) => {
   return (
     <Html>
       <Preview>
-        You requested {appliance.applianceName} to be reserved for you.
+        {reservation.firstName + ' ' + reservation.lastName} requested{' '}
+        {appliance.applianceName} to be reserved.
       </Preview>
       <Body>
         <Tailwind>

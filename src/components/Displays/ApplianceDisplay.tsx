@@ -7,13 +7,21 @@ interface ApplianceDisplayProps {
   age?: string;
   filter?: string;
   sortBy?: string;
+  page?: number;
+  pageSize?: number;
 }
 
-const ApplianceDisplay = ({ age, filter, sortBy }: ApplianceDisplayProps) => {
+const ApplianceDisplay = ({
+  age,
+  filter,
+  sortBy,
+  page,
+  pageSize,
+}: ApplianceDisplayProps) => {
   const [appliances, setAppliances] = useState<appliaceInterface[]>([]);
 
   useEffect(() => {
-    fetch('/api/appliances', {
+    fetch(`/api/appliances`, {
       cache: 'no-cache',
     }).then(async (data) => {
       const result = (await data.json()) as ApiResponse<appliaceInterface[]>;
