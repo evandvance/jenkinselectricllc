@@ -97,6 +97,7 @@ const Navbar = () => {
           <DropDownLink
             dropDownLinks={GeneratorItems}
             title="Generators"
+            titleLink="/generators"
             className="m-1 p-2 lg:border-none"
             onClick={() => setIsNavOpen(!isNavOpen)}
           />

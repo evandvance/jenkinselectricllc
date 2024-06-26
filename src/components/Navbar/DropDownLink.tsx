@@ -7,6 +7,7 @@ interface DropDownLinkProps {
   title: string;
   onClick?: () => void;
   useAnchortags?: boolean;
+  titleLink?: string;
   dropDownLinks: DropDownLinks[];
 }
 
@@ -21,6 +22,7 @@ const DropDownLink = ({
   dropDownLinks,
   onClick,
   useAnchortags,
+  titleLink,
 }: DropDownLinkProps) => {
   const [isLinksShown, setIsLinksShown] = useState(false);
 
@@ -53,7 +55,7 @@ const DropDownLink = ({
         className="cursor-pointer hover:text-jellcblue"
         onClick={handleLinksShown}
       >
-        {title}
+        {titleLink ? <Link href={titleLink}>{title}</Link> : title}
       </p>
 
       {isLinksShown && (
