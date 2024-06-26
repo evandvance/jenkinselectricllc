@@ -22,7 +22,7 @@ const HomePage = () => {
           </video>
         </div>
 
-        <div className="relative -z-20 flex flex-col justify-between h-[92vh]">
+        <div className="relative z-0 flex flex-col justify-between h-[92vh]">
           <div className="flex w-screen">
             <h1 className="text-5xl lg:text-7xl mt-6 ml-5 lg:ml-36 text-left text-white">
               Jenkins <br></br>
@@ -32,9 +32,9 @@ const HomePage = () => {
           <div className="flex w-screen h-[8vh]">
             <div className="w-1/3"></div>
             <div className="w-1/3 flex justify-center items-center">
-              <Link className="" href={'#services'}>
+              <Link href={'#services'}>
                 <FaChevronDown
-                  className="animate-bounce"
+                  className="animate-bounce z-0"
                   size="25"
                   color="white"
                 />

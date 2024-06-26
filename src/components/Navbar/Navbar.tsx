@@ -18,13 +18,13 @@ const Navbar = () => {
   return (
     <nav className="w-screen text-white bg-black lg:flex lg:justify-between">
       <div className="w-screen lg:w-auto lg:ml-10 px-3 flex justify-between items-center">
-        <Link href="/" className="w-20 h-auto">
+        <Link href="/" className="w-20 h-auto bg-black">
           <Image
-            src="/assets/logo.svg"
+            src="/assets/logo.webp"
             alt="JenkinsElectricLLC logo"
             className="w-full h-auto object-contain bg-black"
-            height={3}
-            width={4}
+            height={300}
+            width={400}
           />
         </Link>
 
