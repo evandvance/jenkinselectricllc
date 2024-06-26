@@ -17,7 +17,7 @@ const ApplianceCard = ({ appliance }: ApplianceCardProps) => {
         <Image
           height={300}
           width={400}
-          className="object-contain w-full h-auto p-5 lg:max-w-[350px]"
+          className="object-contain w-full h-auto p-5 lg:max-h-[350px]"
           src={appliance.images[0].imageUrl}
           alt={`Image of ${appliance.applianceName}`}
         />

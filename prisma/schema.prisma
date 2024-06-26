@@ -114,13 +114,23 @@ enum GeneratorTypes {
 }
 
 model Generators {
-  id            Int            @id @default(autoincrement())
-  generatorName String         @map("generator_name")
+  id            Int               @id @default(autoincrement())
+  generatorName String            @map("generator_name")
   price         Float
-  modelNumber   String         @map("model_number")
+  modelNumber   String            @map("model_number")
   description   String
+  images        GeneratorImages[]
   brand         GeneratorTypes
   reservation   Reservations?
 
   @@map("generators")
+}
+
+model GeneratorImages {
+  id          Int        @id @default(autoincrement())
+  generatorId Int        @map("generator_id")
+  imageUrl    String     @map("image_url")
+  generator   Generators @relation(fields: [generatorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("generator_images")
 }
