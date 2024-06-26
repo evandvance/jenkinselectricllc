@@ -30,11 +30,13 @@ const ServicesProvidedCard = ({ className }: ServicesProvidedCardProps) => {
               <li key={service}>{service}</li>
             ))}
           </ul>
+
           <Image
-            src="/images/vehicles.jpg"
-            alt="Image of vehicles parked in front of a garage"
-            height={500}
-            width={500}
+            className="w-auto h-[350px]"
+            src="/images/hookup.jpg"
+            alt="Image of man hooking up an electrical service"
+            height={350}
+            width={350}
           />
         </div>
       </div>

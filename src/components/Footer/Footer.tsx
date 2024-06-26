@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { FaPhone } from 'react-icons/fa6';
+import { FaRegRegistered } from 'react-icons/fa6';
 import { FaFacebook } from 'react-icons/fa';
 import { FaYoutube } from 'react-icons/fa';
 
@@ -10,10 +11,10 @@ const Footer = () => {
       className="flex flex-col lg:flex-row justify-around items-center w-screen lg:h-[8vh] bg-black text-white"
     >
       <Link
-        className="flex m-3 justify-center items-center h-full lg:w-1/3 text-2xl"
+        className="flex m-3 justify-center items-center h-full lg:w-1/3 "
         href={'/'}
       >
-        Jenkins Electric LLC.
+        Jenkins Electric LLC. <FaRegRegistered className="text-xs" />
       </Link>
       <div className="flex flex-col lg:flex-row justify-around items-center w-2/3 h-full">
         <div className="w-1/4"></div>

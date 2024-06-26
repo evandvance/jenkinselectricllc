@@ -68,10 +68,10 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
       {appliance ? (
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="mt-5 flex flex-col justify-center items-center w-[90%] p-5 border rounded-xl bg-gradient-to-r from-jellcdarkblue to-jellcblue text-white lg:w-3/4 space-y-5"
+          className="mt-5 flex flex-col justify-center items-center w-[90%] p-5 lg:p-10 border rounded-xl bg-gradient-to-r from-jellcdarkblue to-jellcblue text-white lg:w-3/4 space-y-5"
         >
           <h2 className="text-3xl">Reserve {appliance?.applianceName}</h2>
-          <div className="flex flex-col w-3/4 space-y-2">
+          <div className="flex flex-col w-full space-y-2">
             <label className="text-xl" htmlFor="email">
               Email
             </label>
@@ -86,7 +86,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
               <p className="text-red-500">{errors.email.message}</p>
             )}
           </div>
-          <div className="flex flex-col lg:flex-row w-3/4 space-y-2 lg:space-x-4 lg:space-y-0">
+          <div className="flex flex-col lg:flex-row w-full space-y-2 lg:space-x-4 lg:space-y-0">
             <div className="flex flex-col w-1/2">
               <label className="text-xl" htmlFor="firstName">
                 First Name
@@ -118,7 +118,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
               )}
             </div>
           </div>
-          <div className="flex flex-col w-3/4 space-y-2">
+          <div className="flex flex-col w-full space-y-2">
             <label className="text-xl" htmlFor="phoneNumber">
               Phone Number
             </label>
@@ -136,7 +136,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
             )}
           </div>
 
-          <div className="flex flex-col w-3/4 space-y-2">
+          <div className="flex flex-col w-full space-y-2">
             <label className="text-xl" htmlFor="street">
               Street
             </label>
@@ -151,7 +151,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
               <p className="text-red-500">{errors.street.message}</p>
             )}
           </div>
-          <div className="flex flex-col lg:flex-row w-3/4 space-y-2 lg:space-x-4 lg:space-y-0">
+          <div className="flex flex-col lg:flex-row w-full space-y-2 lg:space-x-4 lg:space-y-0">
             <div className="flex flex-col w-1/2 space-y-2">
               <label className="text-xl" htmlFor="city">
                 City
@@ -183,7 +183,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
               )}
             </div>
           </div>
-          <div className="flex flex-col w-3/4 space-y-2">
+          <div className="flex flex-col w-full space-y-2">
             <label className="text-xl" htmlFor="zip">
               Zip Code
             </label>
@@ -196,7 +196,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
             />
             {errors.zip && <p className="text-red-500">{errors.zip.message}</p>}
           </div>
-          <div className="flex flex-col w-3/4 space-y-2">
+          <div className="flex flex-col w-full space-y-2">
             <label className="text-xl" htmlFor="comments">
               Comments (optional)
             </label>

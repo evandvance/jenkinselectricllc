@@ -42,9 +42,9 @@ const ContactCard = () => {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="mt-5 flex flex-col justify-center items-center w-[90%] p-5 border rounded-xl bg-gradient-to-r from-jellcdarkblue to-jellcblue text-white lg:w-3/4 space-y-5"
+        className="mt-5 flex flex-col justify-center items-center w-[90%] p-5 lg:p-10 border rounded-xl bg-gradient-to-r from-jellcdarkblue to-jellcblue text-white lg:w-3/4 space-y-5"
       >
-        <div className="flex flex-col w-3/4 space-y-2">
+        <div className="flex flex-col w-full space-y-2">
           <label className="text-xl" htmlFor="email">
             Email
           </label>
@@ -59,7 +59,7 @@ const ContactCard = () => {
             <p className="text-red-500">{errors.email.message}</p>
           )}
         </div>
-        <div className="flex flex-col w-3/4 space-y-2">
+        <div className="flex flex-col w-full  space-y-2">
           <label className="text-xl" htmlFor="name">
             Name
           </label>
@@ -72,7 +72,7 @@ const ContactCard = () => {
           />
           {errors.name && <p className="text-red-500">{errors.name.message}</p>}
         </div>
-        <div className="flex flex-col w-3/4 space-y-2">
+        <div className="flex flex-col w-full  space-y-2">
           <label className="text-xl" htmlFor="phoneNumber">
             Phone Number
           </label>
@@ -90,7 +90,7 @@ const ContactCard = () => {
           )}
         </div>
 
-        <div className="flex flex-col w-3/4 space-y-2">
+        <div className="flex flex-col w-full  space-y-2">
           <label className="text-xl" htmlFor="comments">
             Comments
           </label>
@@ -106,7 +106,7 @@ const ContactCard = () => {
         </div>
 
         <button
-          className="flex justify-center text-2xl items-center m-5 h-16 w-56 bg-white text-black rounded-xl hover:bg-black hover:text-white"
+          className="flex justify-center text-2xl items-center m-5 h-16 w-full lg:w-56 bg-white text-black rounded-xl hover:bg-black hover:text-white"
           type="submit"
         >
           Submit
