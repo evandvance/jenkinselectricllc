@@ -5,9 +5,13 @@ import {
   ApplianceListingDisplay,
 } from '@/components/AdminComponents';
 import { appliaceInterface } from '@/interfaces/ApplianceInterface';
+import ApplianceSearchBar from './ApplianceSearchBar';
 
 const AdminAppliancePageDisplay = () => {
   const [appliances, setAppliances] = useState<appliaceInterface[]>([]);
+  const [originalAppliances, setOriginalAppliances] = useState<
+    appliaceInterface[]
+  >([]);
 
   useEffect(() => {
     fetch('/api/appliances', { cache: 'no-cache' }).then(async (data) => {
@@ -15,7 +19,8 @@ const AdminAppliancePageDisplay = () => {
       const applianceResult = result.data;
 
       if (!applianceResult) return;
-      setAppliances(applianceResult!);
+      setAppliances(applianceResult);
+      setOriginalAppliances(applianceResult);
     });
   }, []);
 
@@ -31,8 +36,14 @@ const AdminAppliancePageDisplay = () => {
         <h2 className="tex-3xl text-red-500">
           WARNING! There is no confirm for deletions yet
         </h2>
+        <ApplianceSearchBar
+          setAppliances={setAppliances}
+          originalAppliances={originalAppliances}
+        />
         <ApplianceListingDisplay
           appliances={appliances}
+          originalAppliances={originalAppliances}
+          setOriginalAppliances={setOriginalAppliances}
           setAppliances={setAppliances}
         />
       </div>

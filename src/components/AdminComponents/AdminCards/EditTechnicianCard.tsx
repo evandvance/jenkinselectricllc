@@ -33,7 +33,7 @@ const EditTechnicianCard = ({
   const [success, setSuccess] = useState(false);
 
   const handleDelete = async (id: number) => {
-    const oldTechnicians = [...allTechnicians];
+    const oldTechnicians = structuredClone(allTechnicians);
     setTechnicians([
       ...allTechnicians.filter((tech) => tech.id !== technician.id),
     ]);
@@ -57,7 +57,7 @@ const EditTechnicianCard = ({
       imageUrl: technician.imageUrl,
       id: technician.id,
     };
-    const oldTechnicians = [...allTechnicians];
+    const oldTechnicians = structuredClone(allTechnicians);
 
     setTechnicians([
       ...allTechnicians.filter((tech) => tech.id !== technician.id),

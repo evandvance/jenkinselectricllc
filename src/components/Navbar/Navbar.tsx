@@ -28,7 +28,7 @@ const Navbar = () => {
           />
         </Link>
 
-        <div className="lg:hidden">
+        <div className="lg:hidden p-3">
           {isNavOpen ? (
             <IoCloseOutline
               className="m-1 lg:m-4 text-5xl hover:cursor-pointer"
