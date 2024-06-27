@@ -40,22 +40,25 @@ const ApplianceFilter = ({ age, filter }: ApplianceFilterInterface) => {
         </button>
       </div>
       <div className="flex">
-        <h2 className="text-xl mr-2">Filter:</h2>
+        <h2 className="hidden text-xl mr-2 lg:block">Filter:</h2>
         <select
           className="rounded w-24 lg:w-auto p-1"
           name="filter"
           id="filter"
           defaultValue={filter}
-          onChange={(event) =>
-            (window.location.href = `/appliances?age=${age}&filter=${event.target.value}`)
-          }
+          onChange={(event) => {
+            if (event.target.value === '') {
+              return (window.location.href = `/appliances?${
+                age ? `age=${age}` : ''
+              }`);
+            }
+
+            window.location.href = `/appliances?${
+              age ? `age=${age}&` : ''
+            }filter=${event.target.value}`;
+          }}
         >
-          <option
-            onClick={() => (window.location.href = `/appliances?age=${age}`)}
-            value=""
-          >
-            All
-          </option>
+          <option value="">All</option>
           {applianceTypes.map((type) => (
             <option key={type} value={type}>
               {type.toUpperCase()}
