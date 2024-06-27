@@ -19,7 +19,7 @@ const GeneratorPage = ({ searchParams: { brand } }: GeneratorPageProps) => {
         Jenkins Electric installs and services{' '}
         {brand
           ? brand.charAt(0).toUpperCase() + brand.slice(1) + ' '
-          : 'Champion, Duramax, and Generac'}
+          : 'Champion, Duramax, and Generac '}
         Generators. We also offer service plans for your regular maintenance.
       </p>
 
