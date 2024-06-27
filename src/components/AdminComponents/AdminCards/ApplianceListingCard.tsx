@@ -49,7 +49,7 @@ const ApplianceListingCard = ({
   };
 
   const handleUnreserve = async () => {
-    const oldAppliances = allAppliances;
+    const oldAppliances = structuredClone(allAppliances);
     const updatedAppliance: appliaceInterface = {
       ...appliance,
       reservation: undefined,
@@ -84,7 +84,7 @@ const ApplianceListingCard = ({
       images: appliance.images,
     };
 
-    const oldAppliances = [...allAppliances];
+    const oldAppliances = structuredClone(allAppliances);
 
     setAppliances([
       ...allAppliances.filter((app) => app.id !== appliance.id),

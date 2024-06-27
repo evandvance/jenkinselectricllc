@@ -16,7 +16,7 @@ const AdminReserveCard = ({
   setReservations,
 }: AdminReserveCardsProps) => {
   const handleDelete = async () => {
-    const oldReservations = [...allReservations];
+    const oldReservations = structuredClone(allReservations);
     setReservations(allReservations.filter((res) => res.id !== reservation.id));
 
     const response = await fetch(
@@ -33,7 +33,7 @@ const AdminReserveCard = ({
   };
 
   const handleUnreserve = async () => {
-    const oldReservations = [...allReservations];
+    const oldReservations = structuredClone(allReservations);
 
     setReservations(allReservations.filter((res) => res.id !== reservation.id));
 
