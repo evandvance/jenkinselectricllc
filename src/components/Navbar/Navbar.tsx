@@ -69,13 +69,16 @@ const Navbar = () => {
           </Link>
         </li>
         <li className="min-h-[50px] py-1 border-b lg:border-none">
-          <Link
+          <a
             onClick={() => setIsNavOpen(!isNavOpen)}
             className="m-1 p-2 hover:text-jellcblue"
-            href={'/schedulenow'}
+            href={
+              'https://book.housecallpro.com/book/Jenkins-Electric/797e158df4664699a9b36fc2548b2cb2?v2=true'
+            }
+            target="_blank"
           >
             Schedule
-          </Link>
+          </a>
         </li>
         <li className="min-h-[50px]">
           <DropDownLink
