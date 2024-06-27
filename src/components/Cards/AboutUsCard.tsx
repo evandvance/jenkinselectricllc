@@ -20,7 +20,7 @@ const AboutUsCard = ({ className }: AbouteUsCardProps) => {
           height={400}
           width={400}
         />
-        <p className="text-xl lg:text-2xl m-5 lg:w-[50%]">
+        <p className="text-xl lg:text-2xl mb-5 lg:m-5 lg:w-[50%]">
           We are licensed electricians and plumbers located in the Adamsville,
           TN. area. We have an appliance technician on staff. From changing
           lightbulbs to full house rewires, we have the experience, knowledge,
