@@ -23,7 +23,7 @@ const Navbar = () => {
             src="/assets/logo.webp"
             alt="JenkinsElectricLLC logo"
             className="w-full h-auto object-contain bg-black"
-            height={300}
+            height={400}
             width={400}
           />
         </Link>
