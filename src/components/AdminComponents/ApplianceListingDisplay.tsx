@@ -5,11 +5,16 @@ import { Dispatch, SetStateAction } from 'react';
 
 interface ApplianceListingDisplayProps {
   appliances: appliaceInterface[];
+  originalAppliances: appliaceInterface[];
   setAppliances: Dispatch<SetStateAction<appliaceInterface[]>>;
+
+  setOriginalAppliances: Dispatch<SetStateAction<appliaceInterface[]>>;
 }
 
 const ApplianceListingDisplay = ({
   appliances,
+  originalAppliances,
+  setOriginalAppliances,
   setAppliances,
 }: ApplianceListingDisplayProps) => {
   return (
@@ -25,7 +30,9 @@ const ApplianceListingDisplay = ({
               key={appliance.id}
               appliance={appliance}
               allAppliances={appliances}
+              originalAppliances={originalAppliances}
               setAppliances={setAppliances}
+              setOriginalAppliances={setOriginalAppliances}
             />
           );
         })

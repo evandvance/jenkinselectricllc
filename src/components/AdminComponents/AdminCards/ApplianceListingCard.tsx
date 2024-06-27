@@ -15,12 +15,16 @@ import { ApplianceTypes, ApplianceAges } from '@prisma/client';
 interface ApplianceListingCardProps {
   appliance: appliaceInterface;
   allAppliances: appliaceInterface[];
+  originalAppliances: appliaceInterface[];
   setAppliances: Dispatch<SetStateAction<appliaceInterface[]>>;
+  setOriginalAppliances: Dispatch<SetStateAction<appliaceInterface[]>>;
 }
 
 const ApplianceListingCard = ({
   appliance,
   allAppliances,
+  originalAppliances,
+  setOriginalAppliances,
   setAppliances,
 }: ApplianceListingCardProps) => {
   const applianceAges = Object.keys(ApplianceAges);
@@ -36,7 +40,6 @@ const ApplianceListingCard = ({
   });
 
   const handleDelete = async () => {
-    const oldAppliances = allAppliances;
     setAppliances(allAppliances.filter((app) => app.id !== appliance.id));
     const response = await fetch(`/api/admin/appliances/${appliance.id}`, {
       method: 'DELETE',
@@ -44,12 +47,12 @@ const ApplianceListingCard = ({
     const data = (await response.json()) as ApiResponse<undefined>;
 
     if (data.status !== 204) {
-      setAppliances(oldAppliances);
+      return setAppliances(originalAppliances);
     }
+    setOriginalAppliances(allAppliances);
   };
 
   const handleUnreserve = async () => {
-    const oldAppliances = structuredClone(allAppliances);
     const updatedAppliance: appliaceInterface = {
       ...appliance,
       reservation: undefined,
@@ -67,8 +70,9 @@ const ApplianceListingCard = ({
     const data = (await result.json()) as ApiResponse<undefined>;
 
     if (data.status !== 200) {
-      setAppliances(oldAppliances);
+      return setAppliances(originalAppliances);
     }
+    setOriginalAppliances(allAppliances);
   };
 
   const onSubmit = async (data: FieldValues) => {
@@ -83,8 +87,6 @@ const ApplianceListingCard = ({
       id: appliance.id,
       images: appliance.images,
     };
-
-    const oldAppliances = structuredClone(allAppliances);
 
     setAppliances([
       ...allAppliances.filter((app) => app.id !== appliance.id),
@@ -108,17 +110,17 @@ const ApplianceListingCard = ({
 
     const result = (await response.json()) as ApiResponse<appliaceInterface>;
 
-    console.log(result);
     if (result.status !== 200) {
-      setAppliances(oldAppliances);
+      setAppliances(originalAppliances);
       return setError(true);
     }
 
+    setOriginalAppliances(allAppliances);
     setSuccess(true);
   };
 
   return (
-    <div className="w-[85vw]  bg-slate-300 rounded-xl flex flex-wrap p-5 items-center justify-between">
+    <div className="w-[85vw] bg-slate-300 rounded-xl flex flex-wrap p-5 items-center justify-between">
       {error && (
         <p className="text-red-500 text-2xl text-center w-full px-5 m-2">
           Error - Something when wrong on the server
@@ -134,11 +136,11 @@ const ApplianceListingCard = ({
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col flex-wrap space-y-3 lg:flex-row p-3 lg:px-8 items-center justify-between"
       >
-        <div className="flex flex-col justify-center flex-wrap items-center lg:flex-row space-y-3 lg:space-x-4 lg:space-y-0">
+        <div className="w-full flex flex-col justify-center flex-wrap items-center lg:flex-row space-y-3 lg:space-x-4 lg:space-y-0">
           <input
             {...register('applianceName')}
             defaultValue={appliance.applianceName}
-            className="rounded p-2 m-2 text-black w-60"
+            className="rounded p-2 m-2 text-black w-full lg:w-60"
             type="text"
             name="applianceName"
             id="applianceName"
@@ -150,7 +152,7 @@ const ApplianceListingCard = ({
           <input
             {...register('appliancePrice', { valueAsNumber: true })}
             defaultValue={appliance.price}
-            className="rounded p-2 m-2 text-black w-60"
+            className="rounded p-2 m-2 text-black w-full lg:w-60"
             type="text"
             name="appliancePrice"
             id="appliancePrice"
@@ -161,7 +163,7 @@ const ApplianceListingCard = ({
           <input
             {...register('modelNumber')}
             defaultValue={appliance.modelNumber}
-            className="rounded p-2 m-2 text-black w-60"
+            className="rounded p-2 m-2 text-black w-full lg:w-60"
             type="text"
             name="modelNumber"
             id="modelNumber"
@@ -172,7 +174,7 @@ const ApplianceListingCard = ({
           <input
             {...register('applianceBrand')}
             defaultValue={appliance.brand}
-            className="rounded p-2 m-2 text-black w-60"
+            className="rounded p-2 m-2 text-black w-full lg:w-60"
             type="text"
             name="applianceBrand"
             id="applianceBrand"
@@ -180,13 +182,13 @@ const ApplianceListingCard = ({
           {errors.applianceBrand && (
             <p className="text-red-500">{errors.applianceBrand.message}</p>
           )}
-          <div className="w-full">
+          <div className="w-full m-2">
             <select
               {...register('type')}
               defaultValue={appliance.type}
               name="type"
               id="type"
-              className="p-1 w-full m-2"
+              className="p-1 w-full"
             >
               <option value=""></option>
               {applianceTypes.map((type) => (
@@ -196,13 +198,13 @@ const ApplianceListingCard = ({
               ))}
             </select>
           </div>
-          <div className="w-full">
+          <div className="w-full m-2">
             <select
               {...register('age')}
               defaultValue={appliance.age}
               name="age"
               id="age"
-              className="p-1 w-full m-2"
+              className="p-1 w-full"
             >
               <option value=""></option>
               {applianceAges.map((age) => (
@@ -217,7 +219,7 @@ const ApplianceListingCard = ({
         <textarea
           {...register('description')}
           defaultValue={appliance.description}
-          className="rounded p-2 text-black w-60 h-40 lg:h-auto lg:w-96"
+          className="rounded p-2 text-black w-full lg:w-96 h-40 lg:h-auto "
           name="description"
           id="description"
         />
