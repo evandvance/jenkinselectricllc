@@ -47,7 +47,7 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
   }, [slide, images]);
 
   return (
-    <div className="relative flex justify-center items-center min-w-[330px] min-h-[330px] max-w-[400px] max-h-[400px]">
+    <div className="relative flex justify-center items-center min-w-[330px] min-h-[330px] max-w-[400px] max-h-[400px] lg:h-[400px] lg:w-[400px]">
       {/* <FaArrowAltCircleLeft
         color="white"
         className="text-2xl absolute left-[1rem] hover:cursor-pointer"
