@@ -9,7 +9,7 @@ interface ApplianceCardProps {
 
 const ApplianceCard = ({ appliance }: ApplianceCardProps) => {
   return (
-    <div className="m-5 p-5 flex flex-col lg:flex-row items-center bg-slate-300 w-[85vw] lg:w-3/4 border rounded-xl text-black">
+    <div className="m-5 p-5 flex flex-col lg:flex-row items-center bg-slate-300 w-[85vw] border rounded-xl text-black">
       <Link
         href={`/appliances/${appliance.id}`}
         className="w-[90%] lg:w-1/2 flex justify-center items-center relative"
