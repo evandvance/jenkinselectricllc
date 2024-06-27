@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import ImageCarousel, { ImageCarouselData } from '../Carousels/ImageCarousel';
 
 interface ServicesProvidedCardProps {
   className?: string;
@@ -16,6 +16,20 @@ const ServicesProvidedCard = ({ className }: ServicesProvidedCardProps) => {
     'And More!',
   ];
 
+  const images: ImageCarouselData[] = [
+    { image: '/images/Excavator.jpg', alt: 'Image of an excavator' },
+    { image: '/images/generator.jpg', alt: 'Image of a generator' },
+    { image: '/images/mirababy.jpg', alt: 'Image of a small black dog' },
+    {
+      image: '/images/pretty_panel.jpg',
+      alt: 'Image of a well done electrical panel',
+    },
+    {
+      image: '/images/hookup.jpg',
+      alt: 'Image of a man working on an electrical panel',
+    },
+  ];
+
   return (
     <div className="w-screen bg-white flex justify-center">
       <div
@@ -31,13 +45,7 @@ const ServicesProvidedCard = ({ className }: ServicesProvidedCardProps) => {
             ))}
           </ul>
 
-          <Image
-            className="w-auto h-[350px]"
-            src="/images/hookup.jpg"
-            alt="Image of man hooking up an electrical service"
-            height={350}
-            width={350}
-          />
+          <ImageCarousel images={images} />
         </div>
       </div>
     </div>
