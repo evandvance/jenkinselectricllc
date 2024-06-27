@@ -63,28 +63,29 @@ const Navbar = () => {
           <Link
             onClick={() => setIsNavOpen(!isNavOpen)}
             className="m-1 p-2 hover:text-jellcblue"
-            href={'/schedulenow'}
+            href={'/contact'}
           >
-            Schedule Now
+            Contact
           </Link>
-        </li>
-        <li className="min-h-[50px]">
-          <DropDownLink
-            dropDownLinks={InfoItems}
-            title="Info"
-            className="m-1 p-2 border-b lg:border-none"
-            onClick={() => setIsNavOpen(!isNavOpen)}
-          />
         </li>
         <li className="min-h-[50px] py-1 border-b lg:border-none">
           <Link
             onClick={() => setIsNavOpen(!isNavOpen)}
             className="m-1 p-2 hover:text-jellcblue"
-            href={'/contact'}
+            href={'/schedulenow'}
           >
-            Contact Us
+            Schedule
           </Link>
         </li>
+        <li className="min-h-[50px]">
+          <DropDownLink
+            dropDownLinks={InfoItems}
+            title="Information"
+            className="m-1 p-2 border-b lg:border-none"
+            onClick={() => setIsNavOpen(!isNavOpen)}
+          />
+        </li>
+
         <li className="min-h-[50px]">
           <DropDownLink
             dropDownLinks={ApplianceItems}
