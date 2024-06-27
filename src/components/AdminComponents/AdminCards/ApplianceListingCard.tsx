@@ -134,11 +134,11 @@ const ApplianceListingCard = ({
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col flex-wrap space-y-3 lg:flex-row p-3 lg:px-8 items-center justify-between"
       >
-        <div className="flex flex-col justify-center flex-wrap items-center lg:flex-row space-y-3 lg:space-x-4">
+        <div className="flex flex-col justify-center flex-wrap items-center lg:flex-row space-y-3 lg:space-x-4 lg:space-y-0">
           <input
             {...register('applianceName')}
             defaultValue={appliance.applianceName}
-            className="rounded p-2 text-black w-60"
+            className="rounded p-2 m-2 text-black w-60"
             type="text"
             name="applianceName"
             id="applianceName"
@@ -150,7 +150,7 @@ const ApplianceListingCard = ({
           <input
             {...register('appliancePrice', { valueAsNumber: true })}
             defaultValue={appliance.price}
-            className="rounded p-2 text-black w-60"
+            className="rounded p-2 m-2 text-black w-60"
             type="text"
             name="appliancePrice"
             id="appliancePrice"
@@ -161,7 +161,7 @@ const ApplianceListingCard = ({
           <input
             {...register('modelNumber')}
             defaultValue={appliance.modelNumber}
-            className="rounded p-2 text-black w-60"
+            className="rounded p-2 m-2 text-black w-60"
             type="text"
             name="modelNumber"
             id="modelNumber"
@@ -172,7 +172,7 @@ const ApplianceListingCard = ({
           <input
             {...register('applianceBrand')}
             defaultValue={appliance.brand}
-            className="rounded p-2 text-black w-60"
+            className="rounded p-2 m-2 text-black w-60"
             type="text"
             name="applianceBrand"
             id="applianceBrand"
@@ -180,34 +180,38 @@ const ApplianceListingCard = ({
           {errors.applianceBrand && (
             <p className="text-red-500">{errors.applianceBrand.message}</p>
           )}
-          <select
-            {...register('type')}
-            defaultValue={appliance.type}
-            name="type"
-            id="type"
-            className="p-1"
-          >
-            <option value=""></option>
-            {applianceTypes.map((type) => (
-              <option key={type} value={type}>
-                {type.toUpperCase()}
-              </option>
-            ))}
-          </select>
-          <select
-            {...register('age')}
-            defaultValue={appliance.age}
-            name="age"
-            id="age"
-            className="p-1"
-          >
-            <option value=""></option>
-            {applianceAges.map((age) => (
-              <option key={age} value={age}>
-                {age.toUpperCase()}
-              </option>
-            ))}
-          </select>
+          <div className="w-full">
+            <select
+              {...register('type')}
+              defaultValue={appliance.type}
+              name="type"
+              id="type"
+              className="p-1 w-full m-2"
+            >
+              <option value=""></option>
+              {applianceTypes.map((type) => (
+                <option key={type} value={type}>
+                  {type.toUpperCase()}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="w-full">
+            <select
+              {...register('age')}
+              defaultValue={appliance.age}
+              name="age"
+              id="age"
+              className="p-1 w-full m-2"
+            >
+              <option value=""></option>
+              {applianceAges.map((age) => (
+                <option key={age} value={age}>
+                  {age.toUpperCase()}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <textarea

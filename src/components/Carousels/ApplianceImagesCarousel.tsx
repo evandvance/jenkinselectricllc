@@ -28,7 +28,7 @@ const ApplianceImagesCarousel = ({
         <Image
           height={500}
           width={600}
-          className="object-contain w-full h-auto p-5 lg:max-w-[600px]"
+          className="object-contain w-full h-auto p-5 lg:max-h-[500px]"
           src={selectedImageUrl}
           alt={`Image of ${applianceName}`}
         />

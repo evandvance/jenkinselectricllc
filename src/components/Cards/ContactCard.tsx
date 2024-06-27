@@ -50,7 +50,7 @@ const ContactCard = () => {
           </label>
           <input
             {...register('email')}
-            className="rounded p-2 text-black"
+            className="rounded p-2 text-black "
             type="text"
             name="email"
             id="email"

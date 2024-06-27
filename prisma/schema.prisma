@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -38,6 +32,7 @@ enum ApplianceTypes {
   icemaker
   industrial
   dryerwashersets
+  generator
   other
 
   @@map("appliance_types")
@@ -88,9 +83,7 @@ model Reservations {
   city        String
   state       String
   zip         Int
-  generatorId Int?        @unique @map("generator_id")
   appliance   Appliances? @relation(fields: [applianceId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  generator   Generators? @relation(fields: [generatorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@index([email])
   @@map("reservations")
@@ -103,34 +96,4 @@ model Users {
   password String
 
   @@map("users")
-}
-
-enum GeneratorTypes {
-  Champion
-  Duramax
-  Generac
-
-  @@map("generator_types")
-}
-
-model Generators {
-  id            Int               @id @default(autoincrement())
-  generatorName String            @map("generator_name")
-  price         Float
-  modelNumber   String            @map("model_number")
-  description   String
-  images        GeneratorImages[]
-  brand         GeneratorTypes
-  reservation   Reservations?
-
-  @@map("generators")
-}
-
-model GeneratorImages {
-  id          Int        @id @default(autoincrement())
-  generatorId Int        @map("generator_id")
-  imageUrl    String     @map("image_url")
-  generator   Generators @relation(fields: [generatorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-
-  @@map("generator_images")
 }

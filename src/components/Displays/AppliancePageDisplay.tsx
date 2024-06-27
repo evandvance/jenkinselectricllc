@@ -39,10 +39,13 @@ const AppliancePageDisplay = ({ id }: AppliancePageDisplayProps) => {
             images={appliance!.images}
             applianceName={appliance?.applianceName}
           />
-          <div className="w-full lg:w-1/2 p-5 flex flex-col lg:flex-row-reverse justify-center items-center">
-            <div className="text-3xl mb-3 lg:w-1/3 flex flex-col items-center space-y-2">
-              <h2>Price</h2>
-              <h2 className="text-jellcblue">${appliance?.price}</h2>
+          <div className="w-full lg:w-3/4 p-5 flex flex-col lg:flex-row-reverse justify-center items-center">
+            <div className="text-3xl mb-3 lg:w-1/3 flex flex-col items-center space-y-3">
+              <div className="flex space-x-5">
+                <h2>Price</h2>
+                <h2 className="text-jellcblue">${appliance?.price}</h2>
+              </div>
+
               {appliance?.reservation ? (
                 <div className="text-3xl">Appliance Reserved</div>
               ) : (
