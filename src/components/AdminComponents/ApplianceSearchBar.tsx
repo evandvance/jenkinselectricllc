@@ -29,7 +29,7 @@ const ApplianceSearchBar = ({
       <input
         className="p-1 rounded hover:cursor-text"
         type="text"
-        placeholder="Search..."
+        placeholder="Search By Name..."
         onChange={(event) => {
           setAppliances(
             originalAppliances.filter((appliance) =>

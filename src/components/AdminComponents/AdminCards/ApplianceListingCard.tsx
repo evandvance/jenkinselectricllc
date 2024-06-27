@@ -190,7 +190,6 @@ const ApplianceListingCard = ({
               id="type"
               className="p-1 w-full"
             >
-              <option value=""></option>
               {applianceTypes.map((type) => (
                 <option key={type} value={type}>
                   {type.toUpperCase()}
@@ -206,7 +205,6 @@ const ApplianceListingCard = ({
               id="age"
               className="p-1 w-full"
             >
-              <option value=""></option>
               {applianceAges.map((age) => (
                 <option key={age} value={age}>
                   {age.toUpperCase()}
