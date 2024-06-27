@@ -1,5 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { IoMdArrowDropdown } from 'react-icons/io';
+import { IoMdArrowDropup } from 'react-icons/io';
+
 import Link from 'next/link';
 
 interface DropDownLinkProps {
@@ -25,6 +28,7 @@ const DropDownLink = ({
   titleLink,
 }: DropDownLinkProps) => {
   const [isLinksShown, setIsLinksShown] = useState(false);
+  const [inMobile, setInMobile] = useState(false);
 
   const handleLinksShown = () => setIsLinksShown(!isLinksShown);
 
@@ -39,9 +43,11 @@ const DropDownLink = ({
       if (window.innerWidth > LARGE_WINDOW_WIDTH) {
         dropDownLink?.addEventListener('mouseenter', handleLinksShown);
         dropDownLink?.addEventListener('mouseleave', handleMouseLeave);
+        setInMobile(false);
       } else {
         dropDownLink?.removeEventListener('mouseenter', handleLinksShown);
         dropDownLink?.removeEventListener('mouseleave', handleMouseLeave);
+        setInMobile(true);
       }
     };
 
@@ -52,10 +58,18 @@ const DropDownLink = ({
   return (
     <div id={title} className={`${className ? className : ''}`}>
       <p
-        className="cursor-pointer hover:text-jellcblue"
+        className="cursor-pointer hover:text-jellcblue flex items-center"
         onClick={handleLinksShown}
       >
-        {titleLink ? <Link href={titleLink}>{title}</Link> : title}
+        {titleLink ? (
+          <Link onClick={onClick} href={titleLink}>
+            {title}
+          </Link>
+        ) : (
+          title
+        )}
+        {inMobile &&
+          (isLinksShown ? <IoMdArrowDropup /> : <IoMdArrowDropdown />)}
       </p>
 
       {isLinksShown && (

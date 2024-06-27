@@ -1,15 +1,16 @@
 'use client';
-import { ApplianceTypes } from '@prisma/client';
+import { ApplianceAges, ApplianceTypes } from '@prisma/client';
 
 interface ApplianceFilterInterface {
-  age?: string;
-  filter?: string;
+  age?: ApplianceAges;
+  filter?: ApplianceTypes;
 }
 
 const ApplianceFilter = ({ age, filter }: ApplianceFilterInterface) => {
-  const applianceTypes = Object.keys(ApplianceTypes);
+  let applianceTypes = Object.keys(ApplianceTypes);
 
-  if (!age) return;
+  applianceTypes = applianceTypes.filter((type) => type !== 'generator');
+
   return (
     <div className="w-[85vw] h-20 p-5 flex justify-between items-center rounded-xl bg-slate-300">
       <div className="flex">

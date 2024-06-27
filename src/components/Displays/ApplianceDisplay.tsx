@@ -2,18 +2,21 @@
 import { useState, useEffect } from 'react';
 import { appliaceInterface } from '@/interfaces/ApplianceInterface';
 import ApplianceCard from '../Cards/ApplianceCard';
+import { ApplianceAges, ApplianceTypes } from '@prisma/client';
 
 interface ApplianceDisplayProps {
-  age?: string;
-  filter?: string;
+  age?: ApplianceAges;
+  filter?: ApplianceTypes;
   sortBy?: string;
   page?: number;
   pageSize?: number;
+  generatorType?: 'champion' | 'duramax' | 'generac' | 'all';
 }
 
 const ApplianceDisplay = ({
   age,
   filter,
+  generatorType,
   sortBy,
   page,
   pageSize,
@@ -29,9 +32,11 @@ const ApplianceDisplay = ({
 
       if (!applianceArray) return;
 
-      applianceArray = applianceArray.filter(
-        (appliance) => appliance.age === age
-      );
+      if (age) {
+        applianceArray = applianceArray.filter(
+          (appliance) => appliance.age === age
+        );
+      }
 
       if (filter) {
         applianceArray = applianceArray.filter(
@@ -39,11 +44,22 @@ const ApplianceDisplay = ({
         );
       }
 
+      if (!generatorType) {
+        applianceArray = applianceArray.filter(
+          (appliance) => appliance.type !== 'generator'
+        );
+      }
+
+      if (generatorType && generatorType !== 'all') {
+        applianceArray = applianceArray.filter(
+          (applance) =>
+            applance.brand.toLowerCase() === generatorType.toLocaleLowerCase()
+        );
+      }
+
       setAppliances(applianceArray);
     });
-  }, [age, filter]);
-
-  if (!age) return;
+  }, [age, filter, generatorType]);
 
   return (
     <div className="flex flex-col justify-center items-center w-screen">

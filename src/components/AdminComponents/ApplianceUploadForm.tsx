@@ -68,22 +68,11 @@ const ApplianceUploadForm = ({
 
   return (
     <>
-      {error && (
-        <p className="text-red-500 text-2xl">
-          Error Something when wrong on the server
-        </p>
-      )}
-
-      {success && (
-        <p className="text-2xl text-green-600">
-          Appliance Uploaded Successfully
-        </p>
-      )}
       <form
-        className="flex flex-col justify-center items-center w-[90%] p-5 border rounded-xl border-jellcblue text-white bg-black lg:w-3/4 space-y-3"
+        className="flex flex-col justify-center items-center w-[90%] p-5 lg:p-10 border rounded-xl border-jellcblue text-white bg-black lg:w-3/4 space-y-5"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="flex flex-col w-3/4">
+        <div className="flex flex-col w-full">
           <label className="text-xl" htmlFor="applianceName">
             Appliance Name
           </label>
@@ -98,7 +87,7 @@ const ApplianceUploadForm = ({
             <p className="text-red-500">{errors.applianceName.message}</p>
           )}
         </div>
-        <div className="flex flex-col w-3/4">
+        <div className="flex flex-col w-full">
           <label className="text-xl" htmlFor="appliancePrice">
             Appliance Price
           </label>
@@ -114,7 +103,7 @@ const ApplianceUploadForm = ({
             <p className="text-red-500">{errors.appliancePrice.message}</p>
           )}
         </div>
-        <div className="flex flex-col w-3/4">
+        <div className="flex flex-col w-full">
           <label className="text-xl" htmlFor="modelNumber">
             Model Number
           </label>
@@ -129,7 +118,7 @@ const ApplianceUploadForm = ({
             <p className="text-red-500">{errors.modelNumber.message}</p>
           )}
         </div>
-        <div className="flex flex-col w-3/4">
+        <div className="flex flex-col w-full">
           <label className="text-xl" htmlFor="applianceBrand">
             Appliance Brand
           </label>
@@ -144,7 +133,7 @@ const ApplianceUploadForm = ({
             <p className="text-red-500">{errors.applianceBrand.message}</p>
           )}
         </div>
-        <div className="flex flex-col w-3/4">
+        <div className="flex flex-col w-full">
           <label className="text-xl" htmlFor="description">
             Appliance Description
           </label>
@@ -158,7 +147,7 @@ const ApplianceUploadForm = ({
             <p className="text-red-500">{errors.description.message}</p>
           )}
         </div>
-        <div className="flex flex-col w-3/4 space-y-2">
+        <div className="flex flex-col w-full space-y-2">
           <label className="text-xl" htmlFor="imageFile">
             Upload images
           </label>
@@ -172,32 +161,34 @@ const ApplianceUploadForm = ({
           {errors.imageFile && <p className="text-red-500">File required</p>}
         </div>
 
-        <div className="flex flex-col w-3/4 space-y-2 text-black">
-          <label htmlFor="type" className="text-white text-xl">
-            Appliance Type
-          </label>
-          <select {...register('type')} name="type" id="type" className="p-1">
-            <option value=""></option>
-            {applianceTypes.map((type) => (
-              <option key={type} value={type}>
-                {type.toUpperCase()}
-              </option>
-            ))}
-          </select>
-        </div>
+        <div className="flex w-full flex-col space-y-5 lg:space-y-0 lg:flex-row text-black lg:space-x-4">
+          <div className="flex flex-col w-full lg:w-1/2 space-y-2 text-black">
+            <label htmlFor="type" className="text-white text-xl">
+              Appliance Type
+            </label>
+            <select {...register('type')} name="type" id="type" className="p-1">
+              <option value=""></option>
+              {applianceTypes.map((type) => (
+                <option key={type} value={type}>
+                  {type.toUpperCase()}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div className="flex flex-col w-3/4 space-y-2 text-black">
-          <label htmlFor="age" className="text-white text-xl">
-            Appliance Age
-          </label>
-          <select {...register('age')} name="age" id="age" className="p-1">
-            <option value=""></option>
-            {applianceAges.map((age) => (
-              <option key={age} value={age}>
-                {age.toUpperCase()}
-              </option>
-            ))}
-          </select>
+          <div className="flex flex-col w-full lg:w-1/2 space-y-2 text-black">
+            <label htmlFor="age" className="text-white text-xl">
+              Appliance Age
+            </label>
+            <select {...register('age')} name="age" id="age" className="p-1">
+              <option value=""></option>
+              {applianceAges.map((age) => (
+                <option key={age} value={age}>
+                  {age.toUpperCase()}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
         <button
           className="flex justify-center text-2xl items-center m-5 h-16 w-56 bg-gradient-to-r from-jellcdarkblue to-jellcblue text-white rounded-xl hover:bg-white hover:text-jellcblue"
@@ -206,6 +197,17 @@ const ApplianceUploadForm = ({
           Submit
         </button>
       </form>
+      {error && (
+        <p className="text-red-500 text-2xl">
+          Error Something when wrong on the server
+        </p>
+      )}
+
+      {success && (
+        <p className="text-2xl text-green-600">
+          Appliance Uploaded Successfully
+        </p>
+      )}
     </>
   );
 };

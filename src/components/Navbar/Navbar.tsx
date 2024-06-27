@@ -89,6 +89,7 @@ const Navbar = () => {
           <DropDownLink
             dropDownLinks={ApplianceItems}
             title="Appliances"
+            titleLink="/appliances"
             className="m-1 p-2 border-b lg:border-none"
             onClick={() => setIsNavOpen(!isNavOpen)}
           />

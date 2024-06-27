@@ -18,7 +18,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
     handleSubmit,
     formState: { errors },
   } = useForm<ReserveFormData>({ resolver: zodResolver(reserveFormSchema) });
-  const [appliance, setAppliance] = useState<appliaceInterface>();
+  const [name, setName] = useState<String>();
   const [uploadError, setUploadError] = useState<ApiResponse<undefined>>();
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [isLoading, setIsloading] = useState(false);
@@ -28,7 +28,8 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
       const result = (await data.json()) as ApiResponse<appliaceInterface>;
 
       if (result.status !== 200) return;
-      setAppliance(result.data!);
+
+      setName(result.data?.applianceName!);
     });
   }, [id]);
 
@@ -65,12 +66,12 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
 
   return (
     <>
-      {appliance ? (
+      {name ? (
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="mt-5 flex flex-col justify-center items-center w-[90%] p-5 lg:p-10 border rounded-xl bg-gradient-to-r from-jellcdarkblue to-jellcblue text-white lg:w-3/4 space-y-5"
         >
-          <h2 className="text-3xl">Reserve {appliance?.applianceName}</h2>
+          <h2 className="text-3xl">Reserve {name}</h2>
           <div className="flex flex-col w-full space-y-2">
             <label className="text-xl" htmlFor="email">
               Email
@@ -86,8 +87,8 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
               <p className="text-red-500">{errors.email.message}</p>
             )}
           </div>
-          <div className="flex flex-col lg:flex-row w-full space-y-2 lg:space-x-4 lg:space-y-0">
-            <div className="flex flex-col w-1/2">
+          <div className="flex flex-col lg:flex-row w-full space-y-5 lg:space-x-4 lg:space-y-0">
+            <div className="flex flex-col w-full lg:w-1/2">
               <label className="text-xl" htmlFor="firstName">
                 First Name
               </label>
@@ -102,7 +103,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
                 <p className="text-red-500">{errors.firstName.message}</p>
               )}
             </div>
-            <div className="flex flex-col w-1/2">
+            <div className="flex flex-col w-full lg:w-1/2">
               <label className="text-xl" htmlFor="lastName">
                 Last Name
               </label>
@@ -151,8 +152,8 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
               <p className="text-red-500">{errors.street.message}</p>
             )}
           </div>
-          <div className="flex flex-col lg:flex-row w-full space-y-2 lg:space-x-4 lg:space-y-0">
-            <div className="flex flex-col w-1/2 space-y-2">
+          <div className="flex flex-col lg:flex-row w-full space-y-5 lg:space-x-4 lg:space-y-0">
+            <div className="flex flex-col w-full lg:w-1/2 space-y-2">
               <label className="text-xl" htmlFor="city">
                 City
               </label>
@@ -167,7 +168,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
                 <p className="text-red-500">{errors.city.message}</p>
               )}
             </div>
-            <div className="flex flex-col w-1/2 space-y-2">
+            <div className="flex flex-col w-full lg:w-1/2 space-y-2">
               <label className="text-xl" htmlFor="state">
                 State
               </label>
@@ -221,7 +222,7 @@ const ReserveCard = ({ id }: ReserveCardProps) => {
       ) : (
         <div className="text-5xl mt-2 text-red-500">
           {' '}
-          Requested appliance not found
+          Item requested to reserve not found
         </div>
       )}
       {isLoading && <p className="text-3xl text-jellcblue">Loading...</p>}
