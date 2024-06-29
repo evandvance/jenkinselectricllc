@@ -13,7 +13,7 @@ const BlueButton = ({ href, title, className, target }: BluebuttonProps) => {
       data-testid="blueButton-1"
       href={href}
       target={target}
-      className={`flex justify-center items-center m-5 w-60 h-20 text-2xl bg-gradient-to-r from-jellcdarkblue to-jellcblue hover:border hover:border-jellcblue hover:bg-none text-white rounded-xl hover:bg-white hover:text-jellcblue ${
+      className={`flex justify-center items-center w-60 h-20 text-2xl bg-gradient-to-r from-jellcdarkblue to-jellcblue hover:border hover:border-jellcblue hover:bg-none text-white rounded-xl hover:bg-white hover:text-jellcblue ${
         className ? className : ''
       }`}
     >
