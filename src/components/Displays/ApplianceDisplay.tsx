@@ -62,9 +62,9 @@ const ApplianceDisplay = ({
   }, [age, filter, generatorType]);
 
   return (
-    <div className="flex flex-col justify-center items-center w-screen">
+    <div className="flex flex-wrap w-screen max-w-[1400px] justify-center">
       {appliances.length <= 0 ? (
-        <div className="flex flex-col justify-center items-center m-5 text-2xl">
+        <div className="flex flex-col justify-center items-center m-5 text-2xl w-screen">
           <p>No {generatorType ? 'Generators' : 'Appliances'} Found</p>
         </div>
       ) : (

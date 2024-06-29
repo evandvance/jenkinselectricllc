@@ -60,15 +60,6 @@ const Navbar = () => {
           </Link>
         </li>
         <li className="min-h-[50px] py-1 border-b lg:border-none">
-          <Link
-            onClick={() => setIsNavOpen(!isNavOpen)}
-            className="m-1 p-2 hover:text-jellcblue"
-            href={'/contact'}
-          >
-            Contact
-          </Link>
-        </li>
-        <li className="min-h-[50px] py-1 border-b lg:border-none">
           <a
             onClick={() => setIsNavOpen(!isNavOpen)}
             className="m-1 p-2 hover:text-jellcblue"
@@ -77,8 +68,17 @@ const Navbar = () => {
             }
             target="_blank"
           >
-            Schedule
+            Book Now
           </a>
+        </li>
+        <li className="min-h-[50px] py-1 border-b lg:border-none">
+          <Link
+            onClick={() => setIsNavOpen(!isNavOpen)}
+            className="m-1 p-2 hover:text-jellcblue"
+            href={'/contact'}
+          >
+            Contact
+          </Link>
         </li>
         <li className="min-h-[50px]">
           <DropDownLink
