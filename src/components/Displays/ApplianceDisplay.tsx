@@ -65,7 +65,7 @@ const ApplianceDisplay = ({
     <div className="flex flex-col justify-center items-center w-screen">
       {appliances.length <= 0 ? (
         <div className="flex flex-col justify-center items-center m-5 text-2xl">
-          <p>No Appliances Found</p>
+          <p>No {generatorType ? 'Generators' : 'Appliances'} Found</p>
         </div>
       ) : (
         appliances.map((appliance) => {
