@@ -9,8 +9,8 @@ interface ApplianceCardProps {
 
 const ApplianceCard = ({ appliance }: ApplianceCardProps) => {
   return (
-    <div className="m-3 p-10 flex flex-col items-center bg-slate-300 text-black border rounded max-w-[90%]">
-      <Link href={`/appliances/${appliance.id}`} className="w-full">
+    <div className="m-3 p-10 flex flex-col justify-between items-center bg-slate-300 text-black border rounded max-w-[90%]">
+      <Link href={`/appliances/${appliance.id}`} className="w-full h-1/2">
         <Image
           height={350}
           width={350}
@@ -24,7 +24,7 @@ const ApplianceCard = ({ appliance }: ApplianceCardProps) => {
         />
       </Link>
 
-      <div className="flex flex-col w-[350px] p-5">
+      <div className="flex flex-col w-[350px] p-5 h-1/2 justify-end">
         <div className="flex flex-col justify-between items-center space-y-4">
           <h2 className="text-4xl ">{appliance.applianceName}</h2>
           <h3 className="text-3xl  text-jellcblue">${appliance.price}</h3>
