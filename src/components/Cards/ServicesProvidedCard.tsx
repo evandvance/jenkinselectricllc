@@ -17,16 +17,23 @@ const ServicesProvidedCard = ({ className }: ServicesProvidedCardProps) => {
   ];
 
   const images: ImageCarouselData[] = [
-    { image: '/images/Excavator.jpg', alt: 'Image of an excavator' },
     { image: '/images/generator.jpg', alt: 'Image of a generator' },
-    { image: '/images/mirababy.jpg', alt: 'Image of a small black dog' },
+    {
+      image: '/images/microwaves.jpeg',
+      alt: 'Image of a lot of microwaves in a warehouse',
+    },
+    {
+      image: '/images/service_connect.jpeg',
+      alt: 'Image of an electrical panel',
+    },
+    {
+      image: '/images/truck_stuck_in_mud.jpeg',
+      alt: 'Image of a red truck stuck in the mud',
+    },
+
     {
       image: '/images/pretty_panel.jpg',
       alt: 'Image of a well done electrical panel',
-    },
-    {
-      image: '/images/hookup.jpg',
-      alt: 'Image of a man working on an electrical panel',
     },
   ];
 
