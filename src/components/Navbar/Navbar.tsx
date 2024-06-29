@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <nav className="w-screen text-white bg-black lg:flex lg:justify-between">
-      <div className="w-screen lg:w-auto lg:ml-10 px-3 flex justify-between items-center">
+      <div className="w-screen lg:w-auto lg:ml-10 px-3 flex justify-between items-center z-50 relative bg-black">
         <Link href="/" className="w-20 h-auto bg-black">
           <Image
             src="/assets/logo.webp"
@@ -48,7 +48,7 @@ const Navbar = () => {
         // The nabar comes from the top because there is a weird behavior on mobile where it enables horizontal scrolling if it comes from the side
         className={`absolute ${
           isNavOpen ? 'translate-y-0' : '-translate-y-[100vh]'
-        } z-40 w-screen lg:w-auto lg:flex lg:static lg:justify-center lg:items-baseline lg:mr-24 lg:translate-y-0 pt-2 text-2xl space-y-1 duration-500 ease-in-out transition-all lg:transition-none bg-black`}
+        } w-screen z-40 lg:w-auto lg:flex lg:static lg:justify-center lg:items-baseline lg:mr-24 lg:translate-y-0 pt-2 text-2xl space-y-1 duration-500 ease-in-out transition-all lg:transition-none bg-black`}
       >
         <li className="min-h-[50px] py-1 border-b lg:border-none">
           <Link

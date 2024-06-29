@@ -12,6 +12,7 @@ const HomePage = () => {
           <video
             className="min-h-full min-w-full object-cover"
             autoPlay
+            playsInline
             muted
             loop
           >
