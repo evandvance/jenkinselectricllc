@@ -14,7 +14,7 @@ const GeneratorPage = ({ searchParams: { brand } }: GeneratorPageProps) => {
           ? `${brand.charAt(0).toUpperCase() + brand.slice(1)} Generators`
           : 'Generators'}
       </h1>
-      <p className="text-xl m-5 lg:w-3/4">
+      <p className="text-xl m-5 lg:w-1/3">
         {/* TODO Clarify what they do with generators. */}
         Jenkins Electric installs and services{' '}
         {brand
