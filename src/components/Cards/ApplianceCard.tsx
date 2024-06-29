@@ -12,7 +12,7 @@ const ApplianceCard = ({ appliance }: ApplianceCardProps) => {
     <div className="m-3 p-10 flex flex-col items-center bg-slate-300 text-black border rounded max-w-[90%]">
       <Link
         href={`/appliances/${appliance.id}`}
-        className="flex justify-center items-center relative min-w-full max-w-[350px] max-h-[350px]"
+        className="flex justify-center items-center min-w-full max-w-[350px] max-h-[350px]"
       >
         <Image
           height={350}
