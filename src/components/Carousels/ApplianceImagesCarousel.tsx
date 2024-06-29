@@ -28,7 +28,7 @@ const ApplianceImagesCarousel = ({
         <Image
           height={500}
           width={600}
-          className="object-contain w-full h-auto p-5 lg:max-h-[500px]"
+          className="object-contain w-full h-auto p-5 lg:max-h-[500px] rounded"
           src={selectedImageUrl}
           alt={`Image of ${applianceName}`}
         />
@@ -41,7 +41,7 @@ const ApplianceImagesCarousel = ({
               onClick={() => handleOnClick(image.imageUrl)}
               height={300}
               width={400}
-              className="object-contain w-full h-auto lg:max-w-[400px] p-5 hover:cursor-pointer"
+              className="object-contain w-full h-auto lg:max-w-[400px] p-5 hover:cursor-pointer rounded"
               src={image.imageUrl}
               alt={`Image of ${applianceName}`}
             />

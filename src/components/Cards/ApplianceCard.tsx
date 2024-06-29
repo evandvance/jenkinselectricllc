@@ -24,7 +24,7 @@ const ApplianceCard = ({ appliance }: ApplianceCardProps) => {
         />
       </Link>
 
-      <div className="flex flex-col w-[350px] p-5 h-1/2 justify-end">
+      <div className="flex flex-col px-5 pt-5 w-[350px] h-1/2 justify-end">
         <div className="flex flex-col justify-between items-center space-y-4">
           <h2 className="text-4xl ">{appliance.applianceName}</h2>
           <h3 className="text-3xl  text-jellcblue">${appliance.price}</h3>
@@ -40,7 +40,7 @@ const ApplianceCard = ({ appliance }: ApplianceCardProps) => {
         >
           More details...
         </Link>
-        <div className="w-full flex items-center justify-center">
+        <div className="w-full flex items-center justify-center pt-5">
           {appliance.reservation ? (
             <div className="text-4xl">Appliance Reserved.</div>
           ) : (
