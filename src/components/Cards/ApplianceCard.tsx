@@ -13,8 +13,8 @@ const ApplianceCard = ({ appliance }: ApplianceCardProps) => {
       <Link href={`/appliances/${appliance.id}`} className="w-full h-1/2">
         <Image
           height={350}
-          width={350}
-          className="object-contain w-full h-auto rounded"
+          width={500}
+          className="object-contain w-full h-full rounded"
           src={
             process.env.NODE_ENV === 'development'
               ? '/images/example_image.webp'
