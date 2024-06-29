@@ -14,7 +14,7 @@ const AboutUsCard = ({ className }: AbouteUsCardProps) => {
       <h2 className="text-5xl m-5">About Us</h2>
       <div className="flex flex-col justify-around items-center lg:flex-row">
         <Image
-          className="m-5"
+          className="m-5 rounded"
           src="/images/owners.jpg"
           alt="Image of the Owners of Jenkins Electric LLC"
           height={400}

@@ -9,36 +9,32 @@ interface ApplianceCardProps {
 
 const ApplianceCard = ({ appliance }: ApplianceCardProps) => {
   return (
-    <div className="m-5 p-5 flex flex-col lg:flex-row items-center bg-slate-300 w-[85vw] border rounded-xl text-black">
+    <div className="m-3 p-10 flex flex-col items-center bg-slate-300 text-black border rounded max-w-[90%]">
       <Link
         href={`/appliances/${appliance.id}`}
-        className="w-[90%] lg:w-1/2 flex justify-center items-center relative"
+        className="flex justify-center items-center relative min-w-full max-w-[350px] max-h-[350px]"
       >
         <Image
-          height={300}
-          width={400}
-          className="object-contain w-full h-auto p-5 lg:max-h-[350px]"
+          height={350}
+          width={350}
+          className="object-contain w-full h-auto rounded"
           src={appliance.images[0].imageUrl}
           alt={`Image of ${appliance.applianceName}`}
         />
       </Link>
 
-      <div className="flex flex-col lg:space-y-4 lg:w-1/2">
-        <div className="flex flex-col justify-between m-5 space-y-4 lg:space-y-10 lg:ml-24">
-          <div className="space-y-2">
-            <h2 className="text-4xl lg:text-5xl">{appliance.applianceName}</h2>
-            <h3 className="text-3xl lg:text-4xl text-jellcblue">
-              ${appliance.price}
-            </h3>
-          </div>
-          <div className="text-lg">
-            <p>Model: {appliance.modelNumber}</p>
-            <p>{appliance.brand}</p>
-            <p>{appliance.type.toUpperCase()}</p>
-          </div>
+      <div className="flex flex-col w-[350px] p-5">
+        <div className="flex flex-col justify-between items-center space-y-4">
+          <h2 className="text-4xl ">{appliance.applianceName}</h2>
+          <h3 className="text-3xl  text-jellcblue">${appliance.price}</h3>
+        </div>
+        <div className="text-lg">
+          <p>Model: {appliance.modelNumber}</p>
+          <p>{appliance.brand}</p>
+          <p>{appliance.type.toUpperCase()}</p>
         </div>
         <Link
-          className="text-jellcblue hover:underline text-lg mx-5 lg:ml-24 "
+          className="text-jellcblue hover:underline text-lg "
           href={`/appliances/${appliance.id}`}
         >
           More details...

@@ -12,7 +12,7 @@ const ApplianceFilter = ({ age, filter }: ApplianceFilterInterface) => {
   applianceTypes = applianceTypes.filter((type) => type !== 'generator');
 
   return (
-    <div className="w-[85vw] h-20 p-5 flex justify-between items-center rounded-xl bg-slate-300">
+    <div className="w-[90%] lg:w-[1350px] h-20 p-5 flex justify-between items-center rounded bg-slate-300">
       <div className="flex">
         <button
           onClick={() =>
@@ -40,7 +40,6 @@ const ApplianceFilter = ({ age, filter }: ApplianceFilterInterface) => {
         </button>
       </div>
       <div className="flex">
-        <h2 className="hidden text-xl mr-2 lg:block">Filter:</h2>
         <select
           className="rounded w-24 lg:w-auto p-1"
           name="filter"
