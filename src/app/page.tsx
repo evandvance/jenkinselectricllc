@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <div className="flex flex-col justify-center items-center space-y-5">
       <div data-testid="landing-1" className="">
-        <div className="absolute left-0 h-[100vh] -z-50">
+        <div className="absolute -left-[43rem] lg:left-0 h-[100vh] -z-50">
           <video
             className="min-h-full min-w-full object-cover"
             autoPlay
@@ -16,10 +16,7 @@ const HomePage = () => {
             muted
             loop
           >
-            <source
-              src="https://mediacdn.jenkinselectric.llc/Lights.webm"
-              type="video/webm"
-            />
+            <source src="lights.webm" type="video/webm" />
           </video>
         </div>
 
