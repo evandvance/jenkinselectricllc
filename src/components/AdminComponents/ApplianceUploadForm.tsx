@@ -124,13 +124,29 @@ const ApplianceUploadForm = ({
           <label className="text-xl" htmlFor="applianceBrand">
             {isGenerator ? 'Generator' : 'Appliance'} Brand
           </label>
-          <input
-            {...register('applianceBrand')}
-            className="rounded p-2 text-black"
-            type="text"
-            name="applianceBrand"
-            id="applianceBrand"
-          />
+
+          {isGenerator ? (
+            <select
+              {...register('applianceBrand')}
+              name="applianceBrand"
+              id="applianceBrand"
+              className="p-1 text-black"
+            >
+              <option value=""></option>
+              <option value="champion">Champion</option>
+              <option value="duramax">Duramax</option>
+              <option value="generac">Generac</option>
+            </select>
+          ) : (
+            <input
+              {...register('applianceBrand')}
+              className="rounded p-2 text-black"
+              type="text"
+              name="applianceBrand"
+              id="applianceBrand"
+            />
+          )}
+
           {errors.applianceBrand && (
             <p className="text-red-500">{errors.applianceBrand.message}</p>
           )}
