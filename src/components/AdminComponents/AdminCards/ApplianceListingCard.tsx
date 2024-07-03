@@ -18,6 +18,7 @@ interface ApplianceListingCardProps {
   originalAppliances: appliaceInterface[];
   setAppliances: Dispatch<SetStateAction<appliaceInterface[]>>;
   setOriginalAppliances: Dispatch<SetStateAction<appliaceInterface[]>>;
+  isGenerator?: boolean;
 }
 
 const ApplianceListingCard = ({
@@ -26,6 +27,7 @@ const ApplianceListingCard = ({
   originalAppliances,
   setOriginalAppliances,
   setAppliances,
+  isGenerator,
 }: ApplianceListingCardProps) => {
   const applianceAges = Object.keys(ApplianceAges);
   const applianceTypes = Object.keys(ApplianceTypes);
@@ -182,36 +184,58 @@ const ApplianceListingCard = ({
           {errors.applianceBrand && (
             <p className="text-red-500">{errors.applianceBrand.message}</p>
           )}
-          <div className="w-full m-2">
-            <select
+
+          {isGenerator ? (
+            <input
               {...register('type')}
-              defaultValue={appliance.type}
               name="type"
               id="type"
-              className="p-1 w-full"
-            >
-              {applianceTypes.map((type) => (
-                <option key={type} value={type}>
-                  {type.toUpperCase()}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="w-full m-2">
-            <select
+              type="hidden"
+              value={'generator'}
+            />
+          ) : (
+            <div className="w-full m-2">
+              <select
+                {...register('type')}
+                defaultValue={appliance.type}
+                name="type"
+                id="type"
+                className="p-1 w-full"
+              >
+                {applianceTypes.map((type) => (
+                  <option key={type} value={type}>
+                    {type.toUpperCase()}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          {isGenerator ? (
+            <input
               {...register('age')}
-              defaultValue={appliance.age}
               name="age"
               id="age"
-              className="p-1 w-full"
-            >
-              {applianceAges.map((age) => (
-                <option key={age} value={age}>
-                  {age.toUpperCase()}
-                </option>
-              ))}
-            </select>
-          </div>
+              type="hidden"
+              value={'New'}
+            />
+          ) : (
+            <div className="w-full m-2">
+              <select
+                {...register('age')}
+                defaultValue={appliance.age}
+                name="age"
+                id="age"
+                className="p-1 w-full"
+              >
+                {applianceAges.map((age) => (
+                  <option key={age} value={age}>
+                    {age.toUpperCase()}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
         </div>
 
         <textarea
