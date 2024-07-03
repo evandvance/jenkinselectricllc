@@ -12,11 +12,13 @@ import { appliaceInterface } from '@/interfaces/ApplianceInterface';
 interface ApplianceUploadFormProps {
   allAppliances: appliaceInterface[];
   setAppliances: Dispatch<SetStateAction<appliaceInterface[]>>;
+  isGenerator?: boolean;
 }
 
 const ApplianceUploadForm = ({
   allAppliances,
   setAppliances,
+  isGenerator,
 }: ApplianceUploadFormProps) => {
   const applianceAges = Object.keys(ApplianceAges);
   const applianceTypes = Object.keys(ApplianceTypes);
@@ -74,7 +76,7 @@ const ApplianceUploadForm = ({
       >
         <div className="flex flex-col w-full">
           <label className="text-xl" htmlFor="applianceName">
-            Appliance Name
+            {isGenerator ? 'Generator' : 'Appliance'} Name
           </label>
           <input
             {...register('applianceName')}
@@ -89,7 +91,7 @@ const ApplianceUploadForm = ({
         </div>
         <div className="flex flex-col w-full">
           <label className="text-xl" htmlFor="appliancePrice">
-            Appliance Price
+            {isGenerator ? 'Generator' : 'Appliance'} Price
           </label>
           <input
             {...register('appliancePrice', { valueAsNumber: true })}
@@ -120,7 +122,7 @@ const ApplianceUploadForm = ({
         </div>
         <div className="flex flex-col w-full">
           <label className="text-xl" htmlFor="applianceBrand">
-            Appliance Brand
+            {isGenerator ? 'Generator' : 'Appliance'} Brand
           </label>
           <input
             {...register('applianceBrand')}
@@ -135,7 +137,7 @@ const ApplianceUploadForm = ({
         </div>
         <div className="flex flex-col w-full">
           <label className="text-xl" htmlFor="description">
-            Appliance Description
+            {isGenerator ? 'Generator' : 'Appliance'} Description
           </label>
           <textarea
             {...register('description')}
@@ -162,33 +164,58 @@ const ApplianceUploadForm = ({
         </div>
 
         <div className="flex w-full flex-col space-y-5 lg:space-y-0 lg:flex-row text-black lg:space-x-4">
-          <div className="flex flex-col w-full lg:w-1/2 space-y-2 text-black">
-            <label htmlFor="type" className="text-white text-xl">
-              Appliance Type
-            </label>
-            <select {...register('type')} name="type" id="type" className="p-1">
-              <option value=""></option>
-              {applianceTypes.map((type) => (
-                <option key={type} value={type}>
-                  {type.toUpperCase()}
-                </option>
-              ))}
-            </select>
-          </div>
+          {isGenerator ? (
+            <input
+              {...register('type')}
+              name="type"
+              id="type"
+              type="hidden"
+              value={'generator'}
+            />
+          ) : (
+            <div className="flex flex-col w-full lg:w-1/2 space-y-2 text-black">
+              <label htmlFor="type" className="text-white text-xl">
+                {isGenerator ? 'Generator' : 'Appliance'} Type
+              </label>
+              <select
+                {...register('type')}
+                name="type"
+                id="type"
+                className="p-1"
+              >
+                <option value=""></option>
+                {applianceTypes.map((type) => (
+                  <option key={type} value={type}>
+                    {type.toUpperCase()}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
 
-          <div className="flex flex-col w-full lg:w-1/2 space-y-2 text-black">
-            <label htmlFor="age" className="text-white text-xl">
-              Appliance Age
-            </label>
-            <select {...register('age')} name="age" id="age" className="p-1">
-              <option value=""></option>
-              {applianceAges.map((age) => (
-                <option key={age} value={age}>
-                  {age.toUpperCase()}
-                </option>
-              ))}
-            </select>
-          </div>
+          {isGenerator ? (
+            <input
+              {...register('age')}
+              name="age"
+              id="age"
+              type="hidden"
+              value={'New'}
+            />
+          ) : (
+            <div className="flex flex-col w-full lg:w-1/2 space-y-2 text-black">
+              <label htmlFor="age" className="text-white text-xl">
+                {isGenerator ? 'Generator' : 'Appliance'} Age
+              </label>
+              <select {...register('age')} name="age" id="age" className="p-1">
+                <option value=""></option>
+                {applianceAges.map((age) => (
+                  <option key={age} value={age}>
+                    {age.toUpperCase()}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
         </div>
         <button
           className="flex justify-center text-2xl items-center m-5 h-16 w-56 bg-gradient-to-r from-jellcdarkblue to-jellcblue text-white rounded-xl hover:bg-white hover:text-jellcblue"
@@ -205,7 +232,7 @@ const ApplianceUploadForm = ({
 
       {success && (
         <p className="text-2xl text-green-600">
-          Appliance Uploaded Successfully
+          {isGenerator ? 'Generator' : 'Appliance'} Uploaded Successfully
         </p>
       )}
     </>

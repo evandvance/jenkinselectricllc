@@ -56,7 +56,9 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
       {images.map((image, index) => (
         <Image
           className={
-            slide === index ? 'w-full h-full shadow-sm rounded' : 'hidden'
+            slide === index
+              ? 'min-w-[330px] min-h-[330px] max-w-[400px] max-h-[400px] lg:h-[400px] lg:w-[400px] shadow-sm rounded'
+              : 'hidden'
           }
           key={index}
           src={image.image}

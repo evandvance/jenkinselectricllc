@@ -7,7 +7,7 @@ interface ApplianceListingDisplayProps {
   appliances: appliaceInterface[];
   originalAppliances: appliaceInterface[];
   setAppliances: Dispatch<SetStateAction<appliaceInterface[]>>;
-
+  isGenerator?: boolean;
   setOriginalAppliances: Dispatch<SetStateAction<appliaceInterface[]>>;
 }
 
@@ -16,6 +16,7 @@ const ApplianceListingDisplay = ({
   originalAppliances,
   setOriginalAppliances,
   setAppliances,
+  isGenerator,
 }: ApplianceListingDisplayProps) => {
   return (
     <div className="flex flex-col justify-center items-center w-screen space-y-3">
@@ -33,6 +34,7 @@ const ApplianceListingDisplay = ({
               originalAppliances={originalAppliances}
               setAppliances={setAppliances}
               setOriginalAppliances={setOriginalAppliances}
+              isGenerator={isGenerator}
             />
           );
         })

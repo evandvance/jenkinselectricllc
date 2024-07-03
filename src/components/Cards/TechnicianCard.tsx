@@ -23,7 +23,7 @@ const TechnicianCard = ({ technician, index }: TechnicianCardProps) => {
         <Image
           height={400}
           width={500}
-          className="object-cotain w-full h-auto lg:max-w-[500px] p-5 -z-10 rounded"
+          className="object-cotain w-full h-auto lg:w-[500px] lg:h-[400px] p-5 -z-10 rounded"
           src={technician.imageUrl}
           alt={`Image of ${technician.firstName} ${technician.lastName}`}
         />

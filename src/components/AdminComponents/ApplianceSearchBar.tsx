@@ -4,6 +4,7 @@ import { ApplianceTypes } from '@prisma/client';
 import { Dispatch, SetStateAction } from 'react';
 
 interface ApplianceSearchBarProps {
+  isGenerator?: boolean;
   originalAppliances: appliaceInterface[];
   setAppliances: Dispatch<SetStateAction<appliaceInterface[]>>;
 }
@@ -11,6 +12,7 @@ interface ApplianceSearchBarProps {
 const ApplianceSearchBar = ({
   originalAppliances,
   setAppliances,
+  isGenerator,
 }: ApplianceSearchBarProps) => {
   const applianceTypes = Object.keys(ApplianceTypes);
 
@@ -38,24 +40,26 @@ const ApplianceSearchBar = ({
           );
         }}
       />
-      <div className="flex">
-        <h2 className="hidden lg:static text-xl mr-2">Filter:</h2>
-        <select
-          className="rounded w-24 lg:w-auto p-1"
-          name="filter"
-          id="filter"
-          onChange={(event) =>
-            handleFilterChange(event.target.value as ApplianceTypes | '')
-          }
-        >
-          <option value="">All</option>
-          {applianceTypes.map((type) => (
-            <option key={type} value={type}>
-              {type.toUpperCase()}
-            </option>
-          ))}
-        </select>
-      </div>
+      {!isGenerator && (
+        <div className="flex">
+          <h2 className="hidden lg:static text-xl mr-2">Filter:</h2>
+          <select
+            className="rounded w-24 lg:w-auto p-1"
+            name="filter"
+            id="filter"
+            onChange={(event) =>
+              handleFilterChange(event.target.value as ApplianceTypes | '')
+            }
+          >
+            <option value="">All</option>
+            {applianceTypes.map((type) => (
+              <option key={type} value={type}>
+                {type.toUpperCase()}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
     </div>
   );
 };

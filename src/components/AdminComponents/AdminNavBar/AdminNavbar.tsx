@@ -20,6 +20,14 @@ const AdminNavbar = () => {
             Appliances
           </Link>
         </li>
+        <li>
+          <Link
+            className="border rounded-xl py-2 px-3 hover:bg-white hover:text-black"
+            href={'/admin/generators'}
+          >
+            Generators
+          </Link>
+        </li>
 
         <li>
           <Link
