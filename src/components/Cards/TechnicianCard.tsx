@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { FaAward } from 'react-icons/fa6';
 import { Technicians } from '@prisma/client';
+
 interface TechnicianCardProps {
   technician: Technicians;
   index?: number;
@@ -21,9 +22,9 @@ const TechnicianCard = ({ technician, index }: TechnicianCardProps) => {
     >
       <div className="w-full lg:w-1/2 flex justify-center items-center relative">
         <Image
-          height={400}
+          height={500}
           width={500}
-          className="object-cotain w-full h-auto lg:w-[500px] lg:h-[400px] p-5 -z-10 rounded"
+          className="object-cotain w-full h-auto lg:w-[500px] lg:h-[500px] p-5 -z-10 rounded"
           src={technician.imageUrl}
           alt={`Image of ${technician.firstName} ${technician.lastName}`}
         />

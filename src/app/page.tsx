@@ -7,8 +7,8 @@ import AboutUsCard from '../components/Cards/AboutUsCard';
 const HomePage = () => {
   return (
     <div className="flex flex-col justify-center items-center space-y-5">
-      <div data-testid="landing-1" className="">
-        <div className="absolute -left-[43rem] lg:left-0 h-[100vh] -z-50">
+      <div data-testid="landing-1" className="h-screen">
+        <div className="absolute -left-[43rem] lg:left-0 h-[100vh]">
           <video
             className="min-h-full min-w-full object-cover"
             autoPlay

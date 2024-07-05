@@ -136,7 +136,7 @@ const ApplianceListingCard = ({
       )}
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full flex flex-col flex-wrap space-y-3 lg:flex-row p-3 lg:px-8 items-center justify-between"
+        className="w-full flex flex-col flex-wrap space-y-3 lg:flex-row p-3 lg:px-8 items-center justify-around"
       >
         <div className="w-full flex flex-col justify-center flex-wrap items-center lg:flex-row space-y-3 lg:space-x-4 lg:space-y-0">
           <input
@@ -184,7 +184,9 @@ const ApplianceListingCard = ({
           {errors.applianceBrand && (
             <p className="text-red-500">{errors.applianceBrand.message}</p>
           )}
+        </div>
 
+        <div className="w-full lg:w-auto">
           {isGenerator ? (
             <input
               {...register('type')}

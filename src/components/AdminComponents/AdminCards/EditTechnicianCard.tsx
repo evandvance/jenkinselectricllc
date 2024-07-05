@@ -101,7 +101,7 @@ const EditTechnicianCard = ({
       )}
       <form
         onSubmit={handleSubmit(onSumbit)}
-        className="w-full flex flex-col space-y-3 lg:flex-row p-3 lg:px-8 items-center justify-between"
+        className="w-full flex flex-col space-y-3 lg:flex-row flex-wrap p-3 lg:px-8 items-center justify-between"
       >
         <div className="flex flex-col justify-center items-center lg:flex-row space-y-3 lg:space-y-0 lg:space-x-4">
           <input
