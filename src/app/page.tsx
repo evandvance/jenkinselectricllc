@@ -17,7 +17,7 @@ const HomePage = () => {
             muted
             loop
           >
-            <source src="lights.webm" type="video/webm" />
+            <source src="/lights.webm" type="video/webm" />
           </video>
         </div>
 
