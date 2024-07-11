@@ -9,13 +9,12 @@ const FadeIn = ({ children }: FadeInProps) => {
   const containerRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  const fadeInOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.75,
-  };
-
   useEffect(() => {
+    const fadeInOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.75,
+    };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) setIsVisible(true);
@@ -31,7 +30,7 @@ const FadeIn = ({ children }: FadeInProps) => {
         observer.unobserve(containerRef.current);
       }
     };
-  }, [containerRef, fadeInOptions]);
+  }, [containerRef]);
 
   return (
     <div
