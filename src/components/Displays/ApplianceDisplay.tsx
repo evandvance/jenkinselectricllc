@@ -69,11 +69,9 @@ const ApplianceDisplay = ({
           <p>No {generatorType ? 'Generators' : 'Appliances'} Found</p>
         </div>
       ) : (
-        <FadeIn>
-          {appliances.map((appliance) => {
-            return <ApplianceCard key={appliance.id} appliance={appliance} />;
-          })}
-        </FadeIn>
+        appliances.map((appliance) => {
+          return <ApplianceCard key={appliance.id} appliance={appliance} />;
+        })
       )}
     </div>
   );
