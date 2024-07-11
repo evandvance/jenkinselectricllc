@@ -38,3 +38,6 @@ services:
           action: sync
         - path: ./.env
           action: rebuild
+        - path: ./tailwind.config.ts
+          target: /app/tailwind.config.ts
+          action: sync

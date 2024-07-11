@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { FaChevronDown } from 'react-icons/fa';
 import ServicesProvidedCard from '../components/Cards/ServicesProvidedCard';
 import AboutUsCard from '../components/Cards/AboutUsCard';
+import FadeIn from '@/components/Utilities/FadeIn';
 
 const HomePage = () => {
   return (
@@ -22,10 +23,12 @@ const HomePage = () => {
 
         <div className="relative z-0 flex flex-col justify-between h-[92vh]">
           <div className="flex w-screen">
-            <h1 className="text-5xl lg:text-7xl mt-6 ml-5 lg:ml-36 text-left text-white">
-              Jenkins <br></br>
-              <span className="text-jellcblue">Electric LLC</span>
-            </h1>
+            <FadeIn>
+              <h1 className="text-5xl lg:text-7xl mt-6 ml-5 lg:ml-36 text-left text-white">
+                Jenkins <br></br>
+                <span className="text-jellcblue">Electric LLC</span>
+              </h1>
+            </FadeIn>
           </div>
           <div className="flex w-screen h-[8vh]">
             <div className="w-1/3"></div>
@@ -43,8 +46,12 @@ const HomePage = () => {
         </div>
       </div>
 
-      <ServicesProvidedCard />
-      <AboutUsCard />
+      <FadeIn>
+        <ServicesProvidedCard />
+      </FadeIn>
+      <FadeIn>
+        <AboutUsCard />
+      </FadeIn>
     </div>
   );
 };

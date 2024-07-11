@@ -42,7 +42,7 @@ const ContactCard = () => {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="mt-5 flex flex-col justify-center items-center w-[90%] p-5 lg:p-10 border rounded-xl bg-gradient-to-r from-jellcdarkblue to-jellcblue text-white lg:w-3/4 space-y-5"
+        className="mt-5 flex flex-col justify-center items-center w-[90vw] p-5 lg:p-10 border rounded-xl bg-gradient-to-r from-jellcdarkblue to-jellcblue text-white lg:w-[75vw] space-y-5"
       >
         <div className="flex flex-col w-full space-y-2">
           <label className="text-xl" htmlFor="email">
