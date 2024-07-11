@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { appliaceInterface } from '@/interfaces/ApplianceInterface';
 import ApplianceCard from '../Cards/ApplianceCard';
 import { ApplianceAges, ApplianceTypes } from '@prisma/client';
+import FadeIn from '../Utilities/FadeIn';
 
 interface ApplianceDisplayProps {
   age?: ApplianceAges;
@@ -68,9 +69,11 @@ const ApplianceDisplay = ({
           <p>No {generatorType ? 'Generators' : 'Appliances'} Found</p>
         </div>
       ) : (
-        appliances.map((appliance) => {
-          return <ApplianceCard key={appliance.id} appliance={appliance} />;
-        })
+        <FadeIn>
+          {appliances.map((appliance) => {
+            return <ApplianceCard key={appliance.id} appliance={appliance} />;
+          })}
+        </FadeIn>
       )}
     </div>
   );
