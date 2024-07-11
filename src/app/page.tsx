@@ -3,12 +3,13 @@ import Link from 'next/link';
 import { FaChevronDown } from 'react-icons/fa';
 import ServicesProvidedCard from '../components/Cards/ServicesProvidedCard';
 import AboutUsCard from '../components/Cards/AboutUsCard';
+import FadeIn from '@/components/Utilities/FadeIn';
 
 const HomePage = () => {
   return (
     <div className="flex flex-col justify-center items-center space-y-5">
-      <div data-testid="landing-1" className="">
-        <div className="absolute -left-[43rem] lg:left-0 h-[100vh] -z-50">
+      <div data-testid="landing-1" className="h-screen">
+        <div className="absolute -left-[43rem] lg:left-0 h-[100vh]">
           <video
             className="min-h-full min-w-full object-cover"
             autoPlay
@@ -16,16 +17,18 @@ const HomePage = () => {
             muted
             loop
           >
-            <source src="lights.webm" type="video/webm" />
+            <source src="/lights.webm" type="video/webm" />
           </video>
         </div>
 
         <div className="relative z-0 flex flex-col justify-between h-[92vh]">
           <div className="flex w-screen">
-            <h1 className="text-5xl lg:text-7xl mt-6 ml-5 lg:ml-36 text-left text-white">
-              Jenkins <br></br>
-              <span className="text-jellcblue">Electric LLC</span>
-            </h1>
+            <FadeIn>
+              <h1 className="text-5xl lg:text-7xl mt-6 ml-5 lg:ml-36 text-left text-white">
+                Jenkins <br></br>
+                <span className="text-jellcblue">Electric LLC</span>
+              </h1>
+            </FadeIn>
           </div>
           <div className="flex w-screen h-[8vh]">
             <div className="w-1/3"></div>
@@ -43,8 +46,12 @@ const HomePage = () => {
         </div>
       </div>
 
-      <ServicesProvidedCard />
-      <AboutUsCard />
+      <FadeIn>
+        <ServicesProvidedCard />
+      </FadeIn>
+      <FadeIn>
+        <AboutUsCard />
+      </FadeIn>
     </div>
   );
 };

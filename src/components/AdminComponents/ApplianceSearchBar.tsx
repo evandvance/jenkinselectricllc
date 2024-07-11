@@ -30,12 +30,14 @@ const ApplianceSearchBar = ({
     <div className="w-[85vw] h-20 p-5 flex justify-between items-center rounded-xl bg-slate-300">
       <input
         className="p-1 rounded hover:cursor-text"
-        type="text"
+        type="search"
         placeholder="Search By Name..."
         onChange={(event) => {
           setAppliances(
             originalAppliances.filter((appliance) =>
-              appliance.applianceName.includes(event.target.value)
+              appliance.applianceName
+                .toLowerCase()
+                .includes(event.target.value.toLowerCase())
             )
           );
         }}

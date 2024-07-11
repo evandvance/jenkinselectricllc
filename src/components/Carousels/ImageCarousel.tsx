@@ -57,7 +57,7 @@ const ImageCarousel = ({ images }: ImageCarouselProps) => {
         <Image
           className={
             slide === index
-              ? 'min-w-[330px] min-h-[330px] max-w-[400px] max-h-[400px] lg:h-[400px] lg:w-[400px] shadow-sm rounded'
+              ? 'w-[330px] h-[330px] lg:h-[400px] lg:w-[400px] shadow-sm rounded'
               : 'hidden'
           }
           key={index}

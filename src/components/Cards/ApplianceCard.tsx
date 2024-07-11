@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import BlueButton from '../Buttons/BlueButton';
 import { appliaceInterface } from '@/interfaces/ApplianceInterface';
+import FadeIn from '../Utilities/FadeIn';
 
 interface ApplianceCardProps {
   appliance: appliaceInterface;
@@ -9,49 +10,51 @@ interface ApplianceCardProps {
 
 const ApplianceCard = ({ appliance }: ApplianceCardProps) => {
   return (
-    <div className="m-3 p-10 flex flex-col justify-between items-center bg-slate-300 text-black border rounded max-w-[90%]">
-      <Link href={`/appliances/${appliance.id}`} className="w-full h-1/2">
-        <Image
-          height={350}
-          width={500}
-          className="object-contain w-full h-full rounded"
-          src={
-            process.env.NODE_ENV === 'development'
-              ? '/images/example_image.webp'
-              : appliance.images[0].imageUrl
-          }
-          alt={`Image of ${appliance.applianceName}`}
-        />
-      </Link>
-
-      <div className="flex flex-col px-5 pt-5 w-[350px] h-1/2 justify-end">
-        <div className="flex flex-col justify-between items-center space-y-4">
-          <h2 className="text-4xl ">{appliance.applianceName}</h2>
-          <h3 className="text-3xl  text-jellcblue">${appliance.price}</h3>
-        </div>
-        <div className="text-lg">
-          <p>Model: {appliance.modelNumber}</p>
-          <p>{appliance.brand}</p>
-          <p>{appliance.type.toUpperCase()}</p>
-        </div>
-        <Link
-          className="text-jellcblue hover:underline text-lg "
-          href={`/appliances/${appliance.id}`}
-        >
-          More details...
+    <FadeIn>
+      <div className="m-3 p-10 flex flex-col justify-between items-center bg-slate-300 text-black border rounded max-w-[90%]">
+        <Link href={`/appliances/${appliance.id}`} className="w-full h-1/2">
+          <Image
+            height={350}
+            width={500}
+            className="object-contain w-full h-full rounded"
+            src={
+              process.env.NODE_ENV === 'development'
+                ? '/images/example_image.webp'
+                : appliance.images[0].imageUrl
+            }
+            alt={`Image of ${appliance.applianceName}`}
+          />
         </Link>
-        <div className="w-full flex items-center justify-center pt-5">
-          {appliance.reservation ? (
-            <div className="text-4xl">Appliance Reserved.</div>
-          ) : (
-            <BlueButton
-              href={`/appliances/reserve/${appliance.id}`}
-              title="Reserve Now"
-            />
-          )}
+
+        <div className="flex flex-col px-5 pt-5 w-[350px] h-1/2 justify-end">
+          <div className="flex flex-col justify-between items-center space-y-4">
+            <h2 className="text-4xl ">{appliance.applianceName}</h2>
+            <h3 className="text-3xl  text-jellcblue">${appliance.price}</h3>
+          </div>
+          <div className="text-lg">
+            <p>Model: {appliance.modelNumber}</p>
+            <p>{appliance.brand}</p>
+            <p>{appliance.type.toUpperCase()}</p>
+          </div>
+          <Link
+            className="text-jellcblue hover:underline text-lg "
+            href={`/appliances/${appliance.id}`}
+          >
+            More details...
+          </Link>
+          <div className="w-full flex items-center justify-center pt-5">
+            {appliance.reservation ? (
+              <div className="text-4xl">Appliance Reserved.</div>
+            ) : (
+              <BlueButton
+                href={`/appliances/reserve/${appliance.id}`}
+                title="Reserve Now"
+              />
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </FadeIn>
   );
 };
 
