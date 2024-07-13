@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const imageUrl = await uploadFile(newInstruction.image, `instructions/`);
+    const imageUrl = await uploadFile(newInstruction.image, `instructions`);
     const instruction = await prisma.permitInstructions.create({
       data: {
         description: newInstruction.description,

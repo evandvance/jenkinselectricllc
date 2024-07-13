@@ -19,15 +19,15 @@ const AdminPermitPageDisplay = () => {
       }
 
       setVideo(response.data?.url);
-      setInstructions(response.data?.instructions);
-      setOldInstructions(response.data?.instructions);
+      setInstructions(response.data?.instructions.sort());
+      setOldInstructions(response.data?.instructions.sort());
     });
   }, []);
 
   return (
     <>
       {video && <div>Current Video url is {video.url}</div>}
-      <div className="flex flex-col justify-center items-center w-screen space-y-4">
+      <div className="flex flex-col justify-center items-center w-screen space-y-4 m-5">
         {instructions?.map((instruction) => (
           <InstructionCard
             key={instruction.id}

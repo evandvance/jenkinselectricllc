@@ -98,7 +98,7 @@ const InstructionCard = ({
       const result =
         (await response!.json()) as ApiResponse<PermitInstructions>;
 
-      if (result.status !== 201) {
+      if (result.status !== 200) {
         setError(true);
         setAllInstructions(originalInstructions);
         return;
@@ -106,10 +106,21 @@ const InstructionCard = ({
 
       setSuccess(true);
       setAllInstructions([
-        ...(allInstructions ? allInstructions : []),
+        ...(allInstructions
+          ? allInstructions.filter(
+              (instruction) => instruction.id !== permitInstruction.id
+            )
+          : []),
         result.data!,
       ]);
-      setOriginalInstructions(allInstructions);
+      setOriginalInstructions([
+        ...(allInstructions
+          ? allInstructions.filter(
+              (instruction) => instruction.id !== permitInstruction.id
+            )
+          : []),
+        result.data!,
+      ]);
       setIsNewInstruction(false);
     }
   };

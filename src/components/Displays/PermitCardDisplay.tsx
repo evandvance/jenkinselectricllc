@@ -14,7 +14,7 @@ const PermitCardDisplay = () => {
 
       if (response.status !== 200) return;
 
-      setInstructions(response.data?.instructions);
+      setInstructions(response.data?.instructions.sort());
       setVideo(response.data?.url);
     });
   }, []);
