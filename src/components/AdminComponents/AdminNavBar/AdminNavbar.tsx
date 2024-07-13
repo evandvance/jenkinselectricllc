@@ -37,6 +37,15 @@ const AdminNavbar = () => {
             Technicians
           </Link>
         </li>
+
+        <li>
+          <Link
+            className="border rounded-xl py-2 px-3 hover:bg-white hover:text-black"
+            href={'/admin/permits'}
+          >
+            Permit Instructions
+          </Link>
+        </li>
       </ul>
     </nav>
   );

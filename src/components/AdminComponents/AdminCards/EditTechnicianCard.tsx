@@ -44,7 +44,9 @@ const EditTechnicianCard = ({
 
     const response = (await result.json()) as ApiResponse<Technicians>;
     if (response.status !== 204) {
+      setError(true);
       setTechnicians(oldTechnicians);
+      return;
     }
   };
 

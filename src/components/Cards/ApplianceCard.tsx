@@ -9,7 +9,7 @@ interface ApplianceCardProps {
 
 const ApplianceCard = ({ appliance }: ApplianceCardProps) => {
   return (
-    <div className="m-3 p-10 flex flex-col justify-between items-center bg-slate-300 text-black border rounded max-w-[90%] h-[95vh]">
+    <div className="m-3 p-10 flex flex-col justify-between items-center bg-slate-300 text-black border rounded max-w-[90%]">
       <Link href={`/appliances/${appliance.id}`} className="w-full h-1/2">
         <Image
           height={350}

@@ -10,13 +10,10 @@ export async function DELETE(
 
   try {
     await prisma.technicians.delete({ where: { id } });
-    return NextResponse.json(
-      {
-        status: 204,
-        message: 'Technician Deleted Successfully',
-      },
-      { status: 204 }
-    );
+    return NextResponse.json({
+      status: 204,
+      message: 'Technician Deleted Successfully',
+    });
   } catch (err) {
     console.log(err);
     return NextResponse.json(
