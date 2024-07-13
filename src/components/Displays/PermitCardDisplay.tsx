@@ -23,9 +23,11 @@ const PermitCardDisplay = () => {
     <>
       {video && <iframe src={video.url}></iframe>}
       {instructions ? (
-        instructions.map((instruction) => (
-          <PermitCards instruction={instruction} />
-        ))
+        <div className="space-y-3 m-5">
+          {instructions.map((instruction) => (
+            <PermitCards instruction={instruction} />
+          ))}
+        </div>
       ) : (
         <div>No instructions found</div>
       )}
