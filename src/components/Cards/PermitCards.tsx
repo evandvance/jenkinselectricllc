@@ -12,7 +12,7 @@ const PermitCards = ({ instruction }: PermitCardProps) => {
       <div className="w-[90vw] lg:w-[75vw] flex flex-col justify-center items-center lg:flex-row">
         <div className="lg:w-1/2">
           <Image
-            className="w-[330px] h-[330px] lg:w-[400px] lg:h-[400px] object-contain rounded"
+            className="w-[330px] h-[330px] lg:w-[400px] lg:h-[400px] rounded"
             src={instruction.imageUrl}
             alt={`Image of ${instruction.id}`}
             height={330}

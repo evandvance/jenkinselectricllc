@@ -35,7 +35,9 @@ const InstructionCard = ({
 
   const [isNewInstruction, setIsNewInstruction] = useState(
     permitInstruction.id >
-      originalInstructions[originalInstructions.length - 1].id
+      (originalInstructions.length > 0
+        ? originalInstructions[originalInstructions.length - 1].id
+        : 0)
   );
 
   const {
@@ -153,29 +155,30 @@ const InstructionCard = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-[90vw] bg-slate-300 p-3 flex flex-col lg:flex-row justify-center items-center"
+      className="w-[90vw] bg-slate-300 p-3 flex flex-col lg:flex-row justify-center items-center rounded"
     >
-      {error && (
-        <p className="text-red-500 text-2xl text-center w-full px-5 m-2">
-          Error - Something when wrong on the server
-        </p>
-      )}
-
-      {success && (
-        <p className="text-2xl text-center w-full px-5 text-green-600 m-2">
-          Instruction Updated Successfully
-        </p>
-      )}
       <div className="lg:w-1/2 flex flex-col justify-center items-center m-5">
+        {error && (
+          <p className="text-red-500 text-2xl text-center w-full px-5 m-2">
+            Error - Something when wrong on the server
+          </p>
+        )}
+
+        {success && (
+          <p className="text-2xl text-center w-full px-5 text-green-600 m-2">
+            Instruction Updated Successfully
+          </p>
+        )}
         {permitInstruction.imageUrl && (
           <Image
             src={permitInstruction?.imageUrl!}
             height={330}
             width={330}
             alt={`Image of ${permitInstruction?.description}`}
+            className="w-[330px] h-[330px]"
           />
         )}
-
+        {isNewInstruction && <p>Image Required</p>}
         <input {...register('image')} type="file" id="image" name="image" />
         {errors.image && (
           <p className="text-red-500">{errors.image.message?.toString()}</p>

@@ -25,7 +25,7 @@ const PermitCardDisplay = () => {
       {instructions ? (
         <div className="space-y-3 m-5">
           {instructions.map((instruction) => (
-            <PermitCards instruction={instruction} />
+            <PermitCards key={instruction.id} instruction={instruction} />
           ))}
         </div>
       ) : (

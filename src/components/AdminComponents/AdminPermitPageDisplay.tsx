@@ -44,7 +44,7 @@ const AdminPermitPageDisplay = () => {
               ...(instructions ? instructions : []),
               {
                 id:
-                  (instructions
+                  (instructions && instructions.length > 0
                     ? instructions[instructions?.length - 1].id
                     : 0) + 1,
                 imageUrl: '',
