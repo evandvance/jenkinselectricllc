@@ -42,7 +42,7 @@ const AdminPermitPageDisplay = () => {
           onClick={() => {
             setInstructions([
               ...(instructions ? instructions : []),
-              { id: instructions?.length!, imageUrl: '', description: '' },
+              { id: instructions?.length! + 1, imageUrl: '', description: '' },
             ]);
           }}
           className="w-44 h-16 rounded bg-jellcblue text-white "

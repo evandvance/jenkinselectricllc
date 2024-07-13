@@ -33,7 +33,7 @@ const InstructionCard = ({
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [isNewInstruction, setIsNewInstruction] = useState(
-    permitInstruction?.id! >= originalInstructions?.length!
+    permitInstruction?.id! > originalInstructions?.length!
   );
 
   const {
@@ -48,40 +48,57 @@ const InstructionCard = ({
     const formData = new FormData();
 
     formData.append('description', data.description);
-    formData.append('image', data.image);
-
-    let response;
+    formData.append('image', data.image[0]);
 
     if (isNewInstruction) {
-      response = await fetch('/api/admin/instructions', {
+      const response = await fetch('/api/admin/instructions', {
         method: 'POST',
         body: formData,
       });
+
+      const result =
+        (await response!.json()) as ApiResponse<PermitInstructions>;
+
+      if (result.status !== 201) {
+        setError(true);
+        setAllInstructions(originalInstructions);
+        return;
+      }
+
+      setSuccess(true);
+      setAllInstructions([
+        ...(allInstructions ? allInstructions : []),
+        result.data!,
+      ]);
+      setOriginalInstructions(allInstructions);
+      setIsNewInstruction(false);
+      return;
     } else {
-      response = await fetch(
+      const response = await fetch(
         `/api/admin/instructions/${permitInstruction.id}`,
         {
           method: 'PUT',
           body: formData,
         }
       );
+
+      const result =
+        (await response!.json()) as ApiResponse<PermitInstructions>;
+
+      if (result.status !== 201) {
+        setError(true);
+        setAllInstructions(originalInstructions);
+        return;
+      }
+
+      setSuccess(true);
+      setAllInstructions([
+        ...(allInstructions ? allInstructions : []),
+        result.data!,
+      ]);
+      setOriginalInstructions(allInstructions);
+      setIsNewInstruction(false);
     }
-
-    const result = (await response!.json()) as ApiResponse<PermitInstructions>;
-
-    if (result.status !== 201) {
-      setError(true);
-      setAllInstructions(originalInstructions);
-      return;
-    }
-
-    setSuccess(true);
-    setOriginalInstructions([
-      ...(allInstructions ? allInstructions : []),
-      result.data!,
-    ]);
-    setAllInstructions(originalInstructions);
-    setIsNewInstruction(false);
   };
 
   const handleDelete = async () => {
