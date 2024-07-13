@@ -32,8 +32,10 @@ const InstructionCard = ({
 }: InstructionCardProps) => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+
   const [isNewInstruction, setIsNewInstruction] = useState(
-    permitInstruction?.id! > originalInstructions?.length!
+    permitInstruction.id >
+      originalInstructions[originalInstructions.length - 1].id
   );
 
   const {
@@ -67,10 +69,21 @@ const InstructionCard = ({
 
       setSuccess(true);
       setAllInstructions([
-        ...(allInstructions ? allInstructions : []),
+        ...(allInstructions
+          ? allInstructions.filter(
+              (instruction) => instruction.id !== permitInstruction.id
+            )
+          : []),
         result.data!,
       ]);
-      setOriginalInstructions(allInstructions);
+      setOriginalInstructions([
+        ...(allInstructions
+          ? allInstructions.filter(
+              (instruction) => instruction.id !== permitInstruction.id
+            )
+          : []),
+        result.data!,
+      ]);
       setIsNewInstruction(false);
       return;
     } else {

@@ -22,10 +22,7 @@ export async function DELETE(
     // await deleteFile(`appliances/${cleanseName(appliance!.applianceName)}/`);
 
     await prisma.appliances.delete({ where: { id } });
-    return NextResponse.json(
-      { message: 'Deletion Successful', status: 204 },
-      { status: 204 }
-    );
+    return NextResponse.json({ message: 'Deletion Successful', status: 204 });
   } catch (err) {
     console.log(err);
     return NextResponse.json(errorMessage);
