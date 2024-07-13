@@ -20,13 +20,13 @@ const TechnicianCard = ({ technician, index }: TechnicianCardProps) => {
   return (
     <FadeIn>
       <div
-        className={`w-[85vw] lg:w-[75vw] m-5 p-5 -z-20 border rounded-xl text-white flex flex-col lg:flex-row ${gradient}`}
+        className={`w-[85vw] lg:w-[75vw] m-5 p-5 border rounded-xl text-white flex flex-col lg:flex-row ${gradient}`}
       >
-        <div className="w-full lg:w-1/2 flex justify-center items-center relative">
+        <div className="w-full lg:w-1/2 flex justify-center items-center">
           <Image
             height={500}
             width={500}
-            className="object-cotain w-full h-auto lg:w-[500px] lg:h-[500px] p-5 -z-10 rounded"
+            className="object-cotain w-full h-auto lg:w-[500px] lg:h-[500px] p-5 rounded"
             src={technician.imageUrl}
             alt={`Image of ${technician.firstName} ${technician.lastName}`}
           />
