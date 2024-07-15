@@ -3,9 +3,10 @@ import { ReactNode, useEffect, useRef, useState } from 'react';
 
 interface FadeInProps {
   children: ReactNode;
+  threshold?: number;
 }
 
-const FadeIn = ({ children }: FadeInProps) => {
+const FadeIn = ({ children, threshold }: FadeInProps) => {
   const containerRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -13,7 +14,7 @@ const FadeIn = ({ children }: FadeInProps) => {
     const fadeInOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.75,
+      threshold: threshold ? threshold : 0.7,
     };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
