@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { PermitInstructions, PermitVideo } from '@prisma/client';
 import { PermitInterface } from '@/interfaces/PermitInterface';
 import InstructionCard from './AdminCards/InstructionCard';
+import VideoCard from './AdminCards/VideoCard';
 
 const AdminPermitPageDisplay = () => {
   const [oldInstructions, setOldInstructions] =
@@ -26,7 +27,7 @@ const AdminPermitPageDisplay = () => {
 
   return (
     <>
-      {video && <div>Current Video url is {video.url}</div>}
+      <VideoCard video={video} setVideo={setVideo} />
       <div className="flex flex-col justify-center items-center w-screen space-y-4 m-5">
         {instructions?.map((instruction) => (
           <InstructionCard

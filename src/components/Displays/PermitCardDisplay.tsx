@@ -21,8 +21,13 @@ const PermitCardDisplay = () => {
 
   return (
     <>
-      {video && <iframe src={video.url}></iframe>}
-      {instructions ? (
+      {video && (
+        <iframe
+          className=" w-[90vw] lg:w-[75vw] h-[330px] lg:h-[75vh]"
+          src={video.embededUrl}
+        ></iframe>
+      )}
+      {instructions && instructions.length > 0 ? (
         <div className="space-y-3 m-5">
           {instructions.map((instruction) => (
             <PermitCards key={instruction.id} instruction={instruction} />
