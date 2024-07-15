@@ -107,8 +107,9 @@ model PermitInstructions {
 }
 
 model PermitVideo {
-  id  Int    @id @default(autoincrement())
-  url String
+  id         Int    @id @default(autoincrement())
+  url        String
+  embededUrl String @map("embeded_url")
 
   @@map("permit_video")
 }

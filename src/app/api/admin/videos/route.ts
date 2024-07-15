@@ -23,11 +23,11 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const cleansedUrl = `https://www.youtube.com/embed/${url.split('=')[1]}`;
+  const embededUrl = `https://www.youtube.com/embed/${url.split('=')[1]}`;
 
   try {
     const newVideo = await prisma.permitVideo.create({
-      data: { url: cleansedUrl },
+      data: { url, embededUrl },
     });
 
     return NextResponse.json(

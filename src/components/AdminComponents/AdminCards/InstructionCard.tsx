@@ -54,6 +54,7 @@ const InstructionCard = ({
     formData.append('description', data.description);
     formData.append('image', data.image[0]);
 
+    //this is messy and could be more dry.
     if (isNewInstruction) {
       const response = await fetch('/api/admin/instructions', {
         method: 'POST',
