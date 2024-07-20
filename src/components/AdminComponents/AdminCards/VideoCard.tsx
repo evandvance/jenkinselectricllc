@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Dispatch, SetStateAction, useState } from 'react';
 import GreenButton from '@/components/Buttons/GreenButton';
 import { VideoSchema, VideoType } from '@/interfaces/VideoInterface';
+import RedButton from '@/components/Buttons/RedButton';
 
 interface VideoCardProps {
   video?: PermitVideo;
@@ -13,6 +14,9 @@ interface VideoCardProps {
 const VideoCard = ({ video, setVideo }: VideoCardProps) => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [isNewVideo, setIsNewVideo] = useState(
+    video === null || video === undefined
+  );
 
   const {
     register,
@@ -22,13 +26,26 @@ const VideoCard = ({ video, setVideo }: VideoCardProps) => {
     resolver: zodResolver(VideoSchema),
   });
 
+  const handleDelete = async () => {
+    const data = await fetch('/api/admin/videos', { method: 'DELETE' });
+    const response = (await data.json()) as ApiResponse<undefined>;
+
+    if (response.status !== 204) {
+      setError(true);
+      return;
+    }
+
+    setVideo(undefined);
+    setIsNewVideo(true);
+  };
+
   const onSubmit = async (data: FieldValues) => {
     const formData = new FormData();
 
     formData.append('url', data.url);
 
     let result;
-    if (video === null) {
+    if (isNewVideo) {
       const response = await fetch('/api/admin/videos', {
         method: 'POST',
         body: formData,
@@ -40,15 +57,16 @@ const VideoCard = ({ video, setVideo }: VideoCardProps) => {
         setError(true);
         return;
       }
+      setIsNewVideo(false);
     } else {
-      const response = await fetch('/api/admin/videos', {
+      const response = await fetch(`/api/admin/videos/${video?.id}`, {
         method: 'PUT',
         body: formData,
       });
 
       result = (await response.json()) as ApiResponse<PermitVideo>;
 
-      if (result.status !== 201) {
+      if (result.status !== 200) {
         setError(true);
         return;
       }
@@ -87,11 +105,12 @@ const VideoCard = ({ video, setVideo }: VideoCardProps) => {
         />
         {errors.url && <p className="text-red-500">{errors.url.message}</p>}
       </div>
-      <div className="flex flex-col justify-center items-center">
-        <div className="lg:h-[27px]"></div>
+      <div className="flex justify-center items-center space-x-3 lg:space-x-0 lg:flex-col lg:space-y-3">
+        {isNewVideo && <div className="lg:h-[16px]"></div>}
         <GreenButton type="submit" className="p-2">
-          {video === null ? 'Create' : 'Update'}
+          {isNewVideo ? 'Create' : 'Update'}
         </GreenButton>
+        {!isNewVideo && <RedButton onClick={handleDelete}>Delete</RedButton>}
       </div>
     </form>
   );

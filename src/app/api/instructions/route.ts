@@ -5,12 +5,12 @@ export async function GET(req: NextRequest) {
   try {
     const instructions = await prisma.permitInstructions.findMany();
 
-    const url = await prisma.permitVideo.findUnique({ where: { id: 1 } });
+    const url = await prisma.permitVideo.findMany();
 
     return NextResponse.json({
       status: 200,
       message: 'Success',
-      data: { instructions, url },
+      data: { instructions: instructions, url: url[0] },
     });
   } catch (err) {
     return NextResponse.json(
