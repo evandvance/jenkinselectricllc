@@ -1,7 +1,7 @@
 import { PermitVideo } from '@prisma/client';
 import { useForm, FieldValues } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import GreenButton from '@/components/Buttons/GreenButton';
 import { VideoSchema, VideoType } from '@/interfaces/VideoInterface';
 import RedButton from '@/components/Buttons/RedButton';
@@ -14,9 +14,7 @@ interface VideoCardProps {
 const VideoCard = ({ video, setVideo }: VideoCardProps) => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [isNewVideo, setIsNewVideo] = useState(
-    video === null || video === undefined
-  );
+  const [isNewVideo, setIsNewVideo] = useState(!!!video);
 
   const {
     register,
