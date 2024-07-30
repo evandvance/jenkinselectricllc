@@ -10,6 +10,7 @@ const AdminPermitPageDisplay = () => {
     useState<PermitInstructions[]>();
   const [instructions, setInstructions] = useState<PermitInstructions[]>();
   const [video, setVideo] = useState<PermitVideo>();
+  const [isNewVideo, setIsNewVideo] = useState(true);
 
   useEffect(() => {
     fetch('/api/instructions').then(async (data) => {
@@ -20,6 +21,7 @@ const AdminPermitPageDisplay = () => {
       }
 
       setVideo(response.data?.url);
+      setIsNewVideo(response.data?.url === undefined);
       setInstructions(response.data?.instructions.sort());
       setOldInstructions(response.data?.instructions.sort());
     });
@@ -27,7 +29,12 @@ const AdminPermitPageDisplay = () => {
 
   return (
     <>
-      <VideoCard video={video} setVideo={setVideo} />
+      <VideoCard
+        video={video}
+        setVideo={setVideo}
+        isNewVideo={isNewVideo}
+        setIsNewVideo={setIsNewVideo}
+      />
       <div className="flex flex-col justify-center items-center w-screen space-y-4 m-5">
         {instructions?.map((instruction) => (
           <InstructionCard

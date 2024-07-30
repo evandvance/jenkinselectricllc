@@ -8,13 +8,19 @@ import RedButton from '@/components/Buttons/RedButton';
 
 interface VideoCardProps {
   video?: PermitVideo;
+  isNewVideo: boolean;
+  setIsNewVideo: Dispatch<SetStateAction<boolean>>;
   setVideo: Dispatch<SetStateAction<PermitVideo | undefined>>;
 }
 
-const VideoCard = ({ video, setVideo }: VideoCardProps) => {
+const VideoCard = ({
+  video,
+  isNewVideo,
+  setVideo,
+  setIsNewVideo,
+}: VideoCardProps) => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [isNewVideo, setIsNewVideo] = useState(!!!video);
 
   const {
     register,
