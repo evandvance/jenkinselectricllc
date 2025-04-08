@@ -31,7 +31,9 @@ const AboutUsCard = ({ className }: AbouteUsCardProps) => {
           serve you. Thank you and God bless!
         </p>
       </div>
-      <ContactClusterCard />
+      <div className="flex flex-col justify-center items-center m-3">
+        <ContactClusterCard />
+      </div>
     </div>
   );
 };
