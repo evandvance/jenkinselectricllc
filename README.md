@@ -2,6 +2,14 @@
 
 ## Developers
 
+To run the site run `npm run dev:docker`
+This command will generate the docker images and create
+the structure required for the website to operate.
+The command is dependent on a .env file that has the
+Environment Variables listed below.
+
+To connect to the website goto: http://localhost:${NEXT_PORT}
+
 ### Environment Variables
 
 - POSTGRES_PASSWORD - The password to your local postgres container/server
