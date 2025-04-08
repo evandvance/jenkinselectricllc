@@ -16,7 +16,7 @@ services:
       dockerfile: Dockerfile
       target: dev
     ports:
-      - ${NEXT_PORT}:${NEXT_PORT}
+      - ${NEXT_PORT}:3000
     environment:
       - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@db:${DATABASE_PORT}/postgres
       - AWS_PUBLIC_KEY=${AWS_PUBLIC_KEY}
